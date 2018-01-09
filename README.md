@@ -14,7 +14,6 @@ Il faut (si ce n'est déjà fait) installer la dernière version de nodeJS et av
 $ npm install -g ionic cordova
 ```
 
-Pour la partie serveur, il faut que Maven soit installé et donc avoir accès à la commande ```mvn ```.
 
 ## Installation
 
