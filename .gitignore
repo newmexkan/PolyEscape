@@ -1,0 +1,33 @@
+
+
+# Package Files #
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.jar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+.idea/
+
+# Mac files
+.DS_Store
+
+# IntelliJ files
+*.iml
+
+
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+
+*.log
+*.tmp
+*.tmp.*
+log.txt
+
+
+PolyEscape/node_modules

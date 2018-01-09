@@ -1,7 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="" />
+    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="&quot;Committing initial app&quot;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/icon/drawable-hdpi-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/icon/drawable-ldpi-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/icon/drawable-mdpi-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/icon/drawable-xhdpi-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/icon/drawable-xxhdpi-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/icon/drawable-xxxhdpi-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-land-hdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-land-ldpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-land-mdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-land-xhdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-land-xxhdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-land-xxxhdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-port-hdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-port-ldpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-port-mdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-port-xhdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-port-xxhdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-1024.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-40@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-40@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-50.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-50@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-60.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-60@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-60@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-72.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-72@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-76.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-76@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-83.5@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-small.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-small@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon-small@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/icon/icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-568h@2x~iphone.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-667h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-736h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-Landscape-736h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-Landscape@2x~ipad.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-Landscape@~ipadpro.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-Landscape~ipad.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-Portrait@2x~ipad.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-Portrait@~ipadpro.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default-Portrait~ipad.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default@2x~iphone.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default@2x~universal~anyany.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/ios/splash/Default~iphone.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/splash.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/assets/icon/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/assets/imgs/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/.editorconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/config.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/ionic.config.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/package-lock.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/resources/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/app/app.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/app/app.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/app/app.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/app/app.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/app/main.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/manifest.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/home/home.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/home/home.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/home/home.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/service-worker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/theme/variables.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/tsconfig.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/tslint.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -13,14 +93,68 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="35" lean-forward="true" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PolyEscape/www/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="variables.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PolyEscape/src/theme/variables.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="80" column="9" lean-forward="false" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PolyEscape/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/PolyEscape/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -43,7 +177,92 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PolyEscape" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PolyEscape" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PolyEscape" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PolyEscape" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".sourcemaps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
@@ -51,6 +270,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path" value="D:/node_js/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -74,23 +294,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515502828765</updated>
-      <workItem from="1515502830409" duration="5000" />
+      <workItem from="1515502830409" duration="732000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5000" />
+    <option name="totallyTimeSpent" value="732000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973601" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -108,8 +331,57 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;Committing initial app&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Committing initial app&quot;" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/PolyEscape/.sourcemaps/main.js.map">
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="35" lean-forward="true" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/theme/variables.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="80" column="9" lean-forward="false" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
