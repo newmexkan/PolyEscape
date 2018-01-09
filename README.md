@@ -1,6 +1,6 @@
 # Notre Application
 
-PolyEscape est une application cross-platform (iOS, Android, Windows Phone) de gestion de listes de courses (locales ou partagées).
+PolyEscape est une application cross-platform (iOS, Android, Windows Phone) d'Escape Game ludique
 
 
 # Installer l'environnement
