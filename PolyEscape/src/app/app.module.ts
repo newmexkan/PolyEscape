@@ -10,13 +10,23 @@ import { OptionsPage } from '../pages/options/options';
 import { LobbyPage } from "../pages/lobby/lobby";
 
 import { HttpModule } from '@angular/http';
+import {GamePage} from "../pages/game/game";
+import {InventairePage} from "../pages/inventaire/inventaire";
+import {ScenarioPage} from "../pages/scenario/scenario";
+import {EquipePage} from "../pages/equipe/equipe";
+import {MapPage} from "../pages/map/map";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     OptionsPage,
-    LobbyPage
+    LobbyPage,
+    GamePage,
+    InventairePage,
+    ScenarioPage,
+    EquipePage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +38,13 @@ import { HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     OptionsPage,
-    LobbyPage
+    LobbyPage,
+    GamePage,
+    InventairePage,
+    ScenarioPage,
+    EquipePage,
+    MapPage
+
   ],
   providers: [
     StatusBar,

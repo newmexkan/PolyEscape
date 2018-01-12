@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { ScenarioPage } from "../scenario/scenario";
+import { InventairePage} from "../inventaire/inventaire";
+import { EquipePage} from "../equipe/equipe";
+import { MapPage} from "../map/map";
 
 /**
  * Generated class for the GamePage tabs.
@@ -14,11 +18,10 @@ import { IonicPage, NavController } from 'ionic-angular';
   templateUrl: 'game.html'
 })
 export class GamePage {
-
-  scenarioRoot = 'ScenarioPage'
-  inventaireRoot = 'InventairePage'
-  equipeRoot = 'EquipePage'
-
+  mapPage = MapPage;
+  scenarioPage = ScenarioPage;
+  inventairePage = InventairePage;
+  equipePage = EquipePage;
 
   constructor(public navCtrl: NavController) {}
 
