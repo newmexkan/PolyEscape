@@ -73,6 +73,7 @@ export class HomePage {
             ).subscribe(response => {
               console.log('GET Response:', response);
             });
+            this.navCtrl.push(this.lobbyPage);
           }
         }
       ]
