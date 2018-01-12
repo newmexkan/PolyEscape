@@ -1,14 +1,21 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Poly'Escape
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+  <ion-img src="assets/imgs/polyescape.svg"></ion-img>
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+    <button ion-button color="secondary" full round (click)="askNameNewGame()">Démarrer une partie</button>
   </p>
+  <p>
+    <button ion-button full round (click)="askNameExistingGame()">Rejoindre une partie</button>
+  </p>
+  <p>
+    <button ion-button [navPush]="optionsPage" color="light" full round>Paramètres</button>
+  </p>
+
 </ion-content>

@@ -1,5 +1,5 @@
 {
-  "name": "PolyEscape",
+  "name": "polyesc",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -35,5 +35,12 @@
     "ionic": "3.19.0",
     "typescript": "2.4.2"
   },
-  "description": "An Ionic project"
+  "description": "PolyEsc: An Ionic project",
+  "cordovaPlugins": [
+    "cordova-plugin-whitelist",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": []
 }
