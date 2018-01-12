@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AlertController } from 'ionic-angular';
+import {Platform} from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -14,12 +16,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'scenario.html',
 })
 export class ScenarioPage {
+  private platform: Platform;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, platform: Platform) {
+    this.platform = platform;
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ScenarioPage');
+  }
+
+  leave(){
+    let alert = this.alertCtrl.create({
+      title: 'Quitter',
+      message: 'Voulez-vous vraiment quitter la partie ? L\' avancement ne sera pas sauvegardé.',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Quitter',
+          handler: () => {
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    alert.present();
+
   }
 
 }
