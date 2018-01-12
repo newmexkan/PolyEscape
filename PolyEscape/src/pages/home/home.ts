@@ -4,6 +4,7 @@ import { OptionsPage } from '../options/options';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 import {SelectScenarioPage} from "../select-scenario/select-scenario";
+import { LobbyPage } from '../lobby/lobby';
 
 @Component({
   selector: 'page-home',
@@ -11,6 +12,7 @@ import {SelectScenarioPage} from "../select-scenario/select-scenario";
 })
 export class HomePage {
   optionsPage = OptionsPage;
+  lobbyPage = LobbyPage;
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,private http: Http) {
 
   }
@@ -39,6 +41,7 @@ export class HomePage {
             ).subscribe(response => {
               console.log('GET Response:', response);
             });
+            this.navCtrl.push(this.lobbyPage);
           }
         }
       ]
@@ -71,6 +74,7 @@ export class HomePage {
             ).subscribe(response => {
               console.log('GET Response:', response);
             });
+            this.navCtrl.push(this.lobbyPage);
           }
         }
       ]

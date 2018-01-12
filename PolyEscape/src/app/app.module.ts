@@ -7,11 +7,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { OptionsPage } from '../pages/options/options';
+import { LobbyPage } from "../pages/lobby/lobby";
 
 import { HttpModule } from '@angular/http';
 import { ScenarioServiceProvider } from '../providers/scenario-service/scenario-service';
 import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {GamePage} from "../pages/game/game";
+import {InventairePage} from "../pages/inventaire/inventaire";
+import {ScenarioPage} from "../pages/scenario/scenario";
+import {EquipePage} from "../pages/equipe/equipe";
+import {MapPage} from "../pages/map/map";
 
 @NgModule({
   declarations: [
@@ -19,6 +25,13 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     HomePage,
     OptionsPage,
     SelectScenarioPage,
+    OptionsPage,
+    LobbyPage,
+    GamePage,
+    InventairePage,
+    ScenarioPage,
+    EquipePage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -32,6 +45,14 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     HomePage,
     OptionsPage,
     SelectScenarioPage,
+    OptionsPage,
+    LobbyPage,
+    GamePage,
+    InventairePage,
+    ScenarioPage,
+    EquipePage,
+    MapPage
+
   ],
   providers: [
     StatusBar,
