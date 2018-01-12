@@ -29,17 +29,23 @@ scenarios.push(scenario1);
 app.get('/getScenarios', function(req, res){
     res.send({
         passed: true,
-        message: scenarios
+        scenarios: scenarios
     });
 });
 
 app.get('/getScenario/:id', function(req, res){
     var scenarioId = req.params.id;
-    if(scenarioId < scenarios.length-1)
-    res.send({
-        passed: true,
-        message: scenarios[scenarioId]
-    });
+    if(scenarioId < scenarios.length){
+        res.send({
+            passed: true,
+            scenario: scenarios[scenarioId]
+        });
+    }
+    else{
+        res.status(404).send({
+            message: "Scenario introuvable"
+        })
+    }
 });
 
 app.get('/addGame/:name', function(req, res){
@@ -49,16 +55,23 @@ app.get('/addGame/:name', function(req, res){
     games.push(game);
     res.send({
         passed: true,
-        message: 'Game added !'
+        message: 'Partie ajoutée'
     });
 });
 
 app.get('/getGame/:name', function(req, res){
-    var gameId = games.indexOf(req.params.name.toLowerCase());
-    res.send({
-        passed: true,
-    });
-    res.json(JSON.stringify(this.games[gameId]));
+    var gameId = games.findIndex(i => i.name === req.params.name.toLowerCase());
+    if(gameId != -1){
+        res.send({
+            passed: true,
+            game: games[gameId]
+        });
+    }
+    else {
+        res.status(404).send({
+            message: "Partie introuvable"
+        })
+    }
     
 });
 

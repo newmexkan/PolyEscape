@@ -33,7 +33,7 @@ export class HomePage {
         {
           text: 'Créer',
           handler: data => {
-            this.http.get('http://localhost:8080/addGame/'+ data).pipe(
+            this.http.get('http://localhost:8080/addGame/'+ data.nom).pipe(
               map(res => res.json())
             ).subscribe(response => {
               console.log('GET Response:', response);
@@ -65,7 +65,7 @@ export class HomePage {
         {
           text: 'Rejoindre',
           handler: data => {
-            this.http.get('http://localhost:8080/getGame/'+ data).pipe(
+            this.http.get('http://localhost:8080/getGame/'+ data.nom).pipe(
               map(res => res.json())
             ).subscribe(response => {
               console.log('GET Response:', response);
