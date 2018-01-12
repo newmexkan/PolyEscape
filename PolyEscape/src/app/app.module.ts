@@ -9,28 +9,35 @@ import { HomePage } from '../pages/home/home';
 import { OptionsPage } from '../pages/options/options';
 
 import { HttpModule } from '@angular/http';
+import { ScenarioServiceProvider } from '../providers/scenario-service/scenario-service';
+import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    OptionsPage
+    OptionsPage,
+    SelectScenarioPage,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    OptionsPage
+    OptionsPage,
+    SelectScenarioPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ScenarioServiceProvider
   ]
 })
 export class AppModule {}

@@ -15,7 +15,17 @@ var scenarios = [];
 var items = ["arduino", "programmeC", "capteursArduino"];
 
 var scenario1 = {
+    id: 1,
     name:"Invasion de zombies",
+    nbGamers:3,
+    timeInMinuts:30,
+    summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
+    "trouver une issue, vous devez envoyer un petit robot d’exploration.",
+    missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}]
+};
+var scenario2 = {
+    id: 2,
+    name:"Prise de la Bastaille",
     nbGamers:3,
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
@@ -24,9 +34,10 @@ var scenario1 = {
 };
 
 scenarios.push(scenario1);
+scenarios.push(scenario2);
 
 
-app.get('/getScenarios', function(req, res){
+app.get('/getAllScenarios', function(req, res){
     res.send({
         passed: true,
         scenarios: scenarios
@@ -35,17 +46,18 @@ app.get('/getScenarios', function(req, res){
 
 app.get('/getScenario/:id', function(req, res){
     var scenarioId = req.params.id;
-    if(scenarioId < scenarios.length){
-        res.send({
-            passed: true,
-            scenario: scenarios[scenarioId]
-        });
+    var result;
+    for( result in scenarios){
+        if(result.id === scenarioId){
+            res.send({
+                passed: true,
+                scenario: scenarios[scenarioId]
+            });
+        }
     }
-    else{
-        res.status(404).send({
-            message: "Scenario introuvable"
-        })
-    }
+    res.status(404).send({
+        message: "Scenario introuvable"
+    })
 });
 
 app.get('/addGame/:name', function(req, res){
@@ -72,7 +84,7 @@ app.get('/getGame/:name', function(req, res){
             message: "Partie introuvable"
         })
     }
-    
+
 });
 
 app.listen(process.env.PORT || 8080);

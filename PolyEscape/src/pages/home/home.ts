@@ -3,6 +3,7 @@ import {NavController, AlertController} from 'ionic-angular';
 import { OptionsPage } from '../options/options';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
+import {SelectScenarioPage} from "../select-scenario/select-scenario";
 
 @Component({
   selector: 'page-home',
@@ -77,4 +78,7 @@ export class HomePage {
     prompt.present();
   }
 
+  goToScenarios(){
+    this.navCtrl.push(SelectScenarioPage);
+  }
 }
