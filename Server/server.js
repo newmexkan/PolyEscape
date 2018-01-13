@@ -9,15 +9,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
+var http = require('http').Server(app);
+var server = app.listen(process.env.PORT || 8080);
+var io = require('socket.io').listen(server);
+
+
+
 
 var games = [];
 var scenarios = [];
 var items = ["arduino", "programmeC", "capteursArduino"];
+var players = [];
 
 var scenario1 = {
     id: 1,
     name:"Invasion de zombies",
-    nbGamers:3,
+    nbPlayers:3,
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
@@ -36,6 +43,9 @@ var scenario2 = {
 scenarios.push(scenario1);
 scenarios.push(scenario2);
 
+/**
+ * Partie API
+ */
 
 app.get('/getAllScenarios', function(req, res){
     res.send({
@@ -61,14 +71,26 @@ app.get('/getScenario/:id', function(req, res){
 });
 
 app.get('/addGame/:name', function(req, res){
-    var gamersArr = [];
-    gamersArr.push(req.connection.remoteAddress);
-    var game = {name : req.params.name.toLowerCase(),gamers:gamersArr};
-    games.push(game);
-    res.send({
-        passed: true,
-        message: 'Partie ajoutée'
-    });
+
+    var gameName = req.params.name.toLowerCase();
+
+    // si une partie du même nom n'existe pas deja
+    if(games.findIndex(i => i.name === gameName) === -1){
+        var playersArr = [];
+        var game = {name : gameName,players:playersArr};
+        games.push(game);
+        res.send({
+            passed: true,
+            game: game
+        });
+        console.log("Partie "+gameName+ "crée")
+    }
+    else {
+         res.send({
+            passed: false,
+            message: "Une partie existante possède le même nom !"
+        });
+    }
 });
 
 app.get('/getGame/:name', function(req, res){
@@ -84,7 +106,61 @@ app.get('/getGame/:name', function(req, res){
             message: "Partie introuvable"
         })
     }
+    
+});
+
+/**
+ * Partie interaction joueurs
+ */
+io.on('connection', function(client) {
+
+    client.on('joinGame', function(data) {
+
+        var gameId = games.findIndex(i => i.name === data.game.toLowerCase());
+
+        ///if(games[gameId].players.indexOf(data.user) === -1){
+
+            //rejoint la partie
+            games[gameId].players.push(data.user);
+
+            //rejoint le channel dédié à la partie
+            client.join(data.game);
+
+            //notifie les autres joueurs de la partie
+            client.broadcast.to(data.game).emit('players_changed', {players:games[gameId].players});
+
+            // log serveur
+            console.log(data.user+" a rejoint la partie "+data.game);
+            console.log("Joueurs de la partie :\n"+games[gameId].players);
+
+        //}
+    });
+
+    client.on('quitGame', function(data) {
+
+        var gameId = games.findIndex(i => i.name === data.game.toLowerCase());
+        var player = games[gameId].players.indexOf(data.user);
+
+        // retire le joueur de la partie
+        if (player > -1) {
+            games[gameId].players.splice(player, 1);
+        }
+
+        // quitte le channel dédié a la partie
+        client.leave(data.game);
+
+        //notifie les autres joueurs de la partie
+        client.broadcast.to(data.game).emit('players_changed', {players:games[gameId].players});
+
+        // log serveur
+        console.log(data.user+" a quitté la partie "+data.game);
+        console.log("Joueurs de la partie :\n"+games[gameId].players);
+    });
+
+
 
 });
 
-app.listen(process.env.PORT || 8080);
+
+
+

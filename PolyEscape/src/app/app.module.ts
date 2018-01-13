@@ -10,6 +10,10 @@ import { OptionsPage } from '../pages/options/options';
 import { LobbyPage } from "../pages/lobby/lobby";
 
 import { HttpModule } from '@angular/http';
+
+//import { ScenarioServiceProvider } from '../providers/scenario-service/scenario-service';
+//import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
+
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {GamePage} from "../pages/game/game";
 import {InventairePage} from "../pages/inventaire/inventaire";
@@ -17,13 +21,18 @@ import {ScenarioPage} from "../pages/scenario/scenario";
 import {EquipePage} from "../pages/equipe/equipe";
 import {MapPage} from "../pages/map/map";
 
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+import {HomePageModule} from "../pages/home/home.module";
+import {LobbyPageModule} from "../pages/lobby/lobby.module";
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
+
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     OptionsPage,
+    //SelectScenarioPage,
     OptionsPage,
-    LobbyPage,
     GamePage,
     InventairePage,
     ScenarioPage,
@@ -34,13 +43,18 @@ import {MapPage} from "../pages/map/map";
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    SocketIoModule.forRoot(config),
     HttpModule,
+    HomePageModule,
+    LobbyPageModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     OptionsPage,
+    //SelectScenarioPage,
     OptionsPage,
     LobbyPage,
     GamePage,
@@ -54,6 +68,7 @@ import {MapPage} from "../pages/map/map";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    //ScenarioServiceProvider
   ]
 })
 export class AppModule {}
