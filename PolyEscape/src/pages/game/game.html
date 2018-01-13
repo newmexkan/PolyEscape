@@ -11,7 +11,7 @@
     <ion-tab [root]="scenarioPage" tabTitle="Scenario" tabIcon="ios-book-outline"></ion-tab>
     <ion-tab [root]="inventairePage" tabTitle="Inventaire" tabIcon="ios-list-box-outline"></ion-tab>
     <ion-tab [root]="mapPage" tabTitle="Map" tabIcon="ios-map-outline"></ion-tab>
-    <ion-tab [root]="equipePage" tabTitle="Equipe" tabIcon="ios-people"></ion-tab>
+    <ion-tab [root]="equipePage" [rootParams]="{'joueurs':joueurs}" tabTitle="Equipe" tabIcon="ios-people"></ion-tab>
 </ion-tabs>
 
 

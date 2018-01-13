@@ -7,7 +7,7 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar #navbar>
     <ion-title>Salle d'attente</ion-title>
   </ion-navbar>
 
@@ -16,17 +16,21 @@
 <ion-content padding>
   <ion-label text-center="center">Vous êtes le chef d'équipe</ion-label>
   <button ion-button full>Choisir le niveau</button>
-  <ion-list>
+
+
+    <ion-list>
     <ion-list-header text-center>
       Joueurs connectés
     </ion-list-header>
-    <ion-item>Paul</ion-item>
-    <ion-item>Hugo</ion-item>
-    <ion-item>Thierry</ion-item>
+
+    <ion-item *ngFor="let user of users">{{user}}</ion-item>
   </ion-list>
+
 </ion-content>
+-->
 
 <ion-footer>
-    <button ion-button full color="secondary" (click)="startGame();">Commencer</button>
+    <button ion-button full color="danger" (click)="quitCurrentGame()">Quitter</button>
+    <button ion-button full color="secondary">Commencer</button>
 </ion-footer>
 

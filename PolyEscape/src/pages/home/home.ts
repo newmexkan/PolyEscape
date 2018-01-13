@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import {NavController, AlertController} from 'ionic-angular';
+import {NavController, AlertController, IonicPage} from 'ionic-angular';
 import { OptionsPage } from '../options/options';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
-import {SelectScenarioPage} from "../select-scenario/select-scenario";
+//import {SelectScenarioPage} from "../select-scenario/select-scenario";
 import { LobbyPage } from '../lobby/lobby';
+import { Socket } from 'ng-socket-io';
 
+@IonicPage({
+  name: "home",
+  segment: "app"
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,18 +18,22 @@ import { LobbyPage } from '../lobby/lobby';
 export class HomePage {
   optionsPage = OptionsPage;
   lobbyPage = LobbyPage;
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private http: Http) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private http: Http, private socket:Socket) {
 
   }
   askNameNewGame() {
     let prompt = this.alertCtrl.create({
       title: 'Créer une partie',
-      message: "Entrez le nom de la nouvelle partie",
+      message: "Entrez le nom de la nouvelle partie ainsi que votre pseudo",
       inputs: [
         {
           name: 'nom',
-          placeholder: 'Nom'
+          placeholder: 'Nom de la partie'
         },
+        {
+          name: 'pseudo',
+          placeholder: 'Votre pseudo'
+        }
       ],
       buttons: [
         {
@@ -39,9 +48,13 @@ export class HomePage {
             this.http.get('http://localhost:8080/addGame/'+ data.nom).pipe(
               map(res => res.json())
             ).subscribe(response => {
-              console.log('GET Response:', response);
+              if (response.hasOwnProperty('game')) {
+                this.socket.connect();
+                this.socket.emit('joinGame', {game: data.nom, user: data.pseudo});
+                this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
+              }
             });
-            this.navCtrl.push(this.lobbyPage);
+
           }
         }
       ]
@@ -52,12 +65,16 @@ export class HomePage {
   askNameExistingGame() {
     let prompt = this.alertCtrl.create({
       title: 'Rejoindre une partie',
-      message: "Entrez le nom de la partie existante",
+      message: "Entrez le nom de la partie existante ainsi que votre pseudo",
       inputs: [
         {
           name: 'nom',
-          placeholder: 'Nom'
+          placeholder: 'Nom de la partie'
         },
+        {
+          name: 'pseudo',
+          placeholder: 'Votre pseudo'
+        }
       ],
       buttons: [
         {
@@ -72,9 +89,12 @@ export class HomePage {
             this.http.get('http://localhost:8080/getGame/'+ data.nom).pipe(
               map(res => res.json())
             ).subscribe(response => {
-              console.log('GET Response:', response);
+              if (response.hasOwnProperty('game')) {
+                this.socket.connect();
+                this.socket.emit('joinGame', {game:data.nom, user:data.pseudo});
+                this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
+              }
             });
-            this.navCtrl.push(this.lobbyPage);
           }
         }
       ]
@@ -83,6 +103,6 @@ export class HomePage {
   }
 
   goToScenarios(){
-    this.navCtrl.push(SelectScenarioPage);
+   // this.navCtrl.push(SelectScenarioPage);
   }
 }

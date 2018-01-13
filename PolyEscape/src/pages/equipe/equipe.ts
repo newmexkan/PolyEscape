@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {JoueurModel} from "../../models/joueur-model";
 
 /**
  * Generated class for the EquipePage page.
@@ -15,7 +16,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EquipePage {
 
+  joueurs: Array<JoueurModel>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.joueurs = navParams.get('joueurs');
   }
 
   ionViewDidLoad() {
