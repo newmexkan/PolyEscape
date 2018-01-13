@@ -15,4 +15,20 @@
 
 <ion-content padding>
 
+    <ion-label text-center="center">Vous êtes le chef d'équipe</ion-label>
+
+
+    <ion-list>
+      <ion-list-header text-center>
+        Joueurs
+      </ion-list-header>
+      <button ion-item *ngFor="let joueur of joueurs">
+        {{joueur.pseudo}}
+        <div  item-right>
+          {{joueur.id}}
+        </div>
+      </button>
+    </ion-list>
+
+
 </ion-content>

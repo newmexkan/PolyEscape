@@ -10,8 +10,6 @@ import { OptionsPage } from '../pages/options/options';
 import { LobbyPage } from "../pages/lobby/lobby";
 
 import { HttpModule } from '@angular/http';
-import { ScenarioServiceProvider } from '../providers/scenario-service/scenario-service';
-import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {GamePage} from "../pages/game/game";
 import {InventairePage} from "../pages/inventaire/inventaire";
@@ -24,7 +22,6 @@ import {MapPage} from "../pages/map/map";
     MyApp,
     HomePage,
     OptionsPage,
-    SelectScenarioPage,
     OptionsPage,
     LobbyPage,
     GamePage,
@@ -44,7 +41,6 @@ import {MapPage} from "../pages/map/map";
     MyApp,
     HomePage,
     OptionsPage,
-    SelectScenarioPage,
     OptionsPage,
     LobbyPage,
     GamePage,
@@ -58,7 +54,6 @@ import {MapPage} from "../pages/map/map";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ScenarioServiceProvider
   ]
 })
 export class AppModule {}

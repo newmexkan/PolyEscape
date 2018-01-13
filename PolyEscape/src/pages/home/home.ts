@@ -3,7 +3,6 @@ import {NavController, AlertController} from 'ionic-angular';
 import { OptionsPage } from '../options/options';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
-import {SelectScenarioPage} from "../select-scenario/select-scenario";
 import { LobbyPage } from '../lobby/lobby';
 
 @Component({
@@ -83,6 +82,6 @@ export class HomePage {
   }
 
   goToScenarios(){
-    this.navCtrl.push(SelectScenarioPage);
+   // this.navCtrl.push(SelectScenarioPage);
   }
 }
