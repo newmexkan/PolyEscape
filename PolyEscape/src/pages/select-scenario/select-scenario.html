@@ -1,0 +1,23 @@
+<!--
+  Generated template for the SelectScenarioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>SelectScenario</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let scenario of listeScenarios"  text-center="">
+      {{scenario.name}}
+    </button>
+  </ion-list>
+
+</ion-content>
