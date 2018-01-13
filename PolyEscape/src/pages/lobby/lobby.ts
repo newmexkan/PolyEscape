@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import {JoueurModel} from "../../models/joueur-model";
 import { GamePage } from "../game/game";
 import {Component, ViewChild} from '@angular/core';
