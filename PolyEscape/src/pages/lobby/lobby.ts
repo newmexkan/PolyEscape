@@ -26,6 +26,7 @@ export class LobbyPage {
   game = {};
   users = [];
   user;
+  isChief: boolean;
 
   @ViewChild('navbar') navBar: Navbar;
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private socket: Socket,private platform: Platform) {
@@ -40,11 +41,14 @@ export class LobbyPage {
 
     this.game = this.navParams.get('currentGame');
     this.user = this.navParams.get('currentUser');
+    this.isChief = (this.user === this.game["chief"]);
+    console.log(this.user);
+    console.log(this.game["chief"]);
 
     console.log("Game2: "+this.game);
     console.log("User2: "+this.user);
 
-    var existingUsers = this.navParams.get('currentGame')["players"];
+    var existingUsers = this.game["players"];
     for (var i = 0; i < existingUsers.length; i++)
         this.users.push(existingUsers[i]);
 

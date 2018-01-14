@@ -45,12 +45,12 @@ export class HomePage {
         {
           text: 'Créer',
           handler: data => {
-            this.http.get('http://localhost:8080/addGame/'+ data.nom).pipe(
+            this.http.get('http://localhost:8080/addGame/'+ data.nom+'/'+data.pseudo).pipe(
               map(res => res.json())
             ).subscribe(response => {
               if (response.hasOwnProperty('game')) {
                 this.socket.connect();
-                this.socket.emit('joinGame', {game: data.nom, user: data.pseudo});
+                this.socket.emit('createGame', {game: data.nom, user: data.pseudo});
                 this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
               }
             });

@@ -3,15 +3,13 @@
  */
 "use strict";
 
-class Player {
-    _name;
-    _id;
+module.exports = class Player {
 
     constructor(id, name) {
-        this._id = id;
-        this._name = name;
+        this.id = id;
+        this.name = name;
     }
-    get name() {
-        return this._name;
+    getName() {
+        return this.name;
     }
 }

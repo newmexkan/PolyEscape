@@ -3,39 +3,33 @@
  */
 "use strict";
 
-class Scenario {
-    _name;
-    _id;
-    _nbPlayers;
-    _timeInMinuts;
-    _summary;
-    _missions = [];
-
+module.exports = class Scenario {
 
     constructor(id, name, summary, nbPl, time, missions) {
-        this._id = id;
-        this._name = name;
-        this._summary = summary;
-        this._nbPlayers = nbPl;
-        this._timeInMinuts = time;
-        this._missions = missions;
+        this.id = id;
+        this.name = name;
+        this.summary = summary;
+        this.nbPlayers = nbPl;
+        this.timeInMinuts = time;
+        this.missions = missions;
     }
     get name() {
-        return this._name;
+        return this.name;
     }
 
     get summary() {
-        return this._summary;
+        return this.summary;
     }
 
     get nbPlayers() {
-        return this._nbPlayers;
+        return this.nbPlayers;
     }
 
     get timeInMinuts(){
-        return this._timeInMinuts;
+        return this.timeInMinuts;
     }
 }
+
 
 
 

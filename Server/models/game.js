@@ -3,32 +3,55 @@
  */
 "use strict";
 
-class Game {
-    _name;
-    _id;
-    _players = [];
-    _scenario;
-    _chief;
+const GameState = {
+    WAITING: Symbol("En attente de joueurs"),
+    RUNNING: Symbol("En cours"),
+    FINISHED: Symbol("Terminée")
+};
 
+module.exports = class Game {
 
-    constructor(id, name, chief) {
-        this._id = id;
-        this._name = name;
-        this._chief = chief;
+    constructor(id, name) {
+        this.id = id;
+        this.name = name.toLowerCase();
+        this.chief;
+        this.state = GameState.WAITING;
+        this.players = [];
+        this.scenario;
     }
-    get name() {
-        return this._name;
+    getName() {
+        return this.name;
     }
 
     addPlayer(play){
-        this._players.push(play);
+        this.players.push(play);
+    }
+
+    hasPlayerNamed(name){
+        return (this.players.findIndex(i => i.toLowerCase() === name.toLowerCase()) != -1);
     }
 
     setScenario(scenar){
-        this._scenario = scenar;
+        this.scenario = scenar;
+    }
+
+    setChief(ch){
+        this.chief = ch;
     }
 
     getChief() {
-        return this._chief;
+        return this.chief;
     }
-}
+
+    getPlayers(){
+        return this.players;
+    }
+
+    run(){
+        this.state = GameState.RUNNING;
+    }
+
+    finish(){
+        this.state = GameState.FINISHED;
+    }
+};
