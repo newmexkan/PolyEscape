@@ -13,19 +13,19 @@ module.exports = class Scenario {
         this.timeInMinuts = time;
         this.missions = missions;
     }
-    get name() {
+    getName() {
         return this.name;
     }
 
-    get summary() {
+    getSummary() {
         return this.summary;
     }
 
-    get nbPlayers() {
+    getNbPlayers() {
         return this.nbPlayers;
     }
 
-    get timeInMinuts(){
+    getTimeInMinuts(){
         return this.timeInMinuts;
     }
 }

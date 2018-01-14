@@ -25,13 +25,25 @@ export class GamePage {
   inventairePage = InventairePage;
   equipePage = EquipePage;
 
-  joueurs: Array<JoueurModel>;
+  //private players: Array<JoueurModel>;
+
+  private game;
+  private user;
+  private time;
 
   @ViewChild(TimerComponent) timer: TimerComponent;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.joueurs = navParams.get('joueurs');
+    this.game = navParams.get('game');
+    this.user = navParams.get('user');
+    this.time = this.game["scenario"]["timeInMinuts"]*60;
+
+    console.log(this.game["chief"]);
+    //this.players.push(new JoueurModel(this.game["chief"],1,true));
+
+    //for(let i =2; i<this.game["players"];i++)
+    //  this.players.push(new JoueurModel(this.game["players"][i]["name"],i,false));
   }
 
 

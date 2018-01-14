@@ -17,7 +17,7 @@
   <ion-label text-center="center" *ngIf="isChief">Vous êtes le chef d'équipe</ion-label>
   <button ion-button full *ngIf="isChief" (click)="selectScenario()">Choisir le scénario</button>
 
-  <ion-label text-center="center" *ngIf="game['scenario'] && !isChief">Scénario : {{game["scenario"]}}</ion-label>
+  <ion-label text-center="center" *ngIf="game['scenario'] && !isChief">Scénario : {{game["scenario"]["name"]}}</ion-label>
 
     <ion-list>
     <ion-list-header text-center>

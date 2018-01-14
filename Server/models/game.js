@@ -4,7 +4,8 @@
 "use strict";
 
 const GameState = {
-    WAITING: Symbol("En attente de joueurs"),
+    WAITING_SCENARIO: Symbol("En attente d'un scénario"),
+    WAITING_PLAYERS: Symbol("En attente de joueurs"),
     RUNNING: Symbol("En cours"),
     FINISHED: Symbol("Terminée")
 };
@@ -15,7 +16,7 @@ module.exports = class Game {
         this.id = id;
         this.name = name.toLowerCase();
         this.chief;
-        this.state = GameState.WAITING;
+        this.state = GameState.WAITING_SCENARIO;
         this.players = [];
         this.scenario;
     }

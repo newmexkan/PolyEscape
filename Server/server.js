@@ -87,6 +87,9 @@ app.get('/addGame/:name/:user', function(req, res){
         //var playersArr = [];
         //var game = {name : gameName,players:playersArr};
         let game = new Game(games.length,gameName);
+
+        game.setScenario(scenario1); // TEST
+
         game.setChief(userName);
         games.push(game);
         res.send({
