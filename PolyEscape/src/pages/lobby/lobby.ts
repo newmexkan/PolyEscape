@@ -1,7 +1,7 @@
 import {JoueurModel} from "../../models/joueur-model";
 import { GamePage } from "../game/game";
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform, Navbar} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, Navbar, AlertController} from 'ionic-angular';
 import {Http} from "@angular/http";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
@@ -29,15 +29,13 @@ export class LobbyPage {
   isChief: boolean;
 
   @ViewChild('navbar') navBar: Navbar;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private socket: Socket,private platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private socket: Socket,private platform: Platform,public alertCtrl: AlertController) {
       this.joueurs =[];
       this.joueurs.push(new JoueurModel("poulet38",1,true));
       this.joueurs.push(new JoueurModel("cordonB",2,false));
       this.joueurs.push(new JoueurModel("Malcom",3,false));
       this.joueurs.push(new JoueurModel("PasDinspi",4,true));
 
-
-    this.platform.registerBackButtonAction(() => this.backButtonClick, 2)
 
     this.game = this.navParams.get('currentGame');
     this.user = this.navParams.get('currentUser');
@@ -78,8 +76,33 @@ export class LobbyPage {
     return observable;
   }
 
-  backButtonClick(){
-      this.quitCurrentGame();
+
+  selectScenario() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Choisissez un scénario :');
+
+    alert.addInput({
+      type: 'checkbox',
+      label: 'Alderaan',
+      value: 'value1',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'checkbox',
+      label: 'Bespin',
+      value: 'value2'
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Okay',
+      handler: data => {
+        console.log('Checkbox data:', data);
+
+      }
+    });
+    alert.present();
   }
 
 
