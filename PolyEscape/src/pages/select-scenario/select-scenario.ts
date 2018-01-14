@@ -37,21 +37,21 @@ export class SelectScenarioPage {
     this.scenarioService.getAllScenarios().subscribe(res => {
       console.log("In Create");
       // console.log(res.scenarios[0].missions);
-      var keys = Object.keys(res.scenarios);
+      var keys = Object.keys(res['scenarios']);
       for(var i = 0; i < keys.length; ++i ){
         var missions: any;
          missions = [];
 
-        for(var j in res.scenarios[keys[i]].missions ){
-          missions.push({message: res.scenarios[keys[i]].missions[j].message, item: res.scenarios[keys[i]].missions[j].item});
+        for(var j in res['scenarios'][keys[i]].missions ){
+          missions.push({message: res['scenarios'][keys[i]].missions[j].message, item: res['scenarios'][keys[i]].missions[j].item});
         }
         // console.log(missions);
         var elmt = {
-          id: res.scenarios[i].id,
-          name: res.scenarios[i].name,
-          nbGamers: res.scenarios[i].nbGamers,
-          timeInMinuts: res.scenarios[i].timeInMinuts,
-          summary: res.scenarios[i].summary,
+          id: res['scenarios'][i].id,
+          name: res['scenarios'][i].name,
+          nbGamers: res['scenarios'][i].nbGamers,
+          timeInMinuts: res['scenarios'][i].timeInMinuts,
+          summary: res['scenarios'][i].summary,
           missions: missions
         };
         // console.log(elmt);
