@@ -1,3 +1,7 @@
+
+"use strict";
+
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
@@ -12,9 +16,6 @@ app.use(cors());
 var http = require('http').Server(app);
 var server = app.listen(process.env.PORT || 8080);
 var io = require('socket.io').listen(server);
-
-
-
 
 var games = [];
 var scenarios = [];
@@ -33,7 +34,7 @@ var scenario1 = {
 var scenario2 = {
     id: 2,
     name:"Prise de la Bastaille",
-    nbGamers:3,
+    nbPlayers:3,
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
@@ -118,8 +119,8 @@ io.on('connection', function(client) {
 
         var gameId = games.findIndex(i => i.name === data.game.toLowerCase());
 
-        ///if(games[gameId].players.indexOf(data.user) === -1){
-
+        //
+        if(games[gameId].players.indexOf(data.user) === -1){
             //rejoint la partie
             games[gameId].players.push(data.user);
 
@@ -132,8 +133,7 @@ io.on('connection', function(client) {
             // log serveur
             console.log(data.user+" a rejoint la partie "+data.game);
             console.log("Joueurs de la partie :\n"+games[gameId].players);
-
-        //}
+        }
     });
 
     client.on('quitGame', function(data) {
@@ -156,9 +156,6 @@ io.on('connection', function(client) {
         console.log(data.user+" a quitté la partie "+data.game);
         console.log("Joueurs de la partie :\n"+games[gameId].players);
     });
-
-
-
 });
 
 
