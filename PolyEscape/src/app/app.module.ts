@@ -10,6 +10,7 @@ import { OptionsPage } from '../pages/options/options';
 import { LobbyPage } from "../pages/lobby/lobby";
 
 import { HttpModule } from '@angular/http';
+import { TimerComponent} from "../components/timer/timer";
 
 //import { ScenarioServiceProvider } from '../providers/scenario-service/scenario-service';
 //import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
@@ -37,7 +38,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     InventairePage,
     ScenarioPage,
     EquipePage,
-    MapPage
+    MapPage,
+    TimerComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     InventairePage,
     ScenarioPage,
     EquipePage,
-    MapPage
+    MapPage,
+    TimerComponent
 
   ],
   providers: [
