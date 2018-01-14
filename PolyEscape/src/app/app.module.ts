@@ -21,6 +21,8 @@ import {InventairePage} from "../pages/inventaire/inventaire";
 import {ScenarioPage} from "../pages/scenario/scenario";
 import {EquipePage} from "../pages/equipe/equipe";
 import {MapPage} from "../pages/map/map";
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
@@ -48,7 +50,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     SocketIoModule.forRoot(config),
     HttpModule,
     HomePageModule,
-    LobbyPageModule
+    LobbyPageModule,
+    NgxQRCodeModule
 
   ],
   bootstrap: [IonicApp],
@@ -71,6 +74,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BarcodeScanner
     //ScenarioServiceProvider
   ]
 })
