@@ -111,4 +111,8 @@ export class LobbyPage {
     this.navCtrl.push('home');
   }
 
+  removeCurrentGame(){
+
+  }
+
 }

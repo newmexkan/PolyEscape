@@ -7,8 +7,8 @@
 
 <ion-header>
 
-  <ion-navbar #navbar>
-    <ion-title>Salle d'attente</ion-title>
+  <ion-navbar>
+    <ion-title>Salle d'attente - {{game["name"]}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -31,7 +31,8 @@
 </ion-content>
 
 <ion-footer>
-    <button ion-button full color="danger" (click)="quitCurrentGame()">Quitter</button>
-    <button ion-button full color="secondary" (click)="startGame()">Commencer</button>
+    <button ion-button full color="danger" (click)="quitCurrentGame()" *ngIf="!isChief">Quitter l'équipe</button>
+    <button ion-button full color="danger" (click)="quitCurrentGame()" *ngIf="isChief">Supprimer l'équipe</button>
+    <button ion-button full color="secondary" (click)="startGame()" *ngIf="isChief" >Commencer</button>
 </ion-footer>
 
