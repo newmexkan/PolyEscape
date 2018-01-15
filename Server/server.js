@@ -140,6 +140,20 @@ io.on('connection', function(client) {
 
     });
 
+    client.on('startGame', function(data) {
+
+        let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
+        let currentUser = data.user;
+
+        if(currentGame.hasAsChief(currentUser)) {
+            io.to(currentGame.getName()).emit('game_start', {game: currentGame});
+
+            // log serveur
+            console.log(data.user + " a lancé la partie " + currentGame.getName());
+        }
+
+    });
+
     client.on('joinGame', function(data) {
 
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];

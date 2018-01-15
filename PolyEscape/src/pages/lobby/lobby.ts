@@ -49,17 +49,31 @@ export class LobbyPage {
         }
       }
     });
+
+    this.getStartSignal().subscribe(data => {
+      this.navCtrl.push(this.gamePage,{ 'game': data.game, 'user': this.user});
+    });
+
   }
 
 
 
   startGame(){
-    this.navCtrl.push(this.gamePage,{ 'game': this.game, 'user': this.user} );
+    this.socket.emit('startGame', {game:this.game["name"], user:this.user});
   }
 
   getNewPlayers(){
     let observable = new Observable(observer => {
       this.socket.on('players_changed', (data) => {
+        observer.next(data);
+      });
+    })
+    return observable;
+  }
+
+  getStartSignal(){
+    let observable = new Observable(observer => {
+      this.socket.on('game_start', (data) => {
         observer.next(data);
       });
     })
