@@ -5,6 +5,7 @@ import {IonicPage, NavController, NavParams, Platform, Navbar, AlertController} 
 import {Http} from "@angular/http";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
+import {SelectScenarioPage} from "../select-scenario/select-scenario";
 
 /**
  * Generated class for the LobbyPage page.
@@ -21,6 +22,7 @@ import {Observable} from "rxjs";
 
 export class LobbyPage {
 
+  selectScenario = SelectScenarioPage;
   gamePage = GamePage;
   game = {};
   users = [];
@@ -83,35 +85,6 @@ export class LobbyPage {
       });
     });
     return observable;
-  }
-
-
-  selectScenario() {
-    let alert = this.alertCtrl.create();
-    alert.setTitle('Choisissez un scénario :');
-
-    alert.addInput({
-      type: 'checkbox',
-      label: 'Alderaan',
-      value: 'value1',
-      checked: true
-    });
-
-    alert.addInput({
-      type: 'checkbox',
-      label: 'Bespin',
-      value: 'value2'
-    });
-
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'Okay',
-      handler: data => {
-        console.log('Checkbox data:', data);
-
-      }
-    });
-    alert.present();
   }
 
 

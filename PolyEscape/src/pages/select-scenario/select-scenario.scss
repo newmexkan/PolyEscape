@@ -1,3 +1,35 @@
-page-select-scenario {
+.card-background-page {
+
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-players {
+    font-size: 1.5em;
+    position: absolute;
+    bottom:5%;
+    right:40%;
+    width: 100%;
+    color: #fff;
+  }
+
+  .card-time {
+    font-size: 1.5em;
+    position: absolute;
+    bottom:5%;
+    left:38%;
+    width: 100%;
+    color: #fff;
+  }
 
 }

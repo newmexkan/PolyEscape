@@ -12,9 +12,6 @@ import { LobbyPage } from "../pages/lobby/lobby";
 import { HttpModule } from '@angular/http';
 import { TimerComponent} from "../components/timer/timer";
 
-//import { ScenarioServiceProvider } from '../providers/scenario-service/scenario-service';
-//import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
-
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {GamePage} from "../pages/game/game";
 import {InventairePage} from "../pages/inventaire/inventaire";
@@ -28,13 +25,15 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
 import {HomePageModule} from "../pages/home/home.module";
 import {LobbyPageModule} from "../pages/lobby/lobby.module";
+import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
+import {ScenarioServiceProvider} from "../providers/scenario-service/scenario-service";
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
   declarations: [
     MyApp,
     OptionsPage,
-    //SelectScenarioPage,
+    SelectScenarioPage,
     OptionsPage,
     GamePage,
     InventairePage,
@@ -59,7 +58,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     MyApp,
     HomePage,
     OptionsPage,
-    //SelectScenarioPage,
+    SelectScenarioPage,
     OptionsPage,
     LobbyPage,
     GamePage,
@@ -74,8 +73,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BarcodeScanner
-    //ScenarioServiceProvider
+    BarcodeScanner,
+    ScenarioServiceProvider
   ]
 })
 export class AppModule {}

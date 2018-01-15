@@ -7,17 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>SelectScenario</ion-title>
+    <ion-title>Pick a scenario</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <button ion-item *ngFor="let scenario of listeScenarios"  text-center="">
-      {{scenario.name}}
-    </button>
-  </ion-list>
 
+<ion-content class="card-background-page">
+  <ion-card *ngFor="let scenario of listeScenarios" (click)="select(scenario.id)">
+    <img src="assets/imgs/truc1.jpg"/>
+    <div class="card-title">{{scenario.name}}</div>
+    <div class="card-players">{{scenario.nbPlayers}}
+      <ion-icon name="md-contacts"></ion-icon>
+    </div>
+    <div class="card-time">{{scenario.timeInMinuts}}
+      <ion-icon name="md-time"></ion-icon>
+    </div>
+  </ion-card>
 </ion-content>

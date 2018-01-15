@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavOptions, NavParams} from 'ionic-angular';
 import {ScenarioServiceProvider} from "../../providers/scenario-service/scenario-service";
+import {LobbyPage} from "../lobby/lobby";
 
 /**
  * Generated class for the SelectScenarioPage page.
@@ -22,21 +23,23 @@ export class SelectScenarioPage {
   listeScenarios: Array<{
     id: number,
     name: string,
-    nbGamers: number,
+    nbPlayers: number,
     timeInMinuts: number,
     summary: string,
     missions: Array<{message: string, item: number}>
   }>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private scenarioService: ScenarioServiceProvider) {
+  lobbyPage = LobbyPage;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private scenarioService: ScenarioServiceProvider, private alertCtrl: AlertController) {
     this.listeScenarios = [];
     this.create();
   }
 
   create(){
     this.scenarioService.getAllScenarios().subscribe(res => {
+
       console.log("In Create");
-      // console.log(res.scenarios[0].missions);
       var keys = Object.keys(res['scenarios']);
       for(var i = 0; i < keys.length; ++i ){
         var missions: any;
@@ -49,22 +52,42 @@ export class SelectScenarioPage {
         var elmt = {
           id: res['scenarios'][i].id,
           name: res['scenarios'][i].name,
-          nbGamers: res['scenarios'][i].nbGamers,
+          nbPlayers: res['scenarios'][i].nbPlayers,
           timeInMinuts: res['scenarios'][i].timeInMinuts,
           summary: res['scenarios'][i].summary,
           missions: missions
         };
-        // console.log(elmt);
         this.listeScenarios.push(elmt);
       }
+
     });
-    console.log(this.listeScenarios);
-
-
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SelectScenarioPage');
+  select(salut){
+    let scenar = this.listeScenarios.find(i => i.id === salut);
+    let alert = this.alertCtrl.create({
+      title: 'Choisir ce scénario ?',
+      message: 'La partie durera '+scenar['timeInMinuts'] + '  minutes',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Sélectionner',
+          handler: () => {
+            this.navCtrl.pop(<NavOptions>{
+              gameName: "la chatte a popeye"
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
   }
+
 
 }
