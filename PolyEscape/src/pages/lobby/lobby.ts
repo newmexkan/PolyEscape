@@ -26,6 +26,7 @@ export class LobbyPage {
   users = [];
   user;
   isChief: boolean;
+  hasEnoughPlayers : boolean = false;
 
   @ViewChild('navbar') navBar: Navbar;
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private socket: Socket,private platform: Platform,public alertCtrl: AlertController) {
@@ -43,11 +44,14 @@ export class LobbyPage {
 
     this.getNewPlayers().subscribe(user => {
       this.users = [];
+
       for (var i = 0; i < user["players"].length; i++) {
         if (user["players"][i] !== this.user) {
           this.users.push(user["players"][i]);
         }
       }
+      this.hasEnoughPlayers = (this.users.length+1 === this.game["scenario"]["nbPlayers"]);
+
     });
 
     this.getStartSignal().subscribe(data => {
@@ -55,7 +59,6 @@ export class LobbyPage {
     });
 
   }
-
 
 
   startGame(){
