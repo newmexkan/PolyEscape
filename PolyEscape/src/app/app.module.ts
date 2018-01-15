@@ -12,8 +12,6 @@ import { LobbyPage } from "../pages/lobby/lobby";
 import { HttpModule } from '@angular/http';
 import { TimerComponent} from "../components/timer/timer";
 
-//import { ScenarioServiceProvider } from '../providers/scenario-service/scenario-service';
-//import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
 
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {GamePage} from "../pages/game/game";
@@ -28,6 +26,7 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
 import {HomePageModule} from "../pages/home/home.module";
 import {LobbyPageModule} from "../pages/lobby/lobby.module";
+import { InventoryProvider } from '../providers/inventory/inventory';
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
@@ -74,7 +73,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BarcodeScanner
+    BarcodeScanner,
+    InventoryProvider
     //ScenarioServiceProvider
   ]
 })

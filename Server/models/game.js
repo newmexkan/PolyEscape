@@ -20,6 +20,7 @@ module.exports = class Game {
         this.state = GameState.WAITING_SCENARIO;
         this.players = [];
         this.scenario;
+        this.inventory = [];
         this.missions = [];
     }
     getName() {
@@ -70,6 +71,10 @@ module.exports = class Game {
 
     getPlayers(){
         return this.players;
+    }
+
+    getInventory(){
+        return this.inventory;
     }
 
     run(){

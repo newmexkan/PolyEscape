@@ -20,12 +20,38 @@
       Scan Code
     </button>
 
-    <ion-card *ngIf="createdCode">
-      <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
-      <ion-card-content>
-        <p>Value: {{ createdCode }}</p>
-      </ion-card-content>
-    </ion-card>
+  <!--<ion-grid>-->
+    <ion-content class="card-background-page" >
+    <ion-row>
+      <ion-col col-4 col-sm *ngFor="let item of listItems">
+        <ion-card>
+          <img  src={{item.pathImg}}/>
+          <div class="card-title">{{item.name}}</div>
+          <div class="card-subtitle">{{item.quantity}}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    </ion-content>
+
+  <!--</ion-grid>-->
+
+
+  <!--<ion-content class="card-background-page">-->
+    <!--<ion-card *ngFor="let item of listItems">-->
+      <!--<img src={{item.pathImg}}/>-->
+      <!--<div class="card-title">{{item.name}}</div>-->
+      <!--<div class="card-subtitle">{{item.quantity}}</div>-->
+    <!--</ion-card>-->
+  <!--</ion-content>-->
+
+
+
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+    <ion-card-content>
+      <p>Value: {{ createdCode }}</p>
+    </ion-card-content>
+  </ion-card>
 
     <ion-card *ngIf="scannedCode">
       <ion-card-content>
@@ -40,4 +66,12 @@
   </div>
 
 
+  <!--<ion-card *ngIf="scannedCode">-->
+
+
+  <ion-card-content>
+    Result from Scan: {{ scannedCode }}
+
+  </ion-card-content>
+  <!--</ion-card>-->
 </ion-content>

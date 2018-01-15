@@ -4,6 +4,7 @@
 let Player = require("./models/player.js");
 let Game = require("./models/game.js");
 let Scenario = require("./models/scenario.js");
+let Item = require("./models/item.js");
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -121,6 +122,30 @@ app.get('/getGame/:name', function(req, res){
     
 });
 
+app.get('/addItem/:game/:item', function(req, res){
+    // var currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
+    var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
+    if(gameId != -1){
+        var currentGame = games[gameId];
+        currentGame.getInventory().push({name: req.params.item, imgPath: "assert/imgs/wood.png", quantity: 1});
+        console.log(games[gameId].getInventory());
+        res.send({
+            passed: true,
+            game: games[gameId],
+            inventory: games[gameId].getInventory()
+        });
+    }
+    else {
+        res.status(404).send({
+            message: "Partie introuvable"
+        })
+    }
+
+});
+
+
+
+
 /**
  * Partie interaction joueurs
  */
@@ -176,6 +201,19 @@ io.on('connection', function(client) {
             console.log(data.user+" a rejoint la partie "+data.game);
             console.log("Joueurs de la partie :\n"+currentGame.getPlayers());
         }
+    });
+
+
+    client.on('addItemToInventory', function(data) {
+
+        let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
+        // let itemAdded = data.inventory;
+        //notifie les autres joueurs de la partie
+        client.broadcast.to(currentGame.getName()).emit('item_added', {game: currentGame});
+
+        // log serveur
+        console.log(data.game.name+" a ajouté l'item: ");
+        console.log("Inventaire :\n"+currentGame.getInventory());
     });
 
     client.on('quitGame', function(data) {
