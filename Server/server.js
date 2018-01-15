@@ -38,7 +38,7 @@ var scenario1 = {
 
 var scenario2 = {
     id: 2,
-    name:"Prise de la Bastaille",
+    name:"Prise de la Bastille",
     nbPlayers:3,
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
@@ -46,9 +46,20 @@ var scenario2 = {
     missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}]
 };
 
+var scenario3 = {
+    id: 3,
+    name:"Redoublement de Pierre",
+    nbPlayers:1,
+    timeInMinuts:60,
+    summary:"Pierre s'est trop touché la nouille au premier semestre " +
+    "du coup il est dans la merde. il a besoin de toi",
+    missions:[{message:"Aider Pierre en Algo & Comp",item:0}, {message:"Aider Pierre en COO",item:1}, {message:"Aider Pierre en Sécu Log",item:2}]
+};
+
 
 scenarios.push(scenario1);
 scenarios.push(scenario2);
+scenarios.push(scenario3);
 
 /**
  * Partie API
@@ -96,7 +107,7 @@ app.get('/addGame/:name/:user', function(req, res){
             passed: true,
             game: game
         });
-        console.log("Partie "+gameName+ "crée")
+        console.log("Partie "+gameName+ " crée")
     }
     else {
          res.send({

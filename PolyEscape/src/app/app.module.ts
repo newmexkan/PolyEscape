@@ -26,6 +26,9 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
 import {HomePageModule} from "../pages/home/home.module";
 import {LobbyPageModule} from "../pages/lobby/lobby.module";
+import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
+import {ScenarioServiceProvider} from "../providers/scenario-service/scenario-service";
+import {InventoryProvider} from "../providers/inventory/inventory";
 import { InventoryProvider } from '../providers/inventory/inventory';
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -33,7 +36,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
   declarations: [
     MyApp,
     OptionsPage,
-    //SelectScenarioPage,
+    SelectScenarioPage,
     OptionsPage,
     GamePage,
     InventairePage,
@@ -58,7 +61,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     MyApp,
     HomePage,
     OptionsPage,
-    //SelectScenarioPage,
+    SelectScenarioPage,
     OptionsPage,
     LobbyPage,
     GamePage,
@@ -74,8 +77,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
-    InventoryProvider
-    //ScenarioServiceProvider
+    InventoryProvider,
+    ScenarioServiceProvider
   ]
 })
 export class AppModule {}
