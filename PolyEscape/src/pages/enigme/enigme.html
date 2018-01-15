@@ -13,10 +13,23 @@
 
 </ion-header>
 -->
+<!--
 <ion-content id="seekItem">
   <ion-label>Enigmes</ion-label>
   {{enigme.question}}
   <ion-input type="text" [(ngModel)]="reponse" placeholder="Réponse..."></ion-input>
   <button  ion-button (click)="envoyerReponse()">Envoyer réponse </button>
 </ion-content>
+-->
+<ion-content>
+<ion-list-header text-center id="seekItem">
+  Enigme <br> <br>
+  {{enigme.question}}
+</ion-list-header>
 
+<ion-list>
+  <button ion-item *ngFor="let reponseItem of enigme.reponses" (click)="checkResponse(reponseItem)">
+    {{reponseItem}}
+  </button>
+</ion-list>
+</ion-content>

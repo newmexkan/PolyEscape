@@ -29,7 +29,6 @@ import {LobbyPageModule} from "../pages/lobby/lobby.module";
 import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
 import {ScenarioServiceProvider} from "../providers/scenario-service/scenario-service";
 import {InventoryProvider} from "../providers/inventory/inventory";
-import { InventoryProvider } from '../providers/inventory/inventory';
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({

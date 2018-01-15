@@ -21,7 +21,7 @@
     </button>
 
   <!--<ion-grid>-->
-    <ion-content class="card-background-page" >
+  <!--  <ion-content class="card-background-page" >    DEPLACE VERS LE BAS
     <ion-row>
       <ion-col col-4 col-sm *ngFor="let item of listItems">
         <ion-card>
@@ -32,7 +32,7 @@
       </ion-col>
     </ion-row>
     </ion-content>
-
+-->
   <!--</ion-grid>-->
 
 
@@ -62,16 +62,18 @@
 
   <div id="identificationItem">
     <ion-input type="text" placeholder="Numéro de l'item" [(ngModel)]="numero"></ion-input>
-      <button ion-button full icon-left (click)="isItemLookingFor()">Rechercher item </button>
+      <button ion-button full icon-left (click)="recupererItem()">Récupérer Item </button>
   </div>
 
-
-  <!--<ion-card *ngIf="scannedCode">-->
-
-
-  <ion-card-content>
-    Result from Scan: {{ scannedCode }}
-
-  </ion-card-content>
-  <!--</ion-card>-->
+  <ion-content class="card-background-page" >
+    <ion-row>
+      <ion-col col-4 col-sm *ngFor="let item of listItems">
+        <ion-card>
+          <img  src={{item.pathImg}}/>
+          <div class="card-title">{{item.name}}</div>
+          <div class="card-subtitle">{{item.quantity}}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-content>
 </ion-content>

@@ -17,9 +17,16 @@ export class EnigmePage {
 
   public enigme;
   public reponse;
+  public questions;
+  positionEnigme;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
-    this.enigme={question:"Quel est le département associé au code postal 42 ?",reponse:"loire"};
+    this.questions = navParams.get('questions');
+    this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
+    this.enigme= this.questions[this.positionEnigme];
+
+
+ //   this.enigme={question:"Quel est le département associé au code postal 42 ?",reponse:"loire"};
   }
 
   ionViewDidLoad() {
@@ -45,8 +52,8 @@ export class EnigmePage {
     alert.present();
   }
 
-  envoyerReponse(){
-    if(this.reponse==this.enigme.reponse){
+  checkResponse($event: any){
+    if($event==this.enigme.reponse){
       this.winAlert();
     }else{
       this.loseAlert();

@@ -5,13 +5,15 @@
 
 module.exports = class Scenario {
 
-    constructor(id, name, summary, nbPl, time, missions) {
+    constructor(id, name, summary, nbPl, time, missions,questions) {
         this.id = id;
         this.name = name;
         this.summary = summary;
         this.nbPlayers = nbPl;
         this.timeInMinuts = time;
         this.missions = missions;
+        this.questions = questions;
+
     }
     getName() {
         return this.name;
@@ -23,6 +25,9 @@ module.exports = class Scenario {
 
     getNbPlayers() {
         return this.nbPlayers;
+    }
+    getQuestions() {
+        return this.questions;
     }
 
     getTimeInMinuts(){

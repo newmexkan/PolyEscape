@@ -25,6 +25,13 @@ var io = require('socket.io').listen(server);
 
 var games = [];
 var scenarios = [];
+var questions =[{question:"De quelle origine nous vient le sauna ?",reponses:["Des indiens","Des australiens","Des finlandais"],reponse:"Des finlandais"},
+    {question:"Quel est le plus long fleuve français ?",reponses:["La Loire","La Seine","La Garonne"],reponse:"La Loire"},
+    {question:"Quelle est l'altitude en mètre du mont Everest ?",reponses:["6 848","8 848","10 848"],reponse:"8 848"},
+    {question:"De combien d'états sont composés Les États-Unis ?",reponses:["46","48","50"],reponse:"50"},
+    {question:"Quel est le plus grand pays du monde ?",reponses:["La Chine","La Russie","L'Australie"],reponse:"La Russie"},
+    {question:"Quel vent violent souffle souvent sur la côte du Sud de la France ?",reponses:["Le sirocco","La bora","Le mistral"],reponse:"Le mistral"}]
+;
 
 var scenario1 = {
     id: 1,
@@ -33,8 +40,10 @@ var scenario1 = {
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
-    missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}]
+    missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}],
+    questions:questions
 };
+
 
 var scenario2 = {
     id: 2,
@@ -43,7 +52,8 @@ var scenario2 = {
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
-    missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}]
+    missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}],
+    questions:questions
 };
 
 var scenario3 = {

@@ -24,10 +24,19 @@ export class InventairePage {
   createdCode = null;
   scannedCode = null;
   numero =null;
-  game: any;
+  user;
+  game;
+  questions;
+
+
   listItems: Array<{name: string, pathImg: string, quantity: number}>;
+
   constructor(private inventoryService: InventoryProvider ,public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams,  private socket: Socket, private http: Http, private barcodeScanner: BarcodeScanner) {
+
+    this.user = navParams.get('user');
     this.game = navParams.get('game');
+    this.questions = this.game.scenario.questions;
+
     this.listItems = [];
     this.listItems.push({name: "Wood", pathImg: "assets/imgs/wood.png", quantity: 1});
     this.listItems.push({name: "Stone", pathImg: "assets/imgs/wood.png", quantity: 1});
@@ -58,9 +67,9 @@ export class InventairePage {
     console.log('ionViewDidLoad InventairePage');
   }
 
-  isItemLookingFor(){
+  recupererItem(){
     console.log(this.numero);
-    this.navCtrl.push('EnigmePage',{'numero':this.numero});
+    this.navCtrl.push('EnigmePage',{'questions':this.questions,'numero':this.numero});
   }
 
   createCode() {
