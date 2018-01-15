@@ -129,7 +129,6 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
 
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
-        console.log("CREATEEEEEEEEEEEEEEEEEEEEEEEEEE GAMEEEEEEEEEEEE");
         //rejoint le channel dédié à la partie
         client.join(currentGame.getName());
 

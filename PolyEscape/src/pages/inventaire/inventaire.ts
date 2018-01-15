@@ -31,15 +31,11 @@ export class InventairePage {
 
   isItemLookingFor(){
     console.log(this.numero);
-    this.navCtrl.push('EnigmePage');
+    this.navCtrl.push('EnigmePage',{'numero':this.numero});
   }
 
   createCode() {
     this.createdCode = this.qrData;
-
-    if(this.createdCode=='test'){
-      this.navCtrl.push('')
-    }
   }
 
   scanCode() {
