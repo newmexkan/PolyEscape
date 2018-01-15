@@ -25,7 +25,7 @@ export class GamePage {
   inventairePage = InventairePage;
   equipePage = EquipePage;
 
-  //private players: Array<JoueurModel>;
+  private players = [];
 
   private game;
   private user;
@@ -39,11 +39,12 @@ export class GamePage {
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
 
-    console.log(this.game["chief"]);
-    //this.players.push(new JoueurModel(this.game["chief"],1,true));
+    this.players.push(this.game["chief"]);
 
-    //for(let i =2; i<this.game["players"];i++)
-    //  this.players.push(new JoueurModel(this.game["players"][i]["name"],i,false));
+    for(let i =0; i<this.game["players"];i++)
+      this.players.push(this.game["players"][i]);
+
+    console.log(this.players);
   }
 
 

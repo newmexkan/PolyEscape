@@ -32,6 +32,10 @@ module.exports = class Game {
         return (this.players.findIndex(i => i.toLowerCase() === name.toLowerCase()) != -1);
     }
 
+    hasAsChief(name){
+        return name === this.chief;
+    }
+
     setScenario(scenar){
         this.scenario = scenar;
     }
