@@ -16,10 +16,14 @@ import {JoueurModel} from "../../models/joueur-model";
 })
 export class EquipePage {
 
-  joueurs: Array<JoueurModel>;
+  game;
+  user;
+  isChief : boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.joueurs = navParams.get('joueurs');
+    this.game = navParams.get('game');
+    this.user = navParams.get('user');
+    this.isChief = (this.user === this.game["chief"]);
   }
 
   ionViewDidLoad() {

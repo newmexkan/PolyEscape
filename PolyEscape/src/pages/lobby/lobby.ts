@@ -55,7 +55,7 @@ export class LobbyPage {
     });
 
     this.getStartSignal().subscribe(data => {
-      this.navCtrl.push(this.gamePage,{ 'game': data.game, 'user': this.user});
+      this.navCtrl.push(this.gamePage,{ 'game': this.game, 'user': this.user});
     });
 
   }

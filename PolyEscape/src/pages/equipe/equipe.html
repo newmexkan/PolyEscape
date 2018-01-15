@@ -14,11 +14,10 @@
       <ion-list-header text-center>
         Joueurs
       </ion-list-header>
-      <button ion-item *ngFor="let joueur of joueurs">
-        {{joueur.pseudo}}
-        <div  item-right>
-          {{joueur.id}}
-        </div>
+      <button ion-item *ngIf="!isChief">{{game["chief"]}} (chef)</button>
+      <button ion-item>{{user}} (vous)</button>
+      <button ion-item *ngFor="let player of game['players']">
+        {{player}}
       </button>
     </ion-list>
 

@@ -9,7 +9,7 @@
     <ion-tab [root]="scenarioPage" [rootParams]="{'scenario':game['scenario']}" tabTitle="Scenario" tabIcon="ios-book-outline"></ion-tab>
     <ion-tab [root]="inventairePage" tabTitle="Inventaire" tabIcon="ios-list-box-outline"></ion-tab>
     <ion-tab [root]="mapPage" tabTitle="Map" tabIcon="ios-map-outline"></ion-tab>
-    <ion-tab [root]="equipePage" [rootParams]="{'joueurs':players}" tabTitle="Equipe" tabIcon="ios-people"></ion-tab>
+    <ion-tab [root]="equipePage" [rootParams]="{'game':game, 'user':user}" tabTitle="Equipe" tabIcon="ios-people"></ion-tab>
 </ion-tabs>
 
 
