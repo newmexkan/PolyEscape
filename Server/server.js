@@ -150,6 +150,8 @@ io.on('connection', function(client) {
 
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
 
+            io.to(currentGame.getName()).emit('notification', {message: "C'est parti !", game:currentGame});
+
             // log serveur
             console.log(data.user + " a lancé la partie " + currentGame.getName());
         }

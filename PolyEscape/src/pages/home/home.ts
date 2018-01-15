@@ -102,7 +102,4 @@ export class HomePage {
     prompt.present();
   }
 
-  goToScenarios(){
-   // this.navCtrl.push(SelectScenarioPage);
-  }
 }
