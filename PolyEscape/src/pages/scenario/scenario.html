@@ -18,17 +18,20 @@
         {{game["scenario"]["summary"]}}
       </p>
     </ion-card-content>
-
-
-
   </ion-card>
+
 
   <ion-list>
     <ion-list-header text-center>
       Missions
     </ion-list-header>
     <ion-item *ngFor="let mission of game['missions']">
-      {{mission["mission"]["message"]}} {{mission["player"]}}
+      <ion-thumbnail item-start>
+        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png">
+      </ion-thumbnail>
+      <h2>{{mission["mission"]["message"]}}</h2>
+      <p>{{mission["player"]}}</p>
+      <!--<button ion-button clear item-end>View</button>-->
     </ion-item>
   </ion-list>
 

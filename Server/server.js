@@ -140,7 +140,6 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
 
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
-
         //rejoint le channel dédié à la partie
         client.join(currentGame.getName());
 
@@ -160,6 +159,8 @@ io.on('connection', function(client) {
             currentGame.mapPlayersToMissions();
 
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
+
+            io.to(currentGame.getName()).emit('notification', {message: "C'est parti !", game:currentGame});
 
             // log serveur
             console.log(data.user + " a lancé la partie " + currentGame.getName());
@@ -204,6 +205,8 @@ io.on('connection', function(client) {
         console.log(data.user+" a quitté la partie "+data.game);
         console.log("Joueurs de la partie :\n"+currentGame.players);
     });
+
+
 });
 
 

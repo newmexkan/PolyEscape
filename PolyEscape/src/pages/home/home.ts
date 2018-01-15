@@ -53,6 +53,7 @@ export class HomePage {
                 this.socket.emit('createGame', {game: data.nom, user: data.pseudo});
                 this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
               }
+
             });
 
           }
@@ -86,15 +87,20 @@ export class HomePage {
         {
           text: 'Rejoindre',
           handler: data => {
+
             this.http.get('http://localhost:8080/getGame/'+ data.nom).pipe(
               map(res => res.json())
             ).subscribe(response => {
+
               if (response.hasOwnProperty('game')) {
                 this.socket.connect();
                 this.socket.emit('joinGame', {game:data.nom, user:data.pseudo});
                 this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
               }
+
+
             });
+
           }
         }
       ]
@@ -102,7 +108,4 @@ export class HomePage {
     prompt.present();
   }
 
-  goToScenarios(){
-   // this.navCtrl.push(SelectScenarioPage);
-  }
 }

@@ -21,11 +21,14 @@ export class ScenarioPage {
   user;
 
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, platform: Platform) {
     this.platform = platform;
     this.game = navParams.get('game');
     this.user = navParams.get('user');
   }
+
+
 
 
   leave(){

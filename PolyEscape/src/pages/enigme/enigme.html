@@ -1,0 +1,22 @@
+<!--
+  Generated template for the EnigmePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Enigme</ion-title>
+  </ion-navbar>
+
+</ion-header>
+-->
+<ion-content id="seekItem">
+  <ion-label>Enigmes</ion-label>
+  {{enigme.question}}
+  <ion-input type="text" [(ngModel)]="reponse" placeholder="Réponse..."></ion-input>
+  <button  ion-button (click)="envoyerReponse()">Envoyer réponse </button>
+</ion-content>
+

@@ -18,6 +18,9 @@ export class InventairePage {
   qrData = null;
   createdCode = null;
   scannedCode = null;
+  numero =null;
+
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner) {
   }
@@ -26,6 +29,10 @@ export class InventairePage {
     console.log('ionViewDidLoad InventairePage');
   }
 
+  isItemLookingFor(){
+    console.log(this.numero);
+    this.navCtrl.push('EnigmePage',{'numero':this.numero});
+  }
 
   createCode() {
     this.createdCode = this.qrData;
