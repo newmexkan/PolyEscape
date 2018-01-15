@@ -24,8 +24,6 @@ var io = require('socket.io').listen(server);
 
 var games = [];
 var scenarios = [];
-var items = ["arduino", "programmeC", "capteursArduino"];
-var players = [];
 
 var scenario1 = {
     id: 1,
@@ -36,6 +34,7 @@ var scenario1 = {
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
     missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}]
 };
+
 var scenario2 = {
     id: 2,
     name:"Prise de la Bastaille",
@@ -89,9 +88,9 @@ app.get('/addGame/:name/:user', function(req, res){
         let game = new Game(games.length,gameName);
 
         game.setScenario(scenario1); // TEST
-
         game.setChief(userName);
         games.push(game);
+
         res.send({
             passed: true,
             game: game
@@ -146,6 +145,9 @@ io.on('connection', function(client) {
         let currentUser = data.user;
 
         if(currentGame.hasAsChief(currentUser)) {
+
+            currentGame.mapPlayersToMissions();
+
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
 
             // log serveur
@@ -177,23 +179,19 @@ io.on('connection', function(client) {
 
     client.on('quitGame', function(data) {
 
-        var gameId = games.findIndex(i => i.name === data.game.toLowerCase());
-        var player = games[gameId].players.indexOf(data.user);
+        let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
 
-        // retire le joueur de la partie
-        if (player > -1) {
-            games[gameId].players.splice(player, 1);
-        }
+        currentGame.removePlayer(data.user);
 
         // quitte le channel dédié a la partie
         client.leave(data.game);
 
         //notifie les autres joueurs de la partie
-        client.broadcast.to(data.game).emit('players_changed', {players:games[gameId].players});
+        client.broadcast.to(data.game).emit('players_changed', {players:currentGame.players});
 
         // log serveur
         console.log(data.user+" a quitté la partie "+data.game);
-        console.log("Joueurs de la partie :\n"+games[gameId].players);
+        console.log("Joueurs de la partie :\n"+currentGame.players);
     });
 });
 

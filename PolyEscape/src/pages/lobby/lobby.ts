@@ -39,6 +39,7 @@ export class LobbyPage {
 
     var existingUsers = this.game["players"];
     for (var i = 0; i < existingUsers.length; i++)
+      if (existingUsers[i] !== this.user && existingUsers[i] !== this.game["chief"])
         this.users.push(existingUsers[i]);
 
 
@@ -50,12 +51,13 @@ export class LobbyPage {
           this.users.push(user["players"][i]);
         }
       }
+
       this.hasEnoughPlayers = (this.users.length+1 === this.game["scenario"]["nbPlayers"]);
 
     });
 
     this.getStartSignal().subscribe(data => {
-      this.navCtrl.push(this.gamePage,{ 'game': this.game, 'user': this.user});
+      this.navCtrl.push(this.gamePage,{ 'game': data["game"], 'user': this.user});
     });
 
   }
@@ -79,7 +81,7 @@ export class LobbyPage {
       this.socket.on('game_start', (data) => {
         observer.next(data);
       });
-    })
+    });
     return observable;
   }
 

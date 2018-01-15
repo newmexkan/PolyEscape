@@ -12,13 +12,25 @@
     <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png"/>
     <ion-card-content>
       <ion-card-title>
-        {{scenario["name"]}}
+        {{game["scenario"]["name"]}}
       </ion-card-title>
       <p>
-        {{scenario["summary"]}}
+        {{game["scenario"]["summary"]}}
       </p>
     </ion-card-content>
+
+
+
   </ion-card>
+
+  <ion-list>
+    <ion-list-header text-center>
+      Missions
+    </ion-list-header>
+    <ion-item *ngFor="let mission of game['missions']">
+      {{mission["mission"]["message"]}} {{mission["player"]}}
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>

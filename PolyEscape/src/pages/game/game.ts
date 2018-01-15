@@ -27,9 +27,9 @@ export class GamePage {
 
   private players = [];
 
-  private game;
-  private user;
-  private time;
+  game;
+  user;
+  time;
 
   @ViewChild(TimerComponent) timer: TimerComponent;
 
@@ -44,14 +44,12 @@ export class GamePage {
     for(let i =0; i<this.game["players"];i++)
       this.players.push(this.game["players"][i]);
 
-    console.log(this.players);
   }
 
 
 
   ngOnInit() {
     setTimeout(() => {
-      console.log("salut")
       this.timer.startTimer();
     }, 1000)
   }

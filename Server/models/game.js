@@ -2,6 +2,7 @@
  * Created by Julien on 14/01/2018.
  */
 "use strict";
+let Player = require("./player.js");
 
 const GameState = {
     WAITING_SCENARIO: Symbol("En attente d'un scénario"),
@@ -19,6 +20,7 @@ module.exports = class Game {
         this.state = GameState.WAITING_SCENARIO;
         this.players = [];
         this.scenario;
+        this.missions = [];
     }
     getName() {
         return this.name;
@@ -27,6 +29,22 @@ module.exports = class Game {
     addPlayer(play){
         this.players.push(play);
     }
+
+    removePlayer(play){
+        this.players.splice(play, 1);
+    }
+
+    mapPlayersToMissions(){
+        let nbMissions = this.scenario["missions"].length;
+        let nbPlayers = this.players.length;
+
+        if(nbMissions === nbPlayers){
+            for(let i=0; i< nbPlayers;i++)
+                this.missions.push({mission:this.scenario["missions"][i], player:this.players[i]});
+
+        }
+    }
+
 
     hasPlayerNamed(name){
         return (this.players.findIndex(i => i.toLowerCase() === name.toLowerCase()) != -1);
@@ -38,9 +56,11 @@ module.exports = class Game {
 
     setScenario(scenar){
         this.scenario = scenar;
+        this.state = GameState.WAITING_PLAYERS;
     }
 
     setChief(ch){
+        this.addPlayer(ch);
         this.chief = ch;
     }
 

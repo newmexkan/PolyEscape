@@ -17,15 +17,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ScenarioPage {
   private platform: Platform;
-  private scenario;
+  game;
+  user;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, platform: Platform) {
     this.platform = platform;
-    this.scenario = navParams.get('scenario');
+    this.game = navParams.get('game');
+    this.user = navParams.get('user');
   }
-
-
 
 
   leave(){

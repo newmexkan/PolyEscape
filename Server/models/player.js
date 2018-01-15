@@ -5,11 +5,15 @@
 
 module.exports = class Player {
 
-    constructor(id, name) {
-        this.id = id;
+    constructor(name, mission) {
         this.name = name;
+        this.missionId = mission;
     }
     getName() {
         return this.name;
+    }
+
+    getMissionId(){
+        return this.missionId;
     }
 }
