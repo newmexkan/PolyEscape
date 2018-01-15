@@ -129,7 +129,6 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
 
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
-
         //rejoint le channel dédié à la partie
         client.join(currentGame.getName());
 
@@ -195,6 +194,8 @@ io.on('connection', function(client) {
         console.log(data.user+" a quitté la partie "+data.game);
         console.log("Joueurs de la partie :\n"+currentGame.players);
     });
+
+
 });
 
 
