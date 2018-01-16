@@ -53,7 +53,6 @@ export class GamePage {
     this.getEndOfGame().subscribe(data => {
       this.navCtrl.push('ResultPage',data);
     });
-
   }
 
 

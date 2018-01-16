@@ -194,6 +194,40 @@ app.get('/addItem/:game/:item', function(req, res){
 
 });
 
+app.get('/addIndication/:gameName/:indication', function(req, res){
+    var gameId = games.findIndex(i => i.getName() === req.params.gameName.toLowerCase());
+    if(gameId != -1){
+        var currentGame = games[gameId];
+        currentGame.indications.push({message: req.params.indication});
+        res.send({
+            passed: true,
+            game: games[gameId]
+        });
+    }
+    else {
+        res.status(404).send({
+            message: "Partie introuvable"
+        })
+    }
+
+});
+
+
+app.get('/getIndications/:gameName', function(req, res){
+    var gameId = games.findIndex(i => i.getName() === req.params.gameName.toLowerCase());
+    if(gameId != -1){
+        res.send({
+            passed: true,
+            indications: games[gameId].indications
+        });
+    }
+    else {
+        res.status(404).send({
+            message: "Partie introuvable"
+        })
+    }
+
+});
 
 
 
@@ -270,6 +304,22 @@ io.on('connection', function(client) {
             //console.log("Inventaire :\n" + currentGame.getInventory());
         }
     });
+
+    client.on('indicateClue', function(data) {
+
+        let currentGame = games[games.findIndex(i => i.getName() === data.game.name.toLowerCase())];
+
+        //notifie les autres joueurs de la partie
+        console.log(currentGame.inventory);
+        io.to(currentGame.getName()).emit('indication_added', {game: currentGame});
+
+        // log serveur
+        client.broadcast.to(currentGame.getName()).emit('notification', {message: "Votre équipe a ajouté une identification à la carte"});
+        client.emit('notification', {message: "L'indication a bien été partagée"});
+
+
+    });
+
 
     client.on('quitGame', function(data) {
 

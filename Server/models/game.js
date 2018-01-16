@@ -22,7 +22,9 @@ module.exports = class Game {
         this.scenario;
         this.inventory = [];
         this.missions = [];
+        this.indications = [];
     }
+
     getName() {
         return this.name;
     }
