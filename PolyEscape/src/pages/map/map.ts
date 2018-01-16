@@ -20,7 +20,8 @@ export class MapPage {
   listIndications;
   game;
   constructor(private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
-    this.game = navParams.get('game');
+    console.log(this.navParams.get('game'));
+    this.game = this.navParams.get('game');
     this.getIndications();
 
     this.getNewIndications().subscribe(res => {
