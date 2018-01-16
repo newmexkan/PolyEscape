@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {Observable} from "rxjs/Observable";
-import { Socket } from 'ng-socket-io';
+import {Socket} from 'ng-socket-io';
 import {Http} from "@angular/http";
+import {map} from 'rxjs/operators';
 import {InventoryProvider} from "../../providers/inventory/inventory";
 
 /**
@@ -22,15 +23,15 @@ export class InventairePage {
   qrData = null;
   createdCode = null;
   scannedCode = null;
-  numero =null;
+  numero = null;
   user;
   game;
   questions;
 
 
-  listItems: Array<{name: string, pathImg: string, quantity: number}>;
+  listItems: Array<{ name: string, pathImg: string, quantity: number }>;
 
-  constructor(private inventoryService: InventoryProvider ,public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams,  private socket: Socket, private http: Http, private barcodeScanner: BarcodeScanner) {
+  constructor(public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private http: Http, private barcodeScanner: BarcodeScanner) {
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
@@ -63,6 +64,14 @@ export class InventairePage {
       for (var i = 0; i < item.length; i++) {
         this.listItems.push({name: item[i].name, pathImg: item[i].pathImg, quantity: item[i].quantity});
         console.log("{name:"+ item[i].name+",  pathImg: "+item[i].pathImg+", quantity: "+item[i].quantity+"}");
+      console.log(item.toString());
+      for (var i = 0; i < item["inventory"].length; i++) {
+        this.listItems.push({
+          name: item["inventory"][i].name,
+          pathImg: item["inventory"][i].pathImg,
+          quantity: item["inventory"][i].quantity
+        });
+        console.log("{name:" + item["inventory"][i].name + ",  pathImg: " + item["inventory"][i].pathImg + ", quantity: " + item["inventory"][i].quantity + "}");
       }
     });
   }
@@ -71,9 +80,42 @@ export class InventairePage {
     console.log('ionViewDidLoad InventairePage');
   }
 
-  recupererItem(){
-    console.log(this.numero);
-    this.navCtrl.push('EnigmePage',{'questions':this.questions,'numero':this.numero, 'game': this.game, 'item': this.createdCode});
+  recupererItem() {
+
+    let bonItem = false;
+
+    for (let i = 0; i < this.game.missions.length; i++) {
+
+      // le numéro scanné correspond bien à l'item que le user doit rechercher
+      if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
+        bonItem = true;
+        this.bonItemToast();
+        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero});
+        break;
+      }
+    }
+    if(!bonItem){
+        this.mauvaisItemAlert();
+      }
+    }
+
+
+  bonItemToast() {
+    let toast = this.toastCtrl.create({
+      message: "Item trouvé ! Répondez à l'énigme pour le récupérer.",
+      position: 'top',
+      duration: 4000
+    });
+    toast.present();
+  }
+
+  mauvaisItemAlert() {
+    let alert = this.alertCtrl.create({
+      title: "L'item trouvé n'est pas celui recherché.",
+      subTitle: "Veuillez revoir l'indication de localisation de l'item.",
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   createCode() {
@@ -89,17 +131,16 @@ export class InventairePage {
     });
   }
 
-  getNewItems(){
+  getNewItems() {
     let observable = new Observable(observer => {
       this.socket.on('item_added', (data) => {
-        // console.log(data.valueOf());
         observer.next(data);
       });
     });
     return observable;
   }
 
-  addItem(){
+  addItem() {
 
   }
 
