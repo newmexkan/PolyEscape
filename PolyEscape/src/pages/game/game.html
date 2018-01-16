@@ -1,8 +1,16 @@
-<ion-header>
-    <ion-toolbar>
-    <timer #timer [timeInSeconds]="time" ></timer>
-    </ion-toolbar>
-</ion-header>
+
+<ion-toolbar>
+  <ion-title>
+    <timer #timer [timeInSeconds]="time"></timer>
+  </ion-title>
+  <ion-buttons end>
+    <button>
+      <ion-icon id="leave" end name="ios-exit-outline" color="danger" (click)="leave()"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+
+
 
 
 <ion-tabs>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="updated lobby">
+    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,7 +16,18 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="game.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -82,8 +91,8 @@
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/equipe/equipe.html" />
         <option value="$PROJECT_DIR$/PolyEscape/src/components/timer/timer.html" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts" />
-        <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss" />
+        <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" />
       </list>
     </option>
   </component>
@@ -101,6 +110,9 @@
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -223,10 +235,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/enigme/enigme.ts</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/game/game.html</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.ts</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/providers/inventory/inventory.ts</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Server/models/game.js</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Server/server.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -235,6 +246,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/result/result.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/result/result.module.ts</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/result/result.scss</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/result/result.ts</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -430,7 +445,7 @@
       <workItem from="1516027947355" duration="1886000" />
       <workItem from="1516038668794" duration="2964000" />
       <workItem from="1516044697333" duration="259000" />
-      <workItem from="1516090605184" duration="10814000" />
+      <workItem from="1516090605184" duration="10952000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Committing initial app&quot;">
       <created>1515503579285</created>
@@ -488,17 +503,25 @@
       <option name="project" value="LOCAL" />
       <updated>1516100157534</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updated timer">
+      <created>1516102108187</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1516102108187</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57673000" />
+    <option name="totallyTimeSpent" value="57811000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2418" height="1318" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16153522" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16153522" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -532,7 +555,8 @@
     <MESSAGE value="QR Code PEM-46" />
     <MESSAGE value="jai changé plein de trucs" />
     <MESSAGE value="updated lobby" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated lobby" />
+    <MESSAGE value="updated timer" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated timer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -841,7 +865,7 @@
         <state relative-caret-position="399">
           <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -875,7 +899,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -893,16 +917,8 @@
         <state relative-caret-position="-525">
           <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,6 +926,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="52" column="58" lean-forward="true" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding />
         </state>
       </provider>
