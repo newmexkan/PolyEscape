@@ -215,7 +215,7 @@ io.on('connection', function(client) {
 
             io.to(currentGame.getName()).emit('notification', {message: "C'est parti !", game:currentGame});
 
-            setTimeout(finishGame, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
+            setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
 
             // log serveur
             console.log(data.user + " a lancé la partie " + currentGame.getName());
@@ -223,9 +223,7 @@ io.on('connection', function(client) {
 
     });
 
-    function finishGame(name){
-        io.to(name).emit('notification', {message: "Jeu fini"});
-    }
+
 
     client.on('joinGame', function(data) {
 
@@ -297,7 +295,9 @@ io.on('connection', function(client) {
 
     });
 
-
+    function timeOver(name){
+        io.to(name).emit('end_of_game', {win: false});
+    }
 });
 
 
