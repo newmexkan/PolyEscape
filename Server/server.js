@@ -340,21 +340,12 @@ io.on('connection', function(client) {
     });
 
 
-    client.on('pickScenario', function(data) {
-
-
+    client.on('pickScenario', function (data) {
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
-        let id = data.id -1;
-        //currentGame.setScenario(data.game);
-        let result;
-        for( result in scenarios){
-            if(result.id === id){
-                io.to(currentGame.getName()).emit('scenario_pick', {id: id, scenario: scenarios[id]});
-
-            }
-        }
-        console.log("Scénario choisi n°"+id)
-
+        let id = data.id - 1;
+        currentGame.setScenario(scenarios[id]);
+        io.to(currentGame.getName()).emit('scenario_pick', {id: id, scenario: scenarios[id]});
+        console.log("Scénario choisi n°" + id)
     });
 
     function timeOver(game){
