@@ -93,6 +93,10 @@ module.exports = class Game {
         this.state = GameState.RUNNING;
     }
 
+    isRunning(){
+        return (this.state === GameState.RUNNING);
+    }
+
     finish(){
         this.state = GameState.FINISHED;
     }

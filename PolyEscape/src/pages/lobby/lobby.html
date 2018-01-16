@@ -70,7 +70,7 @@
   <ion-toolbar id="chef">
 
     <button ion-button color="danger" (click)="quitCurrentGame()" *ngIf="isChief">Supprimer l'équipe</button>
-    <button ion-button color="secondary"(click)="startGame()" *ngIf="isChief">Commencer</button>
+    <button ion-button color="secondary"(click)="startGame()" *ngIf="isChief" [disabled]="!hasEnoughPlayers">Commencer</button>
     <!--<button ion-button full color="secondary" (click)="startGame()" [disabled]="!hasEnoughPlayers" *ngIf="isChief" >Commencer</button>-->
   </ion-toolbar>
 

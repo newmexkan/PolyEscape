@@ -166,17 +166,25 @@ app.get('/getInventory/:game', function(req, res){
 });
 
 app.get('/addItem/:game/:item', function(req, res){
-    // var currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
+
     var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
     if(gameId != -1){
         var currentGame = games[gameId];
-        currentGame.getInventory().push({name: req.params.item, pathImg: "assets/imgs/wood.png", quantity: 1});
-        console.log(games[gameId].getInventory());
-        res.send({
-            passed: true,
-            game: games[gameId],
-            inventory: games[gameId].getInventory()
-        });
+
+        if(currentGame.isRunning()) {
+            currentGame.getInventory().push({name: req.params.item, pathImg: "assets/imgs/wood.png", quantity: 1});
+            console.log(games[gameId].getInventory());
+            res.send({
+                passed: true,
+                game: games[gameId],
+                inventory: games[gameId].getInventory()
+            });
+        }
+        else {
+            res.send({
+                message: "Partie non-accessible (terminée ou non commencée)"
+            })
+        }
     }
     else {
         res.status(404).send({
@@ -201,8 +209,8 @@ io.on('connection', function(client) {
         client.join(currentGame.getName());
 
         // log serveur
-        console.log(data.user+" a rejoint la partie "+data.game+" en tant que chef");
-        console.log("Joueurs de la partie :\n"+currentGame.getPlayers());
+        //console.log(data.user+" a rejoint la partie "+data.game+" en tant que chef");
+        //console.log("Joueurs de la partie :\n"+currentGame.getPlayers());
 
     });
 
@@ -220,7 +228,7 @@ io.on('connection', function(client) {
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame);
 
             // log serveur
-            console.log(data.user + " a lancé la partie " + currentGame.getName());
+            //console.log(data.user + " a lancé la partie " + currentGame.getName());
         }
 
     });
@@ -243,8 +251,8 @@ io.on('connection', function(client) {
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
 
             // log serveur
-            console.log(data.user+" a rejoint la partie "+data.game);
-            console.log("Joueurs de la partie :\n"+currentGame.getPlayers());
+            //console.log(data.user+" a rejoint la partie "+data.game);
+            //console.log("Joueurs de la partie :\n"+currentGame.getPlayers());
         }
     });
 
@@ -252,14 +260,15 @@ io.on('connection', function(client) {
     client.on('addItemToInventory', function(data) {
 
         let currentGame = games[games.findIndex(i => i.getName() === data.game.name.toLowerCase())];
-        // let itemAdded = data.inventory;
-        //notifie les autres joueurs de la partie
-        console.log(currentGame.inventory);
-        io.to(currentGame.getName()).emit('item_added', {game: currentGame});
 
-        // log serveur
-        console.log(data.game+" a ajouté l'item: ");
-        console.log("Inventaire :\n"+currentGame.getInventory());
+        if(currentGame.isRunning()) {
+            //notifie les autres joueurs de la partie
+            io.to(currentGame.getName()).emit('item_added', {game: currentGame});
+
+            // log serveur
+            //console.log(data.game + " a ajouté l'item: ");
+            //console.log("Inventaire :\n" + currentGame.getInventory());
+        }
     });
 
     client.on('quitGame', function(data) {
@@ -275,8 +284,8 @@ io.on('connection', function(client) {
         client.broadcast.to(data.game).emit('players_changed', {players:currentGame.players});
 
         // log serveur
-        console.log(data.user+" a quitté la partie "+data.game);
-        console.log("Joueurs de la partie :\n"+currentGame.players);
+        //console.log(data.user+" a quitté la partie "+data.game);
+        //console.log("Joueurs de la partie :\n"+currentGame.players);
     });
 
 
@@ -299,7 +308,23 @@ io.on('connection', function(client) {
 
     function timeOver(game){
         io.to(game.getName()).emit('end_of_game', {win: false});
-        game.finish();
+        destroyGame(game.getName());
+    }
+
+    function destroyGame(gameName){
+
+        var index = games.findIndex(i => i.getName() === gameName.toLowerCase())
+        if (index > -1) {
+            games.splice(index, 1);
+        }
+
+        io.of('/').in(gameName).clients(function(error, clients) {
+            if (clients.length > 0) {
+                clients.forEach(function(socket_id) {
+                    io.sockets.sockets[socket_id].leave(gameName);
+                });
+            }
+        });
     }
 });
 
