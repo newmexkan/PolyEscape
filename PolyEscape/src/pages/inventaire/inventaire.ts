@@ -61,6 +61,7 @@ export class InventairePage {
     for (let i = 0; i < this.game.missions.length; i++) {
 
       // le numéro scanné correspond bien à l'item que le user doit rechercher
+
       if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
         bonItem = true;
         this.bonItemToast();
