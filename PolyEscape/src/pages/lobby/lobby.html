@@ -7,15 +7,57 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-toolbar color="primary">
     <ion-title>Salle d'attente - {{game["name"]}}</ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 
 </ion-header>
 
+
+<ion-content>
+
+  <div class="header card-background-page" *ngIf="!scenarioPicked">
+    <ion-card>
+      <img src="assets/imgs/truc1.jpg"/>
+      <div class="card-title">scenario.name</div>
+      <div class="card-players"> 4
+        <ion-icon name="md-contacts"></ion-icon>
+      </div>
+      <div class="card-time"> 30
+        <ion-icon name="md-time"></ion-icon>
+      </div>
+    </ion-card>
+  </div>
+  <div text-center align-items-center>
+    <button ion-button round  *ngIf="isChief" (click)="pickScenario()">Changer de
+      scénario
+    </button>
+  </div>
+
+  <ion-list>
+    <ion-list-header text-center>
+      Joueurs connectés ({{users.length+1}})
+    </ion-list-header>
+    <ion-item *ngIf="!isChief">{{game["chief"]}} (chef)</ion-item>
+    <ion-item>{{user}} (vous)</ion-item>
+    <ion-item *ngFor="let user of users">{{user}}</ion-item>
+  </ion-list>
+
+
+  <!-- ENLLEVER LE ! AU NGIF CI DESSUS
+   <div class="header2" *ngIf="!scenarioPicked">
+     <button ion-button full *ngIf="isChief" (click)="pickScenario()">Choisir le scénario</button>
+     <h2 *ngIf="!isChief">Le chef d'équipe choisit un scénario...</h2>
+   </div>
+
+   -->
+
+</ion-content>
+
+<!--
 <ion-content padding>
   <ion-label text-center="center" *ngIf="isChief">Vous êtes le chef d'équipe</ion-label>
-  <button ion-button full *ngIf="isChief" [navPush]="selectScenario" >Choisir le scénario</button>
+  <button ion-button full *ngIf="isChief" (click)="pickScenario()" >Choisir le scénario</button>
 
   <ion-label text-center="center" *ngIf="game['scenario'] && !isChief">Scénario : {{game["scenario"]["name"]}}</ion-label>
 
@@ -30,9 +72,14 @@
 
 </ion-content>
 
+-->
+
 <ion-footer>
-    <button ion-button full color="danger" (click)="quitCurrentGame()" *ngIf="!isChief">Quitter l'équipe</button>
-    <button ion-button full color="danger" (click)="quitCurrentGame()" *ngIf="isChief">Supprimer l'équipe</button>
-    <button ion-button full color="secondary" (click)="startGame()" [disabled]="!hasEnoughPlayers" *ngIf="isChief" >Commencer</button>
+  <ion-toolbar>
+    <button ion-button color="danger" (click)="quitCurrentGame()" *ngIf="!isChief">Quitter l'équipe</button>
+    <button ion-button color="danger" (click)="quitCurrentGame()" *ngIf="isChief">Supprimer l'équipe</button>
+    <button ion-button color="secondary" (click)="startGame()" *ngIf="isChief">Commencer</button>
+    <!--<button ion-button full color="secondary" (click)="startGame()" [disabled]="!hasEnoughPlayers" *ngIf="isChief" >Commencer</button>-->
+  </ion-toolbar>
 </ion-footer>
 

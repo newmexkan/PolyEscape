@@ -1,9 +1,8 @@
-import {JoueurModel} from "../../models/joueur-model";
-import { GamePage } from "../game/game";
+import {GamePage} from "../game/game";
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform, Navbar, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, Navbar, AlertController, ToastController} from 'ionic-angular';
 import {Http} from "@angular/http";
-import { Socket } from 'ng-socket-io';
+import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs";
 import {SelectScenarioPage} from "../select-scenario/select-scenario";
 
@@ -28,10 +27,13 @@ export class LobbyPage {
   users = [];
   user;
   isChief: boolean;
-  hasEnoughPlayers : boolean = false;
+  scenarioPicked: boolean = false;
+  hasEnoughPlayers: boolean = false;
+  selected_scenario = {};
 
   @ViewChild('navbar') navBar: Navbar;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private socket: Socket,private platform: Platform,public alertCtrl: AlertController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public toastCtrl: ToastController, private socket: Socket, private platform: Platform, public alertCtrl: AlertController) {
 
 
     this.game = this.navParams.get('currentGame');
@@ -54,22 +56,31 @@ export class LobbyPage {
         }
       }
 
-      this.hasEnoughPlayers = (this.users.length+1 === this.game["scenario"]["nbPlayers"]);
+      this.hasEnoughPlayers = (this.users.length + 1 === this.game["scenario"]["nbPlayers"]);
 
     });
 
     this.getStartSignal().subscribe(data => {
-      this.navCtrl.push(this.gamePage,{ 'game': data["game"], 'user': this.user});
+      this.navCtrl.push(this.gamePage, {'game': data["game"], 'user': this.user});
     });
 
+    this.getPickScenarioSignal().subscribe(data => {
+      this.scenarioPicked = true;
+      this.selected_scenario = data['scenario']
+      let toast = this.toastCtrl.create({
+        message: "Le scenario n°" + data['id'] + " a été choisi",
+        position: 'top',
+        duration: 3000
+      });
+      toast.present();
+    })
   }
 
-
-  startGame(){
-    this.socket.emit('startGame', {game:this.game["name"], user:this.user});
+  startGame() {
+    this.socket.emit('startGame', {game: this.game["name"], user: this.user});
   }
 
-  getNewPlayers(){
+  getNewPlayers() {
     let observable = new Observable(observer => {
       this.socket.on('players_changed', (data) => {
         observer.next(data);
@@ -78,7 +89,7 @@ export class LobbyPage {
     return observable;
   }
 
-  getStartSignal(){
+  getStartSignal() {
     let observable = new Observable(observer => {
       this.socket.on('game_start', (data) => {
         observer.next(data);
@@ -87,14 +98,26 @@ export class LobbyPage {
     return observable;
   }
 
+  getPickScenarioSignal() {
+    let observable = new Observable(observer => {
+      this.socket.on('scenario_pick', (data) => {
+        observer.next(data);
+      });
+    });
+    return observable;
+  }
 
-  quitCurrentGame(){
-    this.socket.emit('quitGame', {game:this.game["name"], user:this.user});
+
+  quitCurrentGame() {
+    this.socket.emit('quitGame', {game: this.game["name"], user: this.user});
     this.navCtrl.push('home');
   }
 
-  removeCurrentGame(){
 
+  pickScenario() {
+    this.navCtrl.push(this.selectScenario, {
+      gameName: this.game['name'],
+    });
   }
 
 }

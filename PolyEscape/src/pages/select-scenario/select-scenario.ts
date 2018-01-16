@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavOptions, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ScenarioServiceProvider} from "../../providers/scenario-service/scenario-service";
 import {LobbyPage} from "../lobby/lobby";
+import {Socket} from "ng-socket-io";
 
 /**
  * Generated class for the SelectScenarioPage page.
@@ -19,6 +20,7 @@ import {LobbyPage} from "../lobby/lobby";
 export class SelectScenarioPage {
 
   list: any;
+  gameName: any;
 
   listeScenarios: Array<{
     id: number,
@@ -26,27 +28,31 @@ export class SelectScenarioPage {
     nbPlayers: number,
     timeInMinuts: number,
     summary: string,
-    missions: Array<{message: string, item: number}>
+    missions: Array<{ message: string, item: number }>
   }>;
 
   lobbyPage = LobbyPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private scenarioService: ScenarioServiceProvider, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private scenarioService: ScenarioServiceProvider, private alertCtrl: AlertController) {
     this.listeScenarios = [];
+    this.gameName = navParams.get('gameName');
     this.create();
   }
 
-  create(){
+  create() {
     this.scenarioService.getAllScenarios().subscribe(res => {
 
       console.log("In Create");
       var keys = Object.keys(res['scenarios']);
-      for(var i = 0; i < keys.length; ++i ){
+      for (var i = 0; i < keys.length; ++i) {
         var missions: any;
-         missions = [];
+        missions = [];
 
-        for(var j in res['scenarios'][keys[i]].missions ){
-          missions.push({message: res['scenarios'][keys[i]].missions[j].message, item: res['scenarios'][keys[i]].missions[j].item});
+        for (var j in res['scenarios'][keys[i]].missions) {
+          missions.push({
+            message: res['scenarios'][keys[i]].missions[j].message,
+            item: res['scenarios'][keys[i]].missions[j].item
+          });
         }
         // console.log(missions);
         var elmt = {
@@ -63,11 +69,11 @@ export class SelectScenarioPage {
     });
   }
 
-  select(salut){
+  select(salut) {
     let scenar = this.listeScenarios.find(i => i.id === salut);
     let alert = this.alertCtrl.create({
       title: 'Choisir ce scénario ?',
-      message: 'La partie durera '+scenar['timeInMinuts'] + '  minutes',
+      message: 'Vous devrez terminer cette mission en moins de ' + scenar['timeInMinuts'] + '  minutes',
       buttons: [
         {
           text: 'Annuler',
@@ -79,9 +85,9 @@ export class SelectScenarioPage {
         {
           text: 'Sélectionner',
           handler: () => {
-            this.navCtrl.pop(<NavOptions>{
-              gameName: "la chatte a popeye"
-            });
+            console.log("id choisi : "+salut)
+            this.socket.emit('pickScenario', {game: this.gameName, id:salut});
+            this.navCtrl.pop();
           }
         }
       ]
