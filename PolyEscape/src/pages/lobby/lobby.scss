@@ -35,7 +35,7 @@
 
 }
 
-ion-footer{
+ion-footer #chef{
   button:first-child{
     float:left;
     width:48%;
@@ -45,4 +45,10 @@ ion-footer{
     float:right;
     width:48%;
   }
+}
+
+.users ion-icon{
+  font-size: 1.4em;
+  margin-right: 15px;
+  vertical-align: middle;
 }

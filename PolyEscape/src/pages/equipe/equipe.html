@@ -5,21 +5,30 @@
   Ionic pages and navigation.
 -->
 §
-<ion-content padding>
+<ion-content>
 
-    <ion-label text-center="center">Vous êtes le chef d'équipe</ion-label>
+  <ion-list class="users">
+    <ion-list-header text-center>
+      Joueurs
+    </ion-list-header>
+
+    <ion-item  *ngIf="!isChief">
+      <ion-icon name="contact" color="danger"></ion-icon>
+      {{game["chief"]}} (chef)
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="contact" color="primary"></ion-icon>
+      {{user}} (vous)
+    </ion-item>
+
+    <ion-item *ngFor="let user of users">
+      <ion-icon name="contact" color="primary"></ion-icon>
+      {{user}}
+    </ion-item>
+  </ion-list>
 
 
-    <ion-list>
-      <ion-list-header text-center>
-        Joueurs
-      </ion-list-header>
-      <button ion-item *ngIf="!isChief">{{game["chief"]}} (chef)</button>
-      <button ion-item>{{user}} (vous)</button>
-      <button ion-item *ngFor="let player of game['players']">
-        {{player}}
-      </button>
-    </ion-list>
 
 
 </ion-content>
