@@ -37,7 +37,7 @@ var scenario1 = {
     id: 1,
     name:"Invasion de zombies",
     nbPlayers:3,
-    timeInMinuts:1,
+    timeInMinuts:2,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
     missions:[{message:"Trouver un Arduino",item:0,indice:"La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium."},
@@ -256,6 +256,7 @@ io.on('connection', function(client) {
         if(currentGame.hasAsChief(currentUser)) {
 
             currentGame.mapPlayersToMissions();
+            currentGame.run();
 
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
 
@@ -300,8 +301,8 @@ io.on('connection', function(client) {
             io.to(currentGame.getName()).emit('item_added', {game: currentGame});
 
             // log serveur
-            //console.log(data.game + " a ajouté l'item: ");
-            //console.log("Inventaire :\n" + currentGame.getInventory());
+            console.log(data.game + " a ajouté l'item: ");
+            console.log("Inventaire :\n" + currentGame.getInventory());
         }
     });
 
