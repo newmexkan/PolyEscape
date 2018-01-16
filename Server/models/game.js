@@ -33,6 +33,10 @@ module.exports = class Game {
         this.players.push(play);
     }
 
+    acceptsPlayerNamed(name){
+        return (this.state === GameState.WAITING_PLAYERS && (this.players.length <= this.scenario["nbPlayers"]) && !this.hasPlayerNamed(name));
+    }
+
     getScenario(){
         return this.scenario;
     }

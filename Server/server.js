@@ -251,9 +251,7 @@ io.on('connection', function(client) {
 
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
 
-            io.to(currentGame.getName()).emit('notification', {message: "C'est parti !", game:currentGame});
-
-            setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
+            setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame);
 
             // log serveur
             console.log(data.user + " a lancé la partie " + currentGame.getName());
@@ -268,7 +266,7 @@ io.on('connection', function(client) {
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
 
 
-        if(!currentGame.hasPlayerNamed(data.user)){
+        if(currentGame.acceptsPlayerNamed(data.user)){
             //rejoint la partie
             currentGame.addPlayer(data.user);
 
@@ -350,8 +348,9 @@ io.on('connection', function(client) {
 
     });
 
-    function timeOver(name){
-        io.to(name).emit('end_of_game', {win: false});
+    function timeOver(game){
+        io.to(game.getName()).emit('end_of_game', {win: false});
+        game.finish();
     }
 });
 
