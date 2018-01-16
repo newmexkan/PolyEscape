@@ -67,13 +67,16 @@ export class LobbyPage {
     this.getPickScenarioSignal().subscribe(data => {
       this.scenarioPicked = true;
       this.selected_scenario = data['scenario']
+      /*
       let toast = this.toastCtrl.create({
-        message: "Le scenario n°" + data['id'] + " a été choisi",
+        message: "Le scenario " + data['scenario']['name'] + " a été choisi",
         position: 'top',
         duration: 3000
       });
       toast.present();
-    })
+      */
+    });
+
   }
 
   startGame() {
@@ -85,7 +88,7 @@ export class LobbyPage {
       this.socket.on('players_changed', (data) => {
         observer.next(data);
       });
-    })
+    });
     return observable;
   }
 

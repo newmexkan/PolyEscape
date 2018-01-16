@@ -32,18 +32,55 @@
     width: 100%;
     color: #fff;
   }
-
 }
 
-ion-footer #chef{
-  button:first-child{
-    float:left;
-    width:48%;
+.header2 ion-card{
+  height:22vh;
+  padding-top:12%;
+}
+
+.header2 #wait-spinner{
+  text-align: center;
+  color:#222222;
+}
+
+.header2 .indicator{
+  color:darkgrey;
+}
+
+ion-footer #not-chef{
+  padding: unset;
+  margin: unset;
+  margin-bottom:-2px;
+  button {
+    height: 53px;
+    margin: unset;
+    float: left;
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+ion-footer #chef {
+
+  padding: unset;
+  margin: unset;
+  margin-bottom:-2px;
+
+  button:first-child {
+    height: 53px;
+    margin: unset;
+    float: left;
+    width: 50%;
+    border-radius: 0;
   }
 
-  button:last-child{
-    float:right;
-    width:48%;
+  button:last-child {
+    height:53px;
+    margin: unset;
+    float: right;
+    border-radius: 0;
+    width: 50%;
   }
 }
 
@@ -52,3 +89,6 @@ ion-footer #chef{
   margin-right: 15px;
   vertical-align: middle;
 }
+
+
+
