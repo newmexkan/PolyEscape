@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="QR Code PEM-46">
+    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="updated lobby">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/package-lock.json" afterPath="$PROJECT_DIR$/PolyEscape/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/package.json" afterPath="$PROJECT_DIR$/PolyEscape/package.json" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.html" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.html" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.scss" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.scss" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.ts" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.ts" />
-      <change beforePath="$PROJECT_DIR$/Server/server.js" afterPath="$PROJECT_DIR$/Server/server.js" />
+      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" />
+      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss" />
+      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,60 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="lobby.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="30" column="37" lean-forward="false" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lobby.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="select-scenario.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="636">
-              <caret line="35" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="select-scenario.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="26" column="13" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="26" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lobby.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -118,11 +61,9 @@
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.module.ts" />
         <option value="$PROJECT_DIR$/PolyEscape/src/providers/scenario-service/scenario-service.ts" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.html" />
-        <option value="$PROJECT_DIR$/PolyEscape/src/pages/equipe/equipe.html" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/home/home.ts" />
         <option value="$PROJECT_DIR$/Server/models/scenario.js" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/scenario/scenario.ts" />
-        <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" />
         <option value="$PROJECT_DIR$/PolyEscape/src/components/enigme/enigme.ts" />
         <option value="$PROJECT_DIR$/PolyEscape/src/components/enigme/enigme.html" />
         <option value="$PROJECT_DIR$/PolyEscape/src/components/components.module.ts" />
@@ -134,11 +75,15 @@
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/enigme/enigme.ts" />
         <option value="$PROJECT_DIR$/PolyEscape/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.ts" />
-        <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.ts" />
         <option value="$PROJECT_DIR$/Server/server.js" />
-        <option value="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.scss" />
         <option value="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.html" />
+        <option value="$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.scss" />
+        <option value="$PROJECT_DIR$/PolyEscape/src/pages/equipe/equipe.html" />
+        <option value="$PROJECT_DIR$/PolyEscape/src/components/timer/timer.html" />
+        <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts" />
+        <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.html" />
+        <option value="$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss" />
       </list>
     </option>
   </component>
@@ -196,7 +141,15 @@
               <item name="private" type="462c0819:PsiDirectoryNode" />
               <item name="PolyEscape" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="private" type="b2602c69:ProjectViewProjectNode" />
+              <item name="private" type="462c0819:PsiDirectoryNode" />
+              <item name="PolyEscape" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="timer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="private" type="b2602c69:ProjectViewProjectNode" />
@@ -228,14 +181,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="lobby" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="private" type="b2602c69:ProjectViewProjectNode" />
-              <item name="private" type="462c0819:PsiDirectoryNode" />
-              <item name="PolyEscape" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="select-scenario" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="private" type="b2602c69:ProjectViewProjectNode" />
@@ -278,15 +223,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/app/app.module.ts</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/enigme/enigme.html</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/enigme/enigme.ts</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/game/game.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.ts</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/pages/scenario/scenario.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Server/models/scenario.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PolyEscape/src/providers/inventory/inventory.ts</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Server/server.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -490,7 +430,7 @@
       <workItem from="1516027947355" duration="1886000" />
       <workItem from="1516038668794" duration="2964000" />
       <workItem from="1516044697333" duration="259000" />
-      <workItem from="1516090605184" duration="7110000" />
+      <workItem from="1516090605184" duration="10814000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Committing initial app&quot;">
       <created>1515503579285</created>
@@ -534,18 +474,31 @@
       <option name="project" value="LOCAL" />
       <updated>1515942729134</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="jai changé plein de trucs">
+      <created>1516098403529</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1516098403529</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated lobby">
+      <created>1516100157534</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1516100157534</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53969000" />
+    <option name="totallyTimeSpent" value="57673000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2418" height="1318" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16153522" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16153522" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -577,20 +530,15 @@
     <MESSAGE value="&quot;Updating REAMDME.md, once again&quot;" />
     <MESSAGE value="&quot;Création de la vue listant l'ensemble des scénarios + méthode transmettant les scénarios de la BDD + implémentation du web service récupérant les scénarios côté client &quot; [PEM-61] [PEM-62] [PEM-63] [PEM-33]" />
     <MESSAGE value="QR Code PEM-46" />
-    <option name="LAST_COMMIT_MESSAGE" value="QR Code PEM-46" />
+    <MESSAGE value="jai changé plein de trucs" />
+    <MESSAGE value="updated lobby" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated lobby" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Server/node_modules/bower/lib/node_modules/lodash/lodash.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="7567" column="13" lean-forward="false" selection-start-line="7567" selection-start-column="13" selection-end-line="7567" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -671,13 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/home/home.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -730,13 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/components/timer/timer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PolyEscape/src/components/timer/itimer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -748,21 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/components/timer/timer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/home/home.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/equipe/equipe.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -801,20 +713,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -877,14 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
@@ -901,20 +796,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.ts">
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/home/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="189">
+          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.html">
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/equipe/equipe.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="26" column="13" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="441">
+          <caret line="21" column="17" lean-forward="false" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="52" column="25" lean-forward="false" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -927,26 +828,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.scss">
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/select-scenario/select-scenario.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="441">
+          <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/home/home.html">
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        <state relative-caret-position="399">
+          <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/components/timer/timer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/components/timer/timer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/home/home.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2035">
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/home/home.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-525">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/game/game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PolyEscape/src/pages/lobby/lobby.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="30" column="37" lean-forward="false" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        <state relative-caret-position="462">
+          <caret line="52" column="58" lean-forward="true" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="58" />
           <folding />
         </state>
       </provider>

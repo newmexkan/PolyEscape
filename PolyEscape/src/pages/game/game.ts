@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import { ScenarioPage } from "../scenario/scenario";
 import { InventairePage} from "../inventaire/inventaire";
 import { EquipePage} from "../equipe/equipe";
@@ -7,6 +7,7 @@ import { MapPage} from "../map/map";
 import {TimerComponent} from "../../components/timer/timer";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
+import { HomePage} from "../home/home";
 
 /**
  * Generated class for the GamePage tabs.
@@ -25,6 +26,7 @@ export class GamePage {
   scenarioPage = ScenarioPage;
   inventairePage = InventairePage;
   equipePage = EquipePage;
+  homePage = HomePage;
 
   private players = [];
 
@@ -35,7 +37,7 @@ export class GamePage {
   @ViewChild(TimerComponent) timer: TimerComponent;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController) {
     this.game = navParams.get('game');
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
@@ -74,6 +76,29 @@ export class GamePage {
       duration: 3000
     });
     toast.present();
+  }
+
+  leave(){
+    let alert = this.alertCtrl.create({
+      title: 'Quitter la partie',
+      message: 'Voulez-vous quitter la partie ? L\'avancement ne sera pas sauvegardé',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Confirmer',
+          handler: () => {
+            this.navCtrl.push(this.homePage);
+          }
+        }
+      ]
+    });
+    alert.present();
+
   }
 
 

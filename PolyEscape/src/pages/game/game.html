@@ -1,15 +1,23 @@
-<ion-header>
-    <ion-toolbar>
-    <timer #timer timeInSeconds={{time}} ></timer>
-    </ion-toolbar>
-</ion-header>
+<ion-toolbar>
+  <ion-title>
+    <timer #timer timeInSeconds={{time}}></timer>
+  </ion-title>
+  <ion-buttons end>
+    <button>
+      <ion-icon id="leave" end name="ios-exit-outline" color="danger" (click)="leave()"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
 
 
 <ion-tabs>
-    <ion-tab [root]="scenarioPage" [rootParams]="{'game':game, 'user':user}" tabTitle="Scenario" tabIcon="ios-book-outline"></ion-tab>
-    <ion-tab [root]="inventairePage" [rootParams]="{'game':game, 'user':user}" tabTitle="Inventaire" tabIcon="ios-list-box-outline"></ion-tab>
-    <ion-tab [root]="mapPage" tabTitle="Map" tabIcon="ios-map-outline"></ion-tab>
-    <ion-tab [root]="equipePage" [rootParams]="{'game':game, 'user':user}" tabTitle="Equipe" tabIcon="ios-people"></ion-tab>
+  <ion-tab [root]="scenarioPage" [rootParams]="{'game':game, 'user':user}" tabTitle="Scenario"
+           tabIcon="ios-book-outline"></ion-tab>
+  <ion-tab [root]="inventairePage" [rootParams]="{'game':game, 'user':user}" tabTitle="Inventaire"
+           tabIcon="ios-list-box-outline"></ion-tab>
+  <ion-tab [root]="mapPage" tabTitle="Map" tabIcon="ios-map-outline"></ion-tab>
+  <ion-tab [root]="equipePage" [rootParams]="{'game':game, 'user':user}" tabTitle="Equipe"
+           tabIcon="ios-people"></ion-tab>
 </ion-tabs>
 
 
