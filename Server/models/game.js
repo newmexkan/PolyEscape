@@ -22,13 +22,19 @@ module.exports = class Game {
         this.scenario;
         this.inventory = [];
         this.missions = [];
+        this.indications = [];
     }
+
     getName() {
         return this.name;
     }
 
     addPlayer(play){
         this.players.push(play);
+    }
+
+    acceptsPlayerNamed(name){
+        return (this.state === GameState.WAITING_PLAYERS && (this.players.length <= this.scenario["nbPlayers"]) && !this.hasPlayerNamed(name));
     }
 
     getScenario(){
@@ -87,6 +93,10 @@ module.exports = class Game {
 
     run(){
         this.state = GameState.RUNNING;
+    }
+
+    isRunning(){
+        return (this.state === GameState.RUNNING);
     }
 
     finish(){

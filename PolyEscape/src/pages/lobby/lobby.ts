@@ -79,6 +79,15 @@ export class LobbyPage {
 
   }
 
+  notify(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      position: 'top',
+      duration: 3000
+    });
+    toast.present();
+  }
+
   startGame() {
     this.socket.emit('startGame', {game: this.game["name"], user: this.user});
   }

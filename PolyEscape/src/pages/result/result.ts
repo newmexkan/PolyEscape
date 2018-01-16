@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the ResultPage page.
@@ -15,13 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ResultPage {
   private result;
+  private nav;
+  mapPage = HomePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.nav = navCtrl;
     this.result = this.navParams.get('win')?"Bravo !":"Dommage !";
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ResultPage');
+  returnHome(){
+    this.nav.push(HomePage);
   }
 
 }

@@ -29,6 +29,7 @@ import {LobbyPageModule} from "../pages/lobby/lobby.module";
 import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
 import {ScenarioServiceProvider} from "../providers/scenario-service/scenario-service";
 import {InventoryProvider} from "../providers/inventory/inventory";
+import { IndicationsProvider } from '../providers/indications/indications';
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
@@ -77,7 +78,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     InventoryProvider,
-    ScenarioServiceProvider
+    ScenarioServiceProvider,
+    IndicationsProvider
   ]
 })
 export class AppModule {}
