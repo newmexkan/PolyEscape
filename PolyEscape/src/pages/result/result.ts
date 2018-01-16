@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'result.html',
 })
 export class ResultPage {
+  private result;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.result = this.navParams.get('win')?"Bravo !":"Dommage !";
   }
 
   ionViewDidLoad() {

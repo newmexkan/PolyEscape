@@ -50,6 +50,10 @@ export class GamePage {
       this.game = data["game"];
     });
 
+    this.getEndOfGame().subscribe(data => {
+      this.navCtrl.push('ResultPage',data);
+    });
+
   }
 
 
@@ -62,6 +66,15 @@ export class GamePage {
   getNotifications(){
     let observable = new Observable(observer => {
       this.socket.on('notification', (data) => {
+        observer.next(data);
+      });
+    });
+    return observable;
+  }
+
+  getEndOfGame(){
+    let observable = new Observable(observer => {
+      this.socket.on('end_of_game', (data) => {
         observer.next(data);
       });
     });

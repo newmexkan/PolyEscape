@@ -40,7 +40,9 @@ var scenario1 = {
     timeInMinuts:1,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
-    missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}],
+    missions:[{message:"Trouver un Arduino",item:0,indice:"La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium."},
+        {message:"Trouver le programme C",item:1,indice:"Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?."},
+        {message:"Trouver des capteurs",item:2,indice:"Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?."}],
     questions:questions
 };
 
@@ -52,7 +54,9 @@ var scenario2 = {
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
-    missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}],
+    missions:[{message:"Trouver un Arduino",item:0,indice:"La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium."},
+        {message:"Trouver le programme C",item:1,indice:"Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?."},
+        {message:"Trouver des capteurs",item:2,indice:"Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?."}],
     questions:questions
 };
 
@@ -215,7 +219,7 @@ io.on('connection', function(client) {
 
             io.to(currentGame.getName()).emit('notification', {message: "C'est parti !", game:currentGame});
 
-            setTimeout(finishGame, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
+            setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
 
             // log serveur
             console.log(data.user + " a lancé la partie " + currentGame.getName());
@@ -223,9 +227,7 @@ io.on('connection', function(client) {
 
     });
 
-    function finishGame(name){
-        io.to(name).emit('notification', {message: "Jeu fini"});
-    }
+
 
     client.on('joinGame', function(data) {
 
@@ -297,7 +299,9 @@ io.on('connection', function(client) {
 
     });
 
-
+    function timeOver(name){
+        io.to(name).emit('end_of_game', {win: false});
+    }
 });
 
 
