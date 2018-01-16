@@ -37,7 +37,7 @@ var scenario1 = {
     id: 1,
     name:"Invasion de zombies",
     nbPlayers:3,
-    timeInMinuts:30,
+    timeInMinuts:1,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
     missions:[{message:"Trouver un Arduino",item:0}, {message:"Trouver le programme C",item:1}, {message:"Trouver des capteurs",item:2}],
@@ -215,11 +215,17 @@ io.on('connection', function(client) {
 
             io.to(currentGame.getName()).emit('notification', {message: "C'est parti !", game:currentGame});
 
+            setTimeout(finishGame, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
+
             // log serveur
             console.log(data.user + " a lancé la partie " + currentGame.getName());
         }
 
     });
+
+    function finishGame(name){
+        io.to(name).emit('notification', {message: "Jeu fini"});
+    }
 
     client.on('joinGame', function(data) {
 
