@@ -63,8 +63,9 @@ export class InventairePage {
       console.log(item.valueOf());
       for (var i = 0; i < item.length; i++) {
         this.listItems.push({name: item[i].name, pathImg: item[i].pathImg, quantity: item[i].quantity});
-        console.log("{name:"+ item[i].name+",  pathImg: "+item[i].pathImg+", quantity: "+item[i].quantity+"}");
-      console.log(item.toString());
+        console.log("{name:" + item[i].name + ",  pathImg: " + item[i].pathImg + ", quantity: " + item[i].quantity + "}");
+        console.log(item.toString());
+      }
       for (var i = 0; i < item["inventory"].length; i++) {
         this.listItems.push({
           name: item["inventory"][i].name,
@@ -90,14 +91,14 @@ export class InventairePage {
       if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
         bonItem = true;
         this.bonItemToast();
-        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero});
+        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game});
         break;
       }
     }
     if(!bonItem){
-        this.mauvaisItemAlert();
-      }
+      this.mauvaisItemAlert();
     }
+  }
 
 
   bonItemToast() {
