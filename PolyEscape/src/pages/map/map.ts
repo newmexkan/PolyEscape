@@ -26,8 +26,8 @@ export class MapPage {
     this.getNewIndications().subscribe(res => {
       this.listIndications = [];
       console.log(res.valueOf());
-      for (var i = 0; i < res['indications'].length; i++) {
-        this.listIndications.push({message: res['indications'][i].message});
+      for (var i = 0; i < res['game']['indications'].length; i++) {
+        this.listIndications.push({message: res['game']['indications'][i].message});
       }
     });
   }

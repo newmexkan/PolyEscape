@@ -307,7 +307,7 @@ io.on('connection', function(client) {
 
         // log serveur
         client.broadcast.to(currentGame.getName()).emit('notification', {message: "Votre équipe a ajouté une identification à la carte"});
-        client.to(currentGame.getName()).emit('notification', {message: "L'indication a bien été partagée"});
+        client.emit('notification', {message: "L'indication a bien été partagée"});
 
 
     });
