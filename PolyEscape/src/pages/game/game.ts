@@ -39,7 +39,6 @@ export class GamePage {
     this.game = navParams.get('game');
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
-
     this.players.push(this.game["chief"]);
 
     for(let i =0; i<this.game["players"];i++)

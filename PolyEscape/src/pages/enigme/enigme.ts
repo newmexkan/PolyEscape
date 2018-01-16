@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {InventoryProvider} from "../../providers/inventory/inventory";
+import { Socket } from 'ng-socket-io';
 
 /**
  * Generated class for the EnigmePage page.
@@ -18,12 +20,18 @@ export class EnigmePage {
   public enigme;
   public reponse;
   public questions;
+  private item;
+  private game;
   positionEnigme;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private inventoryService: InventoryProvider, private socket: Socket) {
     this.questions = navParams.get('questions');
+    this.item = 'something';
+    this.game = navParams.get('game').valueOf();
     this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
     this.enigme= this.questions[this.positionEnigme];
+
+    console.log(this.game.valueOf());
 
 
  //   this.enigme={question:"Quel est le département associé au code postal 42 ?",reponse:"loire"};
@@ -36,11 +44,13 @@ export class EnigmePage {
   winAlert() {
     let alertWin = this.alertCtrl.create({
       title: 'BONNE REPONSE !',
-      subTitle: "Vous avez trouvé la réponse de l'énigme, vous récuperez l'item.",
+      subTitle: "Vous avez trouvé la réponse de l'énigme, vous récuperez l'item. Voulez-vous l'ajouter à l'inventaire commun?",
       buttons: ['OK']
     });
     alertWin.present();
     this.navCtrl.pop();
+
+
   }
 
   loseAlert(){
@@ -55,10 +65,43 @@ export class EnigmePage {
   checkResponse($event: any){
     if($event==this.enigme.reponse){
       this.winAlert();
+      this.sendItem();
     }else{
       this.loseAlert();
     }
 
   }
+
+  sendItem(){
+
+    let prompt = this.alertCtrl.create({
+      title: 'Vous avez trouvé un item !!!',
+      message: this.item,
+      buttons: [
+        {
+          text: 'Non',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ajouter',
+          handler: data => {
+            this.inventoryService.addItem(this.game.name, this.item).subscribe(data => {
+              if (data.hasOwnProperty('inventory')) {
+                // console.log(data.inventory[-1]);
+                console.log(data.valueOf());
+                console.log(data["game"]);
+                this.socket.emit('addItemToInventory', {game:data["game"], inventory:data["inventory"]});
+                // this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
+              }
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
 
 }

@@ -4,7 +4,6 @@ import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {Observable} from "rxjs/Observable";
 import { Socket } from 'ng-socket-io';
 import {Http} from "@angular/http";
-import { map } from 'rxjs/operators';
 import {InventoryProvider} from "../../providers/inventory/inventory";
 
 /**
@@ -38,27 +37,32 @@ export class InventairePage {
     this.questions = this.game.scenario.questions;
 
     this.listItems = [];
-    this.listItems.push({name: "Wood", pathImg: "assets/imgs/wood.png", quantity: 1});
-    this.listItems.push({name: "Stone", pathImg: "assets/imgs/wood.png", quantity: 1});
-    this.listItems.push({name: "Fire", pathImg: "assets/imgs/wood.png", quantity: 1});
-    // this.listItems.push({name: "Talent", pathImg: "assets/imgs/wood.png", quantity: 1});
-    // this.listItems.push({name: "Intellect", pathImg: "assets/imgs/wood.png", quantity: 1});
-    // this.listItems.push({name: "Strength", pathImg: "assets/imgs/wood.png", quantity: 1});
-
-
-
-
+    console.log(this.game.name);
+    console.log(this.game);
     this.getInventory();
+
+    this.getNewItems().subscribe(item => {
+      console.log("In Refresh: ");
+      console.log(item.valueOf());
+
+      for (var i = 0; i < item.game.inventory.length; i++) {
+        console.log(i);
+        this.listItems.push({name: item.game.inventory[i].name, pathImg: item.game.inventory[i].pathImg, quantity: item.game.inventory[i].quantity});
+        console.log("{name:"+ item.game.inventory[i].name+",  pathImg: "+item.game.inventory[i].pathImg+", quantity: "+item.game.inventory[i].quantity+"}");
+      }
+    });
+    console.log("listItems = ");
+    console.log(this.listItems);
+
   }
 
+
   getInventory(){
-    this.getNewItems().subscribe(item => {
-      console.log("In Refresh:  ");
+    this.inventoryService.getInventory(this.game.name).subscribe(item => {
       console.log(item.valueOf());
-      console.log(item.toString() );
-      for (var i = 0; i < item["inventory"].length; i++) {
-        this.listItems.push({name: item["inventory"][i].name, pathImg: item["inventory"][i].pathImg, quantity: item["inventory"][i].quantity});
-        console.log("{name:"+ item["inventory"][i].name+",  pathImg: "+item["inventory"][i].pathImg+", quantity: "+item["inventory"][i].quantity+"}");
+      for (var i = 0; i < item.length; i++) {
+        this.listItems.push({name: item[i].name, pathImg: item[i].pathImg, quantity: item[i].quantity});
+        console.log("{name:"+ item[i].name+",  pathImg: "+item[i].pathImg+", quantity: "+item[i].quantity+"}");
       }
     });
   }
@@ -69,7 +73,7 @@ export class InventairePage {
 
   recupererItem(){
     console.log(this.numero);
-    this.navCtrl.push('EnigmePage',{'questions':this.questions,'numero':this.numero});
+    this.navCtrl.push('EnigmePage',{'questions':this.questions,'numero':this.numero, 'game': this.game, 'item': this.createdCode});
   }
 
   createCode() {
@@ -88,6 +92,7 @@ export class InventairePage {
   getNewItems(){
     let observable = new Observable(observer => {
       this.socket.on('item_added', (data) => {
+        // console.log(data.valueOf());
         observer.next(data);
       });
     });
@@ -97,60 +102,6 @@ export class InventairePage {
   addItem(){
 
   }
-  sendItem(){
-    this.createdCode = this.qrData;
-
-    let prompt = this.alertCtrl.create({
-      title: 'Vous avez trouvé un item !!!',
-      message: this.createdCode,
-      buttons: [
-        {
-          text: 'Non',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Ajouter',
-          handler: data => {
-            this.inventoryService.addItem(this.game.name, this.createdCode).subscribe(data => {
-              if (data.hasOwnProperty('inventory')) {
-                // console.log(data.inventory[-1]);
-                this.socket.emit('addItemToInventory', {game:data["game"].name});
-                // this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
-              }
-            });
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
-
-
-  // showQRItem(item){
-  //   let prompt = this.alertCtrl.create({
-  //     title: 'Un item a été trouvé !!!',
-  //     message: item.name,
-  //     buttons: [
-  //       {
-  //         text: 'Ajouter',
-  //         handler: data => {
-  //           this.http.get('http://localhost:8080/getGame/'+ data.nom).pipe(
-  //             map(res => res.json())
-  //           ).subscribe(response => {
-  //             if (response.hasOwnProperty('game')) {
-  //               this.socket.connect();
-  //               this.socket.emit('joinGame', {game:data.nom, user:data.pseudo});
-  //               this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
-  //             }
-  //           });
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   prompt.present();
-  // }
 
 
 
