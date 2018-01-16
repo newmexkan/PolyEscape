@@ -18,4 +18,7 @@ export class ScenarioServiceProvider {
     console.log(this.http.get("getAllScenarios() = " + "http://localhost:8080/getAllScenarios/"));
     return this.http.get("http://" + "localhost" + ":8080/getAllScenarios/");
   }
+
+
+
 }

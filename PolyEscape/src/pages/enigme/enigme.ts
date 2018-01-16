@@ -26,7 +26,7 @@ export class EnigmePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private inventoryService: InventoryProvider, private socket: Socket) {
     this.questions = navParams.get('questions');
-    this.item = 'something';
+    this.item = navParams.get('item');
     this.game = navParams.get('game');
     this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
     this.enigme= this.questions[this.positionEnigme];
@@ -55,7 +55,7 @@ export class EnigmePage {
         {
           text: 'Oui',
           handler: data => {
-            this.inventoryService.addItem(this.game.name, this.item).subscribe(data => {
+            this.inventoryService.addItem(this.game.name, {name: this.item, id: 0}).subscribe(data => {
               if (data.hasOwnProperty('inventory')) {
                 this.socket.emit('addItemToInventory', {game:data["game"], inventory:data["inventory"]});
               }

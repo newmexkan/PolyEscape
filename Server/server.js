@@ -20,7 +20,7 @@ app.use(cors());
 var http = require('http').Server(app);
 var server = app.listen(process.env.PORT || 8080);
 var io = require('socket.io').listen(server);
-
+var idImg = 0;
 
 
 var games = [];
@@ -172,7 +172,11 @@ app.get('/addItem/:game/:item', function(req, res){
         var currentGame = games[gameId];
 
         if(currentGame.isRunning()) {
-            currentGame.getInventory().push({name: req.params.item, pathImg: "assets/imgs/wood.png", quantity: 1});
+            currentGame.getInventory().push({name: req.params.item.valueOf()['name'], pathImg: "assets/imgs/"+ idImg +".jpg", quantity: 1});
+            idImg = (idImg +1);
+            if(idImg > 2){
+                idImg = 0;
+            }
             console.log(games[gameId].getInventory());
             res.send({
                 passed: true,

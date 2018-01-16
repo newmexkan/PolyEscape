@@ -28,7 +28,7 @@ export class InventairePage {
   user;
   game;
   questions;
-
+  item;
 
   listItems: Array<{ name: string, pathImg: string, quantity: number }>;
 
@@ -70,7 +70,7 @@ export class InventairePage {
       if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
         bonItem = true;
         this.bonItemToast();
-        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game});
+        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.qrData}});
         break;
       }
     }
@@ -156,7 +156,6 @@ export class InventairePage {
 
   createCode() {
     this.createdCode = this.qrData;
-    this.addItem();
   }
 
   scanCode() {
