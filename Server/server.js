@@ -166,7 +166,7 @@ app.get('/addItem/:game/:item', function(req, res){
     var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
     if(gameId != -1){
         var currentGame = games[gameId];
-        currentGame.getInventory().push({name: req.params.item, pathImg: "assert/imgs/wood.png", quantity: 1});
+        currentGame.getInventory().push({name: req.params.item, pathImg: "assets/imgs/wood.png", quantity: 1});
         console.log(games[gameId].getInventory());
         res.send({
             passed: true,
