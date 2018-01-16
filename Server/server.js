@@ -143,12 +143,30 @@ app.get('/getGame/:name', function(req, res){
     
 });
 
+app.get('/getInventory/:game', function(req, res){
+    console.log(req.params);
+    console.log(req.params.game);
+    var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
+    if(gameId != -1){
+        res.send({
+            passed: true,
+            inventory: games[gameId].inventory
+        });
+    }
+    else {
+        res.status(404).send({
+            message: "Partie introuvable"
+        })
+    }
+
+});
+
 app.get('/addItem/:game/:item', function(req, res){
     // var currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
     var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
     if(gameId != -1){
         var currentGame = games[gameId];
-        currentGame.getInventory().push({name: req.params.item, imgPath: "assert/imgs/wood.png", quantity: 1});
+        currentGame.getInventory().push({name: req.params.item, pathImg: "assets/imgs/wood.png", quantity: 1});
         console.log(games[gameId].getInventory());
         res.send({
             passed: true,
@@ -227,13 +245,14 @@ io.on('connection', function(client) {
 
     client.on('addItemToInventory', function(data) {
 
-        let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
+        let currentGame = games[games.findIndex(i => i.getName() === data.game.name.toLowerCase())];
         // let itemAdded = data.inventory;
         //notifie les autres joueurs de la partie
-        client.broadcast.to(currentGame.getName()).emit('item_added', {game: currentGame});
+        console.log(currentGame.inventory);
+        io.to(currentGame.getName()).emit('item_added', {game: currentGame});
 
         // log serveur
-        console.log(data.game.name+" a ajouté l'item: ");
+        console.log(data.game+" a ajouté l'item: ");
         console.log("Inventaire :\n"+currentGame.getInventory());
     });
 

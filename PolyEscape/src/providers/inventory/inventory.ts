@@ -15,9 +15,10 @@ export class InventoryProvider {
   }
 
   addItem(game, code) {
-    console.log("getAllScenarios() = ");
-    // console.log(this.http.get("http://localhost:8080/addItem/"+ game + '/' + code)["inventory"]);
     return this.http.get("http://" + "localhost" + ":8080/addItem/"+game+"/"+code);
   }
 
+  getInventory(game){
+    return this.http.get("http://" + "localhost" + ":8080/getInventory/"+game);
+  }
 }
