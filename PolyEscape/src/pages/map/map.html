@@ -7,5 +7,15 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let indication of listIndications">
+      {{ indication.message }}
+    </button>
+  </ion-list>
+
+  <button ion-button color="primary_light">
+    <ion-icon name="add" (click)="showPrompt()"></ion-icon>
+  </button>
+
 
 </ion-content>

@@ -6,6 +6,7 @@ import {Socket} from 'ng-socket-io';
 import {Http} from "@angular/http";
 import {map} from 'rxjs/operators';
 import {InventoryProvider} from "../../providers/inventory/inventory";
+import {IndicationsProvider} from "../../providers/indications/indications";
 
 /**
  * Generated class for the InventairePage page.
@@ -31,18 +32,21 @@ export class InventairePage {
 
   listItems: Array<{ name: string, pathImg: string, quantity: number }>;
 
-  constructor(public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private http: Http, private barcodeScanner: BarcodeScanner) {
+  constructor(private indicationService: IndicationsProvider,public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private http: Http, private barcodeScanner: BarcodeScanner) {
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
     this.questions = this.game.scenario.questions;
 
-    this.listItems = [];
-    console.log(this.game.name);
-    console.log(this.game);
+    this.inventoryService.getInventory(this.game.name).subscribe(res => {
+      this.listItems = [];
+      for (var i = 0; i < res['inventory'].length; i++) {
+        this.listItems.push({name: res['inventory'][i].name, pathImg: res['inventory'][i].pathImg, quantity: res['inventory'][i].quantity});
+      }
+    });
 
     this.getNewItems().subscribe(item => {
-      console.log(item.valueOf());
+      this.listItems = [];
       for (var i = 0; i < item['game']['inventory'].length; i++) {
         this.listItems.push({name: item['game']['inventory'][i].name, pathImg: item['game']['inventory'][i].pathImg, quantity: item['game']['inventory'][i].quantity});
       }
@@ -87,11 +91,55 @@ export class InventairePage {
   mauvaisItemAlert() {
     let alert = this.alertCtrl.create({
       title: "L'item trouvé n'est pas celui recherché.",
-      subTitle: "Veuillez revoir l'indication de localisation de l'item.",
-      buttons: ['OK']
+      subTitle: "Veuillez revoir l'indication de localisation de l'item."+"\n\nVoulez-vous partager une indication à un coéquipier ?",
+      buttons: [
+        {
+          text: 'Non',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Oui',
+          handler: data => {
+            alert.present();
+            this.showPrompt();
+          }
+        }]
     });
     alert.present();
   }
+
+  showPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Indication',
+      message: "Veuillez ajouter une indication pour votre équipe",
+      inputs: [
+        {
+          name: 'message',
+          placeholder: 'Indication'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Annuler',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Envoyer',
+          handler: data => {
+            this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
+                this.socket.emit('indicateClue', {game:res["game"]});
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
 
   createCode() {
     this.createdCode = this.qrData;
