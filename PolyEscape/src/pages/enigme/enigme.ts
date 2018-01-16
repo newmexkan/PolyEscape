@@ -44,9 +44,25 @@ export class EnigmePage {
   winAlert() {
     let alertWin = this.alertCtrl.create({
       title: 'BONNE REPONSE !',
-      subTitle: "Vous avez trouvé la réponse de l'énigme, vous récuperez l'item. Voulez-vous l'ajouter à l'inventaire commun?",
-      buttons: ['OK']
-    });
+      subTitle: "Vous avez trouvé la réponse de l'énigme.\n Voulez-vous l'ajouter à l'inventaire commun?",
+      buttons: [
+        {
+          text: 'Non, je veux perdre...',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Oui',
+          handler: data => {
+            this.inventoryService.addItem(this.game.name, this.item).subscribe(data => {
+              if (data.hasOwnProperty('inventory')) {
+                this.socket.emit('addItemToInventory', {game:data["game"], inventory:data["inventory"]});
+              }
+            });
+          }
+        }
+      ]    });
     alertWin.present();
     this.navCtrl.pop();
 
@@ -65,7 +81,7 @@ export class EnigmePage {
   checkResponse($event: any){
     if($event==this.enigme.reponse){
       this.winAlert();
-      this.sendItem();
+      // this.sendItem();
     }else{
       this.loseAlert();
     }

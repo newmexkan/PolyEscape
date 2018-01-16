@@ -249,7 +249,7 @@ io.on('connection', function(client) {
         // let itemAdded = data.inventory;
         //notifie les autres joueurs de la partie
         console.log(currentGame.inventory);
-        client.broadcast.to(currentGame.getName()).emit('item_added', {game: currentGame});
+        io.to(currentGame.getName()).emit('item_added', {game: currentGame});
 
         // log serveur
         console.log(data.game+" a ajouté l'item: ");

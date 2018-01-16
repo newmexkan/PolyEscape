@@ -40,42 +40,15 @@ export class InventairePage {
     this.listItems = [];
     console.log(this.game.name);
     console.log(this.game);
-    this.getInventory();
 
     this.getNewItems().subscribe(item => {
-      console.log("In Refresh: ");
-      console.log(item.valueOf());
-
       for (var i = 0; i < item.game.inventory.length; i++) {
-        console.log(i);
         this.listItems.push({name: item.game.inventory[i].name, pathImg: item.game.inventory[i].pathImg, quantity: item.game.inventory[i].quantity});
-        console.log("{name:"+ item.game.inventory[i].name+",  pathImg: "+item.game.inventory[i].pathImg+", quantity: "+item.game.inventory[i].quantity+"}");
       }
     });
-    console.log("listItems = ");
-    console.log(this.listItems);
 
   }
 
-
-  getInventory(){
-    this.inventoryService.getInventory(this.game.name).subscribe(item => {
-      console.log(item.valueOf());
-      for (var i = 0; i < item.length; i++) {
-        this.listItems.push({name: item[i].name, pathImg: item[i].pathImg, quantity: item[i].quantity});
-        console.log("{name:" + item[i].name + ",  pathImg: " + item[i].pathImg + ", quantity: " + item[i].quantity + "}");
-        console.log(item.toString());
-      }
-      for (var i = 0; i < item["inventory"].length; i++) {
-        this.listItems.push({
-          name: item["inventory"][i].name,
-          pathImg: item["inventory"][i].pathImg,
-          quantity: item["inventory"][i].quantity
-        });
-        console.log("{name:" + item["inventory"][i].name + ",  pathImg: " + item["inventory"][i].pathImg + ", quantity: " + item["inventory"][i].quantity + "}");
-      }
-    });
-  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InventairePage');
