@@ -1,8 +1,22 @@
 page-game {
+  ion-toolbar{
+    text-align: center;
+  }
+  ion-header ion-icon {
+    float:right;
+    margin-right: 12px;
+    font-size: 26px;
+    vertical-align: center;
+    padding-top: 4px;
+  }
 
+  ion-header timer{
+    margin-left:30px;
+    vertical-align: center;
+  }
+
+  ion-header{
+    text-align: center;
+  }
 }
 
-#leave{
-  font-size: 24px;
-  margin-right: 12px;
-}

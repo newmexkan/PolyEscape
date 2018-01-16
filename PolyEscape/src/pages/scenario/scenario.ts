@@ -28,7 +28,25 @@ export class ScenarioPage {
     this.user = navParams.get('user');
   }
 
+  indice() {
 
+    for (let i = 0; i < this.game.missions.length; i++) {
+      // le numéro scanné correspond bien à l'item que le user doit rechercher
+      if (this.game.missions[i].player == this.user) {
+          this.indication(this.game.missions[i].mission.message,this.game.missions[i].mission.indice);
+      }
+    }
+  }
+
+
+  indication(textMission:string,textIndice: string){
+    let alert = this.alertCtrl.create({
+      title: "Mission :  "+ textMission,
+      subTitle: "Indice :  "+  textIndice,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 
   leave(){
