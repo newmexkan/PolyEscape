@@ -27,7 +27,6 @@ export class GamePage {
   equipePage = EquipePage;
 
   private players = [];
-
   game;
   user;
   time;
@@ -48,8 +47,8 @@ export class GamePage {
       this.notify(data["message"]);
       this.game = data["game"];
     });
-  }
 
+  }
 
 
   ngOnInit() {

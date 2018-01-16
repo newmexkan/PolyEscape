@@ -31,6 +31,10 @@ module.exports = class Game {
         this.players.push(play);
     }
 
+    getScenario(){
+        return this.scenario;
+    }
+
     removePlayer(play){
         this.players.splice(play, 1);
     }
@@ -49,6 +53,10 @@ module.exports = class Game {
 
     hasPlayerNamed(name){
         return (this.players.findIndex(i => i.toLowerCase() === name.toLowerCase()) != -1);
+    }
+
+    getTimeInMinuts(){
+        return this.scenario.timeInMinuts;
     }
 
     hasAsChief(name){
