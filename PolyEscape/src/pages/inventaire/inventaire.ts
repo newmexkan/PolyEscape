@@ -49,6 +49,7 @@ export class InventairePage {
       this.listItems = [];
       for (var i = 0; i < item['game']['inventory'].length; i++) {
         this.listItems.push({name: item['game']['inventory'][i].name, pathImg: item['game']['inventory'][i].pathImg, quantity: item['game']['inventory'][i].quantity});
+        this.checkEndOfGame();
       }
     });
   }
@@ -75,6 +76,18 @@ export class InventairePage {
     }
     if(!bonItem){
       this.mauvaisItemAlert();
+    }
+  }
+
+  endOfGame() {
+      this.navCtrl.push('ResultPage', {'win':true});
+  }
+
+
+
+  checkEndOfGame(){
+    if(this.listItems.length == this.game.missions.length){
+      this.endOfGame();
     }
   }
 
