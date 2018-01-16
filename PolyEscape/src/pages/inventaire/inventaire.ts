@@ -42,11 +42,11 @@ export class InventairePage {
     console.log(this.game);
 
     this.getNewItems().subscribe(item => {
-      for (var i = 0; i < item.game.inventory.length; i++) {
-        this.listItems.push({name: item.game.inventory[i].name, pathImg: item.game.inventory[i].pathImg, quantity: item.game.inventory[i].quantity});
+      console.log(item.valueOf());
+      for (var i = 0; i < item['game']['inventory'].length; i++) {
+        this.listItems.push({name: item['game']['inventory'][i].name, pathImg: item['game']['inventory'][i].pathImg, quantity: item['game']['inventory'][i].quantity});
       }
     });
-
   }
 
 
