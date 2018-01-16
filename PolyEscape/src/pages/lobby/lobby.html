@@ -40,9 +40,16 @@
       <div id="wait-spinner">
         <ion-spinner name="bubbles"></ion-spinner>
         <ion-label text-center class="indicator" *ngIf="!isChief">Le chef d'équipe choisit un scénario...</ion-label>
-        <ion-label text-center class="indicator" (click)="pickScenario()" *ngIf="isChief">Toucher pour choisir un scénario</ion-label>
+        <ion-label text-center class="indicator" (click)="pickScenario()" *ngIf="isChief">Veuillez séléctionner un
+          scénario
+        </ion-label>
       </div>
     </ion-card>
+    <div text-center align-items-center>
+      <button id="selectScenar" ion-button round *ngIf="isChief" (click)="pickScenario()">Choisir un
+        scénario
+      </button>
+    </div>
   </div>
 
 
