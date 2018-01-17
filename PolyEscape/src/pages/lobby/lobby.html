@@ -19,11 +19,11 @@
   <div class="header card-background-page" *ngIf="scenarioPicked">
     <ion-card>
       <img src="assets/imgs/truc1.jpg"/>
-      <div class="card-title">{{selected_scenario['name']}}</div>
-      <div class="card-players"> {{selected_scenario['nbPlayers']}}
+      <div class="card-title">{{this.game["scenario"]['name']}}</div>
+      <div class="card-players"> {{this.game["scenario"]["nbPlayers"]}}
         <ion-icon name="md-contacts"></ion-icon>
       </div>
-      <div class="card-time"> {{selected_scenario['timeInMinuts']}}
+      <div class="card-time"> {{this.game["scenario"]['timeInMinuts']}}
         <ion-icon name="md-time"></ion-icon>
       </div>
     </ion-card>
@@ -39,7 +39,7 @@
     <ion-card>
       <div id="wait-spinner">
         <ion-spinner name="bubbles"></ion-spinner>
-        <ion-label text-center class="indicator" *ngIf="!isChief">Le chef d'équipe choisit un scénario...</ion-label>
+        <ion-label text-center class="indicator" *ngIf="!isChief">En attente de joueurs...</ion-label>
         <ion-label text-center class="indicator" (click)="pickScenario()" *ngIf="isChief">Veuillez séléctionner un
           scénario
         </ion-label>
@@ -55,7 +55,7 @@
 
   <ion-list class="users">
     <ion-list-header text-center>
-      Joueurs connectés ({{nbUsers}})
+      Joueurs connectés
     </ion-list-header>
 
     <ion-item *ngIf="!isChief">
@@ -80,7 +80,7 @@
   <ion-toolbar id="chef">
 
     <button ion-button color="danger" (click)="quitCurrentGame()" *ngIf="isChief">Quitter</button>
-    <button ion-button color="secondary" (click)="startGame()" *ngIf="isChief">Commencer</button>
+    <button ion-button color="secondary" (click)="startGame()" *ngIf="isChief" [disabled]="!hasEnoughPlayers">Commencer</button>
     <!--<button ion-button full color="secondary" (click)="startGame()" [disabled]="!hasEnoughPlayers" *ngIf="isChief" >Commencer</button>-->
   </ion-toolbar>
 

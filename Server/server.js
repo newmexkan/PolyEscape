@@ -60,27 +60,16 @@ var scenario2 = {
     questions:questions
 };
 
-var scenario3 = {
-    id: 3,
-    name:"Redoublement de Pierre",
-    nbPlayers:1,
-    timeInMinuts:60,
-    summary:"Pierre s'est trop touché la nouille au premier semestre " +
-    "du coup il est dans la merde. il a besoin de toi",
-    missions:[{message:"Aider Pierre en Algo & Comp",item:0}, {message:"Aider Pierre en COO",item:1}, {message:"Aider Pierre en Sécu Log",item:2}]
-};
-
 
 scenarios.push(scenario1);
 scenarios.push(scenario2);
-scenarios.push(scenario3);
 
 /**
  * Partie API
  */
 
 app.get('/getAllScenarios', function(req, res){
-    res.send({
+    res.status(200).send({
         passed: true,
         scenarios: scenarios
     });
@@ -119,7 +108,7 @@ app.get('/addGame/:name/:user', function(req, res){
             passed: true,
             game: game
         });
-        console.log("Partie "+gameName+ " crée")
+        //console.log("Partie "+gameName+ " crée")
     }
     else {
          res.send({
@@ -301,9 +290,12 @@ io.on('connection', function(client) {
             //notifie les autres joueurs de la partie
             io.to(currentGame.getName()).emit('item_added', {game: currentGame});
 
+            if(currentGame.inventory.length === currentGame.missions.length)
+                io.to(currentGame.getName()).emit('end_of_game', {win: true});
+
             // log serveur
-            console.log(data.game + " a ajouté l'item: ");
-            console.log("Inventaire :\n" + currentGame.getInventory());
+            //console.log(data.game + " a ajouté l'item: ");
+            //console.log("Inventaire :\n" + currentGame.getInventory());
         }
     });
 
@@ -315,9 +307,9 @@ io.on('connection', function(client) {
         console.log(currentGame.inventory);
         io.to(currentGame.getName()).emit('indication_added', {game: currentGame});
 
-        // log serveur
+
         client.broadcast.to(currentGame.getName()).emit('notification', {message: "Votre équipe a ajouté une identification à la carte"});
-        client.emit('notification', {message: "L'indication a bien été partagée"});
+        client.emit('notification', {message: "L'indenfication a bien été partagée"});
 
 
     });
@@ -345,8 +337,8 @@ io.on('connection', function(client) {
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
         let id = data.id - 1;
         currentGame.setScenario(scenarios[id]);
-        io.to(currentGame.getName()).emit('scenario_pick', {id: id, scenario: scenarios[id]});
-        console.log("Scénario choisi n°" + id)
+        io.to(currentGame.getName()).emit('scenario_pick', {id: id, game: currentGame});
+        //console.log("Scénario choisi n°" + id)
     });
 
     function timeOver(game){

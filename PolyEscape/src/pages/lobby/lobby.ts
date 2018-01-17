@@ -61,7 +61,9 @@ export class LobbyPage {
         }
       }
 
-      //this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
+      if(this.game.hasOwnProperty("scenario"))
+        this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
+
 
     });
 
@@ -71,7 +73,9 @@ export class LobbyPage {
 
     this.getPickScenarioSignal().subscribe(data => {
       this.scenarioPicked = true;
-      this.selected_scenario = data['scenario']
+      this.game = data["game"];
+
+
       /*
       let toast = this.toastCtrl.create({
         message: "Le scenario " + data['scenario']['name'] + " a été choisi",
