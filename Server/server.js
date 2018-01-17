@@ -137,20 +137,15 @@ app.get('/getInventory/:game', function(req, res){
 app.get('/addItem/:game/:item', function(req, res){
 
     var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
-    console.log(req.params.item);
     if(gameId != -1){
         var currentGame = games[gameId];
 
         if(currentGame.isRunning()) {
             currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: "assets/imgs/"+ req.params.item.valueOf() +".jpg", quantity: 1});
-            idImg = (idImg +1);
-            if(idImg > 2){
-                idImg = 0;
-            }
             res.send({
                 passed: true,
-                game: games[gameId],
-                inventory: games[gameId].getInventory()
+                game: currentGame,
+                inventory: currentGame.inventory
             });
         }
         else {
@@ -174,7 +169,7 @@ app.get('/addIndication/:gameName/:indication', function(req, res){
         currentGame.indications.push({message: req.params.indication});
         res.send({
             passed: true,
-            game: games[gameId]
+            game: currentGame
         });
     }
     else {

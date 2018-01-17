@@ -222,6 +222,163 @@ describe('getInventory', function () {
 });
 
 
+// describe('addItem', function () {
+//
+//     var gameName;
+//     var gameNameThatNotExists;
+//     var playerName;
+//     var item;
+//
+//
+//     before(function() {
+//         gameName = randomName();
+//         gameNameThatNotExists = randomName();
+//         playerName = randomName();
+//         item = randomName();
+//
+//         http.get(apiAdress+'/addGame/'+gameName+'/'+playerName, function (res) {
+//         });
+//     });
+//
+//
+//     it('should return a 404 error if the game does not exists', function (done) {
+//         http.get(apiAdress+'/addItem/'+gameNameThatNotExists+'/'+item, function (res) {
+//             var data = '';
+//
+//             res.on('data', function (chunk) {
+//                 data += chunk;
+//             });
+//
+//             res.on('end', function () {
+//
+//                 assert.equal(404, res.statusCode);
+//
+//                 done();
+//             });
+//
+//         });
+//     });
+//
+//     it('should return 200 if the game exists', function (done) {
+//         http.get(apiAdress+'/addItem/'+gameName+'/'+item, function (res) {
+//             assert.equal(200, res.statusCode);
+//             done();
+//         });
+//     });
+//
+//     it('should return the game if the item has been added', function (done) {
+//         http.get(apiAdress+'/addItem/'+gameName+'/'+item, function (res) {
+//             var data = '';
+//             res.on('data', function (chunk) {
+//                 data += chunk;
+//             });
+//
+//             res.on('end', function () {
+//
+//                 obj = JSON.parse(data);
+//
+//                 assert.equal(200, res.statusCode);
+//
+//                 expect(obj).to.have.property('game');
+//                 expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief');
+//
+//                 done();
+//             });
+//
+//         });
+//     });
+//     it('should return the inventory if the item has been added', function (done) {
+//         http.get(apiAdress+'/addItem/'+gameName+'/'+item, function (res) {
+//             var data = '';
+//             res.on('data', function (chunk) {
+//                 data += chunk;
+//             });
+//
+//             res.on('end', function () {
+//
+//                 obj = JSON.parse(data);
+//
+//                 assert.equal(200, res.statusCode);
+//
+//
+//                 // expect(obj).to.have.property('inventory');
+//                 // for(let i=0;i<obj["inventory"].length;i++)
+//                 //     expect(obj["inventory"]).to.have.all.keys('name', 'pathImg');
+//
+//                 done();
+//             });
+//
+//         });
+//     });
+// });
+
+describe('addIndication', function () {
+
+    var gameName;
+    var gameNameThatNotExists;
+    var playerName;
+    var indication;
+
+
+    before(function() {
+        gameName = randomName();
+        gameNameThatNotExists = randomName();
+        playerName = randomName();
+        indication = randomName();
+
+        http.get(apiAdress+'/addGame/'+gameName+'/'+playerName, function (res) {
+        });
+    });
+
+
+    it('should return a 404 error if the game does not exists', function (done) {
+        http.get(apiAdress+'/addIndication/'+gameNameThatNotExists+'/'+indication, function (res) {
+            var data = '';
+
+            res.on('data', function (chunk) {
+                data += chunk;
+            });
+
+            res.on('end', function () {
+
+                assert.equal(404, res.statusCode);
+
+                done();
+            });
+
+        });
+    });
+
+    it('should return 200 if the game exists', function (done) {
+        http.get(apiAdress+'/addIndication/'+gameName+'/'+indication, function (res) {
+            assert.equal(200, res.statusCode);
+            done();
+        });
+    });
+
+    it('should return the game and the inventory if it has been added', function (done) {
+        http.get(apiAdress+'/addIndication/'+gameName+'/'+indication, function (res) {
+            var data = '';
+
+            res.on('data', function (chunk) {
+                data += chunk;
+            });
+
+            res.on('end', function () {
+
+                obj = JSON.parse(data);
+
+                assert.equal(200, res.statusCode);
+
+                expect(obj).to.have.property('game');
+                expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief');
+
+                done();
+            });
+
+        });
+    });
+});
 
 
 
