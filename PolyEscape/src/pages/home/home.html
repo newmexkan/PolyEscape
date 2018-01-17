@@ -1,14 +1,12 @@
 <ion-content padding class="getstart">
-  <ion-img class="logo" src="assets/imgs/polyescape-c.png"></ion-img>
-  <p>
-    <button ion-button color="red" full round (click)="askNameNewGame()">Démarrer une partie</button>
+
+  <!--<ion-img class="logo" src="assets/imgs/polyescape-c.png"></ion-img>-->
+  <div class="ctc">
+    <p>
+    <button ion-button color="primary" class="yo" full (click)="askNameNewGame()">Démarrer une partie</button>
   </p>
   <p>
-    <button ion-button color="dark" full round (click)="askNameExistingGame()">Rejoindre une partie</button>
+    <button ion-button color="primary" full class="yo" (click)="askNameExistingGame()">Rejoindre une partie</button>
   </p>
-  <!--<p>
-    <button ion-button [navPush]="optionsPage" color="light" full round>Paramètres</button>
-  </p>-->
-
-
+  </div>
 </ion-content>
