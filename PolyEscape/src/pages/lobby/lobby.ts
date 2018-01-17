@@ -25,6 +25,7 @@ export class LobbyPage {
   gamePage = GamePage;
   game = {};
   users = [];
+  nbUsers = 1;
   user;
   isChief: boolean;
   scenarioPicked: boolean = false;
@@ -42,21 +43,25 @@ export class LobbyPage {
 
 
     var existingUsers = this.game["players"];
-    for (var i = 0; i < existingUsers.length; i++)
+    this.nbUsers = existingUsers.length;
+
+    for (let i = 0; i < existingUsers.length; i++)
       if (existingUsers[i] !== this.user && existingUsers[i] !== this.game["chief"])
         this.users.push(existingUsers[i]);
 
 
+
     this.getNewPlayers().subscribe(user => {
       this.users = [];
+      this.nbUsers = user["players"].length;
 
-      for (var i = 0; i < user["players"].length; i++) {
-        if (user["players"][i] !== this.user) {
+      for (let i=0; i < user["players"].length; i++) {
+        if (user["players"][i] !== this.user && user["players"][i] !== this.game["chief"]) {
           this.users.push(user["players"][i]);
         }
       }
 
-      this.hasEnoughPlayers = (this.users.length + 1 === this.game["scenario"]["nbPlayers"]);
+      //this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
 
     });
 
