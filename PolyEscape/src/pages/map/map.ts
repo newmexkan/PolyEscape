@@ -23,7 +23,9 @@ export class MapPage {
 
   game;
   constructor(private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+    console.log(navParams.get('game'));
     this.game = navParams.get('game');
+    console.log(this.game);
     this.getIndications();
 
 
@@ -33,8 +35,10 @@ export class MapPage {
       for (var i = 0; i < res['game']['indications'].length; i++) {
         this.listIndications.push({message: res['game']['indications'][i].message});
       }
+      this.game = res['game'];
     });
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
@@ -47,6 +51,7 @@ export class MapPage {
       for (var i = 0; i < res['indications'].length; i++) {
         this.listIndications.push({message: res['indications'][i].message});
       }
+      this.game = res['game'];
     });
   }
 

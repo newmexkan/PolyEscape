@@ -137,11 +137,12 @@ app.get('/getInventory/:game', function(req, res){
 app.get('/addItem/:game/:item', function(req, res){
 
     var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
+    console.log(req.params.item);
     if(gameId != -1){
         var currentGame = games[gameId];
 
         if(currentGame.isRunning()) {
-            currentGame.getInventory().push({name: req.params.item.valueOf()['name'], pathImg: "assets/imgs/"+ idImg +".jpg", quantity: 1});
+            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: "assets/imgs/"+ req.params.item.valueOf() +".jpg", quantity: 1});
             idImg = (idImg +1);
             if(idImg > 2){
                 idImg = 0;

@@ -4,7 +4,6 @@ import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {Observable} from "rxjs/Observable";
 import {Socket} from 'ng-socket-io';
 import {Http} from "@angular/http";
-import {map} from 'rxjs/operators';
 import {InventoryProvider} from "../../providers/inventory/inventory";
 import {IndicationsProvider} from "../../providers/indications/indications";
 
@@ -32,7 +31,7 @@ export class InventairePage {
 
   listItems: Array<{ name: string, pathImg: string, quantity: number }>;
 
-  constructor(private indicationService: IndicationsProvider,public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private http: Http, private barcodeScanner: BarcodeScanner) {
+  constructor(private indicationService: IndicationsProvider,public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private barcodeScanner: BarcodeScanner) {
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
@@ -55,7 +54,6 @@ export class InventairePage {
       }
     });
   }
-
 
   recupererItem() {
 
