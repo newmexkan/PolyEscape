@@ -9,7 +9,7 @@ let Item = require("./models/item.js");
 var express = require('express');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 var cors = require('cors');
 
 var app = express();
@@ -146,7 +146,6 @@ app.get('/addItem/:game/:item', function(req, res){
             if(idImg > 2){
                 idImg = 0;
             }
-            console.log(games[gameId].getInventory());
             res.send({
                 passed: true,
                 game: games[gameId],
@@ -321,7 +320,6 @@ io.on('connection', function(client) {
         let id = data.id - 1;
         currentGame.setScenario(scenarios[id]);
         io.to(currentGame.getName()).emit('scenario_pick', {id: id, game: currentGame});
-        //console.log("Scénario choisi n°" + id)
     });
 
     function timeOver(game){

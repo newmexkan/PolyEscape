@@ -161,6 +161,66 @@ describe('getGame', function () {
     });
 });
 
+describe('getInventory', function () {
+
+    var gameName;
+    var gameNameThatNotExists;
+    var playerName;
+
+    before(function() {
+        gameName = randomName();
+        gameNameThatNotExists = randomName();
+        playerName = randomName();
+
+        http.get(apiAdress+'/addGame/'+gameName+'/'+playerName, function (res) {
+        });
+    });
+
+    it('should return 200 if the game exists', function (done) {
+        http.get(apiAdress+'/getInventory/'+gameName, function (res) {
+            assert.equal(200, res.statusCode);
+            done();
+        });
+    });
+
+    it('should return the inventory if exists', function (done) {
+        http.get(apiAdress+'/getInventory/'+gameName, function (res) {
+            var data = '';
+
+            res.on('data', function (chunk) {
+                data += chunk;
+            });
+
+            res.on('end', function () {
+
+                obj = JSON.parse(data);
+                expect(obj).to.have.property('inventory');
+
+                done();
+            });
+
+        });
+    });
+
+    it('should return a 404 error if the game does not exists', function (done) {
+        http.get(apiAdress+'/getInventory/'+gameNameThatNotExists, function (res) {
+            var data = '';
+
+            res.on('data', function (chunk) {
+                data += chunk;
+            });
+
+            res.on('end', function () {
+
+                assert.equal(404, res.statusCode);
+
+                done();
+            });
+
+        });
+    });
+});
+
 /**
  * Generate a random name
  * @returns {string}
