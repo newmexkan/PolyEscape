@@ -55,10 +55,6 @@ export class InventairePage {
   }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InventairePage');
-  }
-
   recupererItem() {
 
     let bonItem = false;

@@ -109,11 +109,9 @@ app.get('/addGame/:name/:user', function(req, res){
 
     // si une partie du même nom n'existe pas deja
     if(games.findIndex(i => i.getName() === gameName.toLowerCase()) === -1){
-        //var playersArr = [];
-        //var game = {name : gameName,players:playersArr};
+
         let game = new Game(games.length,gameName);
 
-        game.setScenario(scenario1); // TEST
         game.setChief(userName);
         games.push(game);
 
@@ -148,8 +146,7 @@ app.get('/getGame/:name', function(req, res){
 });
 
 app.get('/getInventory/:game', function(req, res){
-    console.log(req.params);
-    console.log(req.params.game);
+
     var gameId = games.findIndex(i => i.getName() === req.params.game.toLowerCase());
     if(gameId != -1){
         res.send({
@@ -257,7 +254,7 @@ io.on('connection', function(client) {
         let currentGame = games[games.findIndex(i => i.getName() === data.game.toLowerCase())];
         let currentUser = data.user;
 
-        if(currentGame.hasAsChief(currentUser)) {
+        if(currentGame.isRunnableBy(currentUser)) {
 
             currentGame.mapPlayersToMissions();
             currentGame.run();

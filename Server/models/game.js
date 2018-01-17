@@ -65,8 +65,8 @@ module.exports = class Game {
         return this.scenario.timeInMinuts;
     }
 
-    hasAsChief(name){
-        return name === this.chief;
+    isRunnableBy(name){
+        return (name === this.chief);
     }
 
     setScenario(scenar){
