@@ -75,22 +75,6 @@ app.get('/getAllScenarios', function(req, res){
     });
 });
 
-app.get('/getScenario/:id', function(req, res){
-    var scenarioId = req.params.id;
-    var result;
-    for( result in scenarios){
-        if(result.id === scenarioId){
-            res.send({
-                passed: true,
-                scenario: scenarios[scenarioId]
-            });
-        }
-    }
-    res.status(404).send({
-        message: "Scenario introuvable"
-    })
-});
-
 app.get('/addGame/:name/:user', function(req, res){
 
     var gameName = req.params.name.toLowerCase();
@@ -108,10 +92,9 @@ app.get('/addGame/:name/:user', function(req, res){
             passed: true,
             game: game
         });
-        //console.log("Partie "+gameName+ " crée")
     }
     else {
-         res.send({
+         res.status(403).send({
             passed: false,
             message: "Une partie existante possède le même nom !"
         });
