@@ -33,8 +33,6 @@ export class EnigmePage {
 
     console.log(this.game.valueOf());
 
-
- //   this.enigme={question:"Quel est le département associé au code postal 42 ?",reponse:"loire"};
   }
 
   ionViewDidLoad() {

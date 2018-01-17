@@ -40,9 +40,9 @@ var scenario1 = {
     timeInMinuts:2,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
-    missions:[{message:"Trouver un Arduino",item:0,indice:"La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium."},
-        {message:"Trouver le programme C",item:1,indice:"Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?."},
-        {message:"Trouver des capteurs",item:2,indice:"Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?."}],
+    missions:[{message:"Trouver un Arduino",item:0,indice:"La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium.",img: "assets/imgs/0.jpg"},
+        {message:"Trouver le programme C",item:1,indice:"Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?.",img: "assets/imgs/1.jpg"},
+        {message:"Trouver des capteurs",item:2,indice:"Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?.",img: "assets/imgs/2.jpg"}],
     questions:questions
 };
 
@@ -54,9 +54,9 @@ var scenario2 = {
     timeInMinuts:30,
     summary:"SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et " +
     "trouver une issue, vous devez envoyer un petit robot d’exploration.",
-    missions:[{message:"Trouver un Arduino",item:0,indice:"La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium."},
-        {message:"Trouver le programme C",item:1,indice:"Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?."},
-        {message:"Trouver des capteurs",item:2,indice:"Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?."}],
+    missions:[{message:"Trouver un Arduino",item:0,indice:"La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium.",img: "assets/imgs/0.jpg"},
+        {message:"Trouver le programme C",item:1,indice:"Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?.",img: "assets/imgs/1.jpg"},
+        {message:"Trouver des capteurs",item:2,indice:"Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?.",img: "assets/imgs/2.jpg"}],
     questions:questions
 };
 

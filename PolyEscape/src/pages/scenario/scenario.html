@@ -32,7 +32,7 @@
     </ion-list-header>
     <ion-item *ngFor="let mission of game['missions']">
       <ion-thumbnail item-start>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png">
+        <img [src]=mission.mission.img>
       </ion-thumbnail>
       <h2>{{mission["mission"]["message"]}}</h2>
       <p>{{mission["player"]}}</p>

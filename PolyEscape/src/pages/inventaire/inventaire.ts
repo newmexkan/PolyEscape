@@ -36,8 +36,10 @@ export class InventairePage {
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
-    this.questions = this.game.scenario.questions;
 
+    this.questions = this.game.scenario.questions;
+    console.log(this.game.valueOf());
+    console.log(this.game);
     this.inventoryService.getInventory(this.game.name).subscribe(res => {
       this.listItems = [];
       for (var i = 0; i < res['inventory'].length; i++) {
@@ -66,7 +68,7 @@ export class InventairePage {
       if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
         bonItem = true;
         this.bonItemToast();
-        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.qrData}});
+        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.numero}});
         break;
       }
     }
