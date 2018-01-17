@@ -1,10 +1,9 @@
-# Notre Application
+# Notre application
 
 PolyEscape est une application cross-platform (iOS, Android, Windows Phone) d'Escape Game ludique
 
 
 # Installer l'environnement
-
 
 ## Prérequis
 
@@ -17,11 +16,18 @@ $ npm install -g ionic cordova
 
 ## Installation
 
+### Installation de l'app
+
 ```bash
 $ cd PolyEscape
 $ npm install
 ```
 
+### Installation du serveur
+```bash
+$ cd Server
+$ npm install
+```
 
 # Lancer l'application
 
@@ -42,4 +48,12 @@ Ainsi, pour lancer sur un emulateur/téléphone physique :
 ```bash
 $ ionic cordova platform add [android|ios|windows]
 $ ionic cordova run [android|ios|windows]
+```
+
+# Lancer les tests
+
+Pour tester le fonctionnement du serveur, se placer dans le dossier Server puis lancer :
+
+```bash
+$ npm test
 ```
