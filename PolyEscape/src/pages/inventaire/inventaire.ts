@@ -4,7 +4,6 @@ import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {Observable} from "rxjs/Observable";
 import {Socket} from 'ng-socket-io';
 import {Http} from "@angular/http";
-import {map} from 'rxjs/operators';
 import {InventoryProvider} from "../../providers/inventory/inventory";
 import {IndicationsProvider} from "../../providers/indications/indications";
 
@@ -32,12 +31,14 @@ export class InventairePage {
 
   listItems: Array<{ name: string, pathImg: string, quantity: number }>;
 
-  constructor(private indicationService: IndicationsProvider,public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private http: Http, private barcodeScanner: BarcodeScanner) {
+  constructor(private indicationService: IndicationsProvider,public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private barcodeScanner: BarcodeScanner) {
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
-    this.questions = this.game.scenario.questions;
 
+    this.questions = this.game.scenario.questions;
+    console.log(this.game.valueOf());
+    console.log(this.game);
     this.inventoryService.getInventory(this.game.name).subscribe(res => {
       this.listItems = [];
       for (var i = 0; i < res['inventory'].length; i++) {
@@ -49,11 +50,10 @@ export class InventairePage {
       this.listItems = [];
       for (var i = 0; i < item['game']['inventory'].length; i++) {
         this.listItems.push({name: item['game']['inventory'][i].name, pathImg: item['game']['inventory'][i].pathImg, quantity: item['game']['inventory'][i].quantity});
-        this.checkEndOfGame();
+        //this.checkEndOfGame();
       }
     });
   }
-
 
   recupererItem() {
 
@@ -66,7 +66,7 @@ export class InventairePage {
       if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
         bonItem = true;
         this.bonItemToast();
-        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.qrData}});
+        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.numero}});
         break;
       }
     }
@@ -75,17 +75,17 @@ export class InventairePage {
     }
   }
 
-  endOfGame() {
+  /*endOfGame() {
       this.navCtrl.push('ResultPage', {'win':true});
-  }
+  }*/
 
 
 
-  checkEndOfGame(){
+  /*checkEndOfGame(){
     if(this.listItems.length == this.game.missions.length){
       this.endOfGame();
     }
-  }
+  }*/
 
 
   bonItemToast() {

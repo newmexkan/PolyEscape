@@ -1,7 +1,6 @@
 import {GamePage} from "../game/game";
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform, Navbar, AlertController, ToastController} from 'ionic-angular';
-import {Http} from "@angular/http";
+import {IonicPage, NavController, NavParams, Navbar, ToastController} from 'ionic-angular';
 import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs";
 import {SelectScenarioPage} from "../select-scenario/select-scenario";
@@ -34,7 +33,7 @@ export class LobbyPage {
 
   @ViewChild('navbar') navBar: Navbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public toastCtrl: ToastController, private socket: Socket, private platform: Platform, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket) {
 
 
     this.game = this.navParams.get('currentGame');
@@ -61,7 +60,9 @@ export class LobbyPage {
         }
       }
 
-      //this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
+      if(this.game.hasOwnProperty("scenario"))
+        this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
+
 
     });
 
@@ -71,7 +72,9 @@ export class LobbyPage {
 
     this.getPickScenarioSignal().subscribe(data => {
       this.scenarioPicked = true;
-      this.selected_scenario = data['scenario']
+      this.game = data["game"];
+
+
       /*
       let toast = this.toastCtrl.create({
         message: "Le scenario " + data['scenario']['name'] + " a été choisi",

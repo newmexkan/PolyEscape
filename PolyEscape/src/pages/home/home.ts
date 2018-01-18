@@ -3,7 +3,6 @@ import {NavController, AlertController, IonicPage} from 'ionic-angular';
 import { OptionsPage } from '../options/options';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
-//import {SelectScenarioPage} from "../select-scenario/select-scenario";
 import { LobbyPage } from '../lobby/lobby';
 import { Socket } from 'ng-socket-io';
 
@@ -18,9 +17,11 @@ import { Socket } from 'ng-socket-io';
 export class HomePage {
   optionsPage = OptionsPage;
   lobbyPage = LobbyPage;
+  
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,private http: Http, private socket:Socket) {
 
   }
+
   askNameNewGame() {
     let prompt = this.alertCtrl.create({
       title: 'Créer une partie',

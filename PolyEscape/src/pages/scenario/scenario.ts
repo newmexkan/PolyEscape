@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -19,6 +19,7 @@ export class ScenarioPage {
   private platform: Platform;
   game;
   user;
+  pathPhoto;
 
 
 
@@ -26,12 +27,33 @@ export class ScenarioPage {
     this.platform = platform;
     this.game = navParams.get('game');
     this.user = navParams.get('user');
+    this.pathPhoto = "assets/imgs/";
+
+    /*
+    for (let i = 0; i < this.game.missions.length; i++) {
+      if (this.game.missions[i].player == this.user) {
+        this.pathPhoto = "assets/imgs/"+this.game.missions[i].mission.item+ ".jpg";
+      }
+    }
+*/
+
+    }
+
+
+
+
+  indiceIDphoto() {
+    for (let i = 0; i < this.game.missions.length; i++) {
+      // le numéro scanné correspond bien à l'item que le user doit rechercher
+      if (this.game.missions[i].player == this.user) {
+        return ""+i;
+      }
+    }
   }
 
   indice() {
 
     for (let i = 0; i < this.game.missions.length; i++) {
-      // le numéro scanné correspond bien à l'item que le user doit rechercher
       if (this.game.missions[i].player == this.user) {
           this.indication(this.game.missions[i].mission.message,this.game.missions[i].mission.indice);
       }

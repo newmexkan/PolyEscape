@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {JoueurModel} from "../../models/joueur-model";
 
 /**
  * Generated class for the EquipePage page.

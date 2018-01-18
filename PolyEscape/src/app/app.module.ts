@@ -13,7 +13,7 @@ import { HttpModule } from '@angular/http';
 import { TimerComponent} from "../components/timer/timer";
 
 
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {GamePage} from "../pages/game/game";
 import {InventairePage} from "../pages/inventaire/inventaire";
 import {ScenarioPage} from "../pages/scenario/scenario";
