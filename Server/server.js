@@ -172,20 +172,14 @@ app.get('/getIndications/:gameName', function(req, res){
 
 
 /**
- * Partie interaction joueurs
+ * Partie Sockets
  */
+
 io.on('connection', function(client) {
 
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-
-        //rejoint le channel dédié à la partie
         client.join(currentGame.getName());
-
-        // log serveur
-        //console.log(data.user+" a rejoint la partie "+data.game+" en tant que chef");
-        //console.log("Joueurs de la partie :\n"+currentGame.getPlayers());
-
     });
 
     client.on('startGame', function(data) {
@@ -199,11 +193,7 @@ io.on('connection', function(client) {
             currentGame.run();
 
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
-
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame);
-
-            // log serveur
-            //console.log(data.user + " a lancé la partie " + currentGame.getName());
         }
 
     });
@@ -215,18 +205,10 @@ io.on('connection', function(client) {
         let currentGame = gameList.get(data.game.toLowerCase());
 
         if(currentGame.acceptsPlayerNamed(data.user)){
-            //rejoint la partie
             currentGame.addPlayer(data.user);
 
-            //rejoint le channel dédié à la partie
             client.join(currentGame.getName());
-
-            //notifie les autres joueurs de la partie
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
-
-            // log serveur
-            //console.log(data.user+" a rejoint la partie "+data.game);
-            //console.log("Joueurs de la partie :\n"+currentGame.getPlayers());
         }
     });
 
@@ -235,15 +217,10 @@ io.on('connection', function(client) {
         let currentGame = gameList.get(data.game.name.toLowerCase());
 
         if(currentGame.isRunning()) {
-            //notifie les autres joueurs de la partie
             io.to(currentGame.getName()).emit('item_added', {game: currentGame});
 
             if(currentGame.inventory.length === currentGame.missions.length)
                 io.to(currentGame.getName()).emit('end_of_game', {win: true});
-
-            // log serveur
-            //console.log(data.game + " a ajouté l'item: ");
-            //console.log("Inventaire :\n" + currentGame.getInventory());
         }
     });
 
@@ -251,7 +228,6 @@ io.on('connection', function(client) {
         let currentGame = gameList.get(data.game.name.toLowerCase());
         let gameRoom = currentGame.getName();
 
-        //notifie les autres joueurs de la partie
         io.to(gameRoom).emit('indication_added', {game: currentGame});
 
         client.broadcast.to(gameRoom).emit('notification', {message: "Votre équipe a ajouté une identification à la carte"});
@@ -264,16 +240,9 @@ io.on('connection', function(client) {
         let gameRoom = currentGame.getName();
 
         currentGame.removePlayer(data.user);
-
-        // quitte le channel dédié a la partie
         client.leave(gameRoom);
-
-        //notifie les autres joueurs de la partie
         client.broadcast.to(gameRoom).emit('players_changed', {players:currentGame.players});
 
-        // log serveur
-        //console.log(data.user+" a quitté la partie "+data.game);
-        //console.log("Joueurs de la partie :\n"+currentGame.players);
     });
 
 
@@ -309,7 +278,3 @@ io.on('connection', function(client) {
         }
     }
 });
-
-
-
-

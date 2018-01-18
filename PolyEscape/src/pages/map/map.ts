@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {IndicationsProvider} from "../../providers/indications/indications";
 import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs/Observable";
-import {HttpClient} from "@angular/common/http";
 
 /**
  * Generated class for the MapPage page.
@@ -19,19 +18,20 @@ import {HttpClient} from "@angular/common/http";
 })
 
 export class MapPage {
-  listIndications;
 
+  listIndications;
   game;
-  constructor(private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
-    console.log(navParams.get('game'));
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController) {
+
     this.game = navParams.get('game');
-    console.log(this.game);
+
     this.getIndications();
 
 
     this.getNewIndications().subscribe(res => {
       this.listIndications = [];
-      console.log(res.valueOf());
+
       for (var i = 0; i < res['game']['indications'].length; i++) {
         this.listIndications.push({message: res['game']['indications'][i].message});
       }
@@ -39,10 +39,6 @@ export class MapPage {
     });
   }
 
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MapPage');
-  }
 
   getIndications(){
     this.indicationService.getIndications(this.game['name']).subscribe(res => {

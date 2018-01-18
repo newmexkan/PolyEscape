@@ -10,7 +10,6 @@ import { OptionsPage } from '../pages/options/options';
 import { LobbyPage } from "../pages/lobby/lobby";
 
 import { HttpModule } from '@angular/http';
-import { TimerComponent} from "../components/timer/timer";
 
 
 import {HttpClientModule} from "@angular/common/http";
@@ -19,18 +18,21 @@ import {InventairePage} from "../pages/inventaire/inventaire";
 import {ScenarioPage} from "../pages/scenario/scenario";
 import {EquipePage} from "../pages/equipe/equipe";
 import {MapPage} from "../pages/map/map";
-import { NgxQRCodeModule } from 'ngx-qrcode2';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 
-import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import {SocketIoModule, SocketIoConfig} from 'ng-socket-io';
 
 import {HomePageModule} from "../pages/home/home.module";
 import {LobbyPageModule} from "../pages/lobby/lobby.module";
 import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
 import {ScenarioServiceProvider} from "../providers/scenario-service/scenario-service";
 import {InventoryProvider} from "../providers/inventory/inventory";
-import { IndicationsProvider } from '../providers/indications/indications';
+import {IndicationsProvider} from '../providers/indications/indications';
 import {InventairePageModule} from "../pages/inventaire/inventaire.module";
+import {MapPageModule} from "../pages/map/map.module";
+import {EquipePageModule} from "../pages/equipe/equipe.module";
+import {ScenarioPageModule} from "../pages/scenario/scenario.module";
+import {GamePageModule} from "../pages/game/game.module";
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
@@ -38,12 +40,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     MyApp,
     OptionsPage,
     SelectScenarioPage,
-    OptionsPage,
-    GamePage,
-    ScenarioPage,
-    EquipePage,
-    MapPage,
-    TimerComponent
+    OptionsPage
   ],
   imports: [
     BrowserModule,
@@ -53,8 +50,11 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     HttpModule,
     HomePageModule,
     LobbyPageModule,
-    InventairePageModule
-
+    GamePageModule,
+    ScenarioPageModule,
+    InventairePageModule,
+    MapPageModule,
+    EquipePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,8 +68,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     InventairePage,
     ScenarioPage,
     EquipePage,
-    MapPage,
-    TimerComponent
+    MapPage
 
   ],
   providers: [
