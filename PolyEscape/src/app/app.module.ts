@@ -30,6 +30,7 @@ import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
 import {ScenarioServiceProvider} from "../providers/scenario-service/scenario-service";
 import {InventoryProvider} from "../providers/inventory/inventory";
 import { IndicationsProvider } from '../providers/indications/indications';
+import {InventairePageModule} from "../pages/inventaire/inventaire.module";
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
@@ -39,7 +40,6 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     SelectScenarioPage,
     OptionsPage,
     GamePage,
-    InventairePage,
     ScenarioPage,
     EquipePage,
     MapPage,
@@ -53,7 +53,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     HttpModule,
     HomePageModule,
     LobbyPageModule,
-    NgxQRCodeModule
+    InventairePageModule
 
   ],
   bootstrap: [IonicApp],
