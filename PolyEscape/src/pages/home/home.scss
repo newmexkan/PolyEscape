@@ -4,8 +4,15 @@ page-home {
     background-color: #fff;
   }
 
+  .logo{
+    text-align: center;
+    margin-top:50px;
+    margin-bottom: 30px;
+    width:125px;
+    height: 125px;
+  }
+
   .ctc{
-    margin-top: 170px;
   }
 
 }
@@ -13,5 +20,4 @@ page-home {
 .yo{
   font-size: 19px;
   height: 85px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
