@@ -12,7 +12,7 @@ module.exports = class Scenario {
         this.nbPlayers = nbPl;
         this.timeInMinuts = time;
         this.missions = missions;
-        this.skills = skills;
+        this.skills = [];
     }
     getName() {
         return this.name;
