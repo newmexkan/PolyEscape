@@ -169,6 +169,25 @@ app.get('/getIndications/:gameName', function(req, res){
 
 });
 
+app.get('/getSkills/:gameName', function(req, res){
+
+    const gameName = req.params.gameName.toLowerCase();
+    if(gameList.hasGameNamed(gameName)){
+        const currentGame = gameList.get(gameName);
+
+        res.send({
+            passed: true,
+            skills: currentGame["scenario"]["skills"]
+        });
+    }
+    else {
+        res.status(404).send({
+            message: "Partie introuvable"
+        })
+    }
+
+});
+
 
 
 /**

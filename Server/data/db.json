@@ -1,7 +1,7 @@
 {
   "scenarios": [
     {
-      "id": 1,
+      "id": 3,
       "name": "Invasion de zombies",
       "nbPlayers": 3,
       "timeInMinuts": 2,
@@ -11,76 +11,397 @@
           "message": "Trouver un Arduino",
           "item": 0,
           "indice": "La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium.",
-          "img": "assets/imgs/0.jpg"
+          "img": "assets/imgs/0.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
+          ],
+          "skill": "Électricité"
         },
         {
           "message": "Trouver le programme C",
           "item": 1,
           "indice": "Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?.",
-          "img": "assets/imgs/1.jpg"
+          "img": "assets/imgs/1.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
+          ],
+          "skill": "Programmation"
         },
         {
           "message": "Trouver des capteurs",
           "item": 2,
           "indice": "Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?.",
-          "img": "assets/imgs/2.jpg"
+          "img": "assets/imgs/2.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
+          ],
+          "skill": "Électricité"
         }
       ],
-      "questions": [
+      "skills": [
+        "Électricité",
+        "Programmation"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Testing",
+      "nbPlayers": 1,
+      "timeInMinuts": 30,
+      "summary": "c tip top",
+      "missions": [
         {
-          "question": "De quelle origine nous vient le sauna ?",
-          "reponses": [
-            "Des indiens",
-            "Des australiens",
-            "Des finlandais"
+          "message": "Trouver un Arduino",
+          "item": 0,
+          "indice": "La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium.",
+          "img": "assets/imgs/0.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
           ],
-          "reponse": "Des finlandais"
+          "skill": "Électricité"
         },
         {
-          "question": "Quel est le plus long fleuve français ?",
-          "reponses": [
-            "La Loire",
-            "La Seine",
-            "La Garonne"
+          "message": "Trouver le programme C",
+          "item": 1,
+          "indice": "Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?.",
+          "img": "assets/imgs/1.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
           ],
-          "reponse": "La Loire"
+          "skill": "Programmation"
         },
         {
-          "question": "Quelle est l'altitude en mètre du mont Everest ?",
-          "reponses": [
-            "6 848",
-            "8 848",
-            "10 848"
+          "message": "Trouver des capteurs",
+          "item": 2,
+          "indice": "Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?.",
+          "img": "assets/imgs/2.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
           ],
-          "reponse": "8 848"
-        },
-        {
-          "question": "De combien d'états sont composés Les États-Unis ?",
-          "reponses": [
-            "46",
-            "48",
-            "50"
-          ],
-          "reponse": "50"
-        },
-        {
-          "question": "Quel est le plus grand pays du monde ?",
-          "reponses": [
-            "La Chine",
-            "La Russie",
-            "L'Australie"
-          ],
-          "reponse": "La Russie"
-        },
-        {
-          "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
-          "reponses": [
-            "Le sirocco",
-            "La bora",
-            "Le mistral"
-          ],
-          "reponse": "Le mistral"
+          "skill": "Électricité"
         }
+      ],
+      "skills": [
+        "Électricité",
+        "Programmation"
       ]
     },
     {
@@ -94,76 +415,195 @@
           "message": "Trouver un Arduino",
           "item": 0,
           "indice": "La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium.",
-          "img": "assets/imgs/0.jpg"
+          "img": "assets/imgs/0.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
+          ],
+          "skill": "Électricité"
         },
         {
           "message": "Trouver le programme C",
           "item": 1,
           "indice": "Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?.",
-          "img": "assets/imgs/1.jpg"
+          "img": "assets/imgs/1.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
+          ],
+          "skill": "Programmation"
         },
         {
           "message": "Trouver des capteurs",
           "item": 2,
           "indice": "Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?.",
-          "img": "assets/imgs/2.jpg"
+          "img": "assets/imgs/2.jpg",
+          "questions": [
+            {
+              "question": "De quelle origine nous vient le sauna ?",
+              "reponses": [
+                "Des indiens",
+                "Des australiens",
+                "Des finlandais"
+              ],
+              "reponse": "Des finlandais"
+            },
+            {
+              "question": "Quel est le plus long fleuve français ?",
+              "reponses": [
+                "La Loire",
+                "La Seine",
+                "La Garonne"
+              ],
+              "reponse": "La Loire"
+            },
+            {
+              "question": "Quelle est l'altitude en mètre du mont Everest ?",
+              "reponses": [
+                "6 848",
+                "8 848",
+                "10 848"
+              ],
+              "reponse": "8 848"
+            },
+            {
+              "question": "De combien d'états sont composés Les États-Unis ?",
+              "reponses": [
+                "46",
+                "48",
+                "50"
+              ],
+              "reponse": "50"
+            },
+            {
+              "question": "Quel est le plus grand pays du monde ?",
+              "reponses": [
+                "La Chine",
+                "La Russie",
+                "L'Australie"
+              ],
+              "reponse": "La Russie"
+            },
+            {
+              "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
+              "reponses": [
+                "Le sirocco",
+                "La bora",
+                "Le mistral"
+              ],
+              "reponse": "Le mistral"
+            }
+          ],
+          "skill": "Électricité"
         }
       ],
-      "questions": [
-        {
-          "question": "De quelle origine nous vient le sauna ?",
-          "reponses": [
-            "Des indiens",
-            "Des australiens",
-            "Des finlandais"
-          ],
-          "reponse": "Des finlandais"
-        },
-        {
-          "question": "Quel est le plus long fleuve français ?",
-          "reponses": [
-            "La Loire",
-            "La Seine",
-            "La Garonne"
-          ],
-          "reponse": "La Loire"
-        },
-        {
-          "question": "Quelle est l'altitude en mètre du mont Everest ?",
-          "reponses": [
-            "6 848",
-            "8 848",
-            "10 848"
-          ],
-          "reponse": "8 848"
-        },
-        {
-          "question": "De combien d'états sont composés Les États-Unis ?",
-          "reponses": [
-            "46",
-            "48",
-            "50"
-          ],
-          "reponse": "50"
-        },
-        {
-          "question": "Quel est le plus grand pays du monde ?",
-          "reponses": [
-            "La Chine",
-            "La Russie",
-            "L'Australie"
-          ],
-          "reponse": "La Russie"
-        },
-        {
-          "question": "Quel vent violent souffle souvent sur la côte du Sud de la France ?",
-          "reponses": [
-            "Le sirocco",
-            "La bora",
-            "Le mistral"
-          ],
-          "reponse": "Le mistral"
-        }
+      "skills": [
+        "Électricité",
+        "Programmation"
       ]
     }
   ]
