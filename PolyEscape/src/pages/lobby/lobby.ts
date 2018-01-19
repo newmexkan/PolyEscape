@@ -48,6 +48,10 @@ export class LobbyPage {
       if (existingUsers[i] !== this.user && existingUsers[i] !== this.game["chief"])
         this.users.push(existingUsers[i]);
 
+    if(this.game.hasOwnProperty("scenario")){
+      this.scenarioPicked = true;
+      this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
+    }
 
 
     this.getNewPlayers().subscribe(user => {
@@ -60,8 +64,10 @@ export class LobbyPage {
         }
       }
 
-      if(this.game.hasOwnProperty("scenario"))
+      if(this.game.hasOwnProperty("scenario")){
+        this.scenarioPicked = true;
         this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
+      }
 
 
     });
@@ -76,13 +82,13 @@ export class LobbyPage {
 
 
       /*
-      let toast = this.toastCtrl.create({
-        message: "Le scenario " + data['scenario']['name'] + " a été choisi",
-        position: 'top',
-        duration: 3000
-      });
-      toast.present();
-      */
+       let toast = this.toastCtrl.create({
+       message: "Le scenario " + data['scenario']['name'] + " a été choisi",
+       position: 'top',
+       duration: 3000
+       });
+       toast.present();
+       */
     });
 
   }
