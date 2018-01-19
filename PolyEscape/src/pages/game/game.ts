@@ -39,6 +39,7 @@ export class GamePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController) {
     this.game = navParams.get('game');
+    console.log(this.game["scenario"]["mission"]);
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
     this.players.push(this.game["chief"]);

@@ -31,8 +31,6 @@ export class EnigmePage {
     this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
     this.enigme= this.questions[this.positionEnigme];
 
-    console.log(this.game.valueOf());
-
   }
 
   ionViewDidLoad() {
@@ -86,35 +84,6 @@ export class EnigmePage {
 
   }
 
-  sendItem(){
-
-    let prompt = this.alertCtrl.create({
-      title: 'Vous avez trouvé un item !!!',
-      message: this.item,
-      buttons: [
-        {
-          text: 'Non',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Ajouter',
-          handler: data => {
-            this.inventoryService.addItem(this.game.name, this.item).subscribe(data => {
-              if (data.hasOwnProperty('inventory')) {
-                // console.log(data.inventory[-1]);
-                console.log(data.valueOf());
-                console.log(data["game"]);
-                this.socket.emit('addItemToInventory', {game:data["game"], inventory:data["inventory"]});
-              }
-            });
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
 
 
 }
