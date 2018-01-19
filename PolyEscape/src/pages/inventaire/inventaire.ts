@@ -48,7 +48,6 @@ export class InventairePage {
       this.listItems = [];
       for (var i = 0; i < item['game']['inventory'].length; i++) {
         this.listItems.push({name: item['game']['inventory'][i].name, pathImg: item['game']['inventory'][i].pathImg, quantity: item['game']['inventory'][i].quantity});
-        //this.checkEndOfGame();
       }
     });
   }

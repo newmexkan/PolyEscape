@@ -8,6 +8,7 @@ import {TimerComponent} from "../../components/timer/timer";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
 import { HomePage} from "../home/home";
+import {TextToSpeech} from "@ionic-native/text-to-speech";
 
 /**
  * Generated class for the GamePage tabs.
@@ -92,18 +93,18 @@ export class GamePage {
   leave(){
     let alert = this.alertCtrl.create({
       title: 'Quitter la partie',
-      message: 'Voulez-vous quitter la partie ? L\'avancement ne sera pas sauvegardé',
+      message: 'En abandonnant vous provoquerez l\'echec de toute votre équipe. Voulez-vous abandonner la partie ?',
       buttons: [
         {
-          text: 'Annuler',
+          text: 'Rester',
           role: 'cancel',
           handler: () => {
           }
         },
         {
-          text: 'Confirmer',
+          text: 'Abandonner',
           handler: () => {
-            this.navCtrl.push(this.homePage);
+            this.socket.emit('quitGame', {game: this.game["name"], user: this.user});
           }
         }
       ]

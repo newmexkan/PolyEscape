@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Platform,IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {IndicationsProvider} from "../../providers/indications/indications";
 import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 /**
  * Generated class for the MapPage page.
@@ -11,18 +14,30 @@ import {Observable} from "rxjs/Observable";
  * Ionic pages and navigation.
  */
 
+
+declare var google;
 @IonicPage()
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html',
 })
 
+
+
 export class MapPage {
 
+  @ViewChild('map') mapElement: ElementRef;
+
+  private map: any;
+  private google: any;
+
+
   listIndications;
+
   game;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController) {
+
+  constructor(public platform: Platform, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
 
     this.game = navParams.get('game');
 
@@ -38,6 +53,25 @@ export class MapPage {
       this.game = res['game'];
     });
   }
+
+
+  ionViewDidLoad(){
+    this.loadMap();
+  }
+
+  loadMap(){
+    let latLng = new google.maps.LatLng(43.616354, 7.055222);
+
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+  }
+
 
 
   getIndications(){
@@ -92,3 +126,4 @@ export class MapPage {
 
 
 }
+
