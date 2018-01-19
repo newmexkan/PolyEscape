@@ -16,7 +16,7 @@
 
 <ion-content>
 
-  <div class="header card-background-page" *ngIf="scenarioPicked">
+  <div class="header card-background-page" *ngIf="(isChief && scenarioPicked) || !isChief">
     <ion-card>
       <img src="assets/imgs/truc1.jpg"/>
       <div class="card-title">{{this.game["scenario"]['name']}}</div>
@@ -27,21 +27,13 @@
         <ion-icon name="md-time"></ion-icon>
       </div>
     </ion-card>
-    <div text-center align-items-center>
-      <!--<button ion-button round *ngIf="isChief" (click)="pickScenario()">Changer de
-        scénario
-      </button>
-      -->
-    </div>
   </div>
 
-  <div class="header2" *ngIf="!scenarioPicked">
+  <div class="header2" *ngIf="isChief && !scenarioPicked">
     <ion-card>
-      <div id="wait-spinner">
-        <ion-spinner name="bubbles"></ion-spinner>
-        <ion-label text-center class="indicator" *ngIf="!isChief">En attente de joueurs...</ion-label>
-        <ion-label text-center class="indicator" (click)="pickScenario()" *ngIf="isChief">Veuillez séléctionner un
-          scénario
+      <div id="chooseScenar">
+        <ion-icon text-center name="film"></ion-icon>
+        <ion-label text-center class="indicator" (click)="pickScenario()">Aucun scénario choisi
         </ion-label>
       </div>
     </ion-card>

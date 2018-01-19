@@ -8,6 +8,7 @@ import {TimerComponent} from "../../components/timer/timer";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
 import { HomePage} from "../home/home";
+import { NativeAudio } from '@ionic-native/native-audio';
 
 /**
  * Generated class for the GamePage tabs.
@@ -36,7 +37,7 @@ export class GamePage {
   @ViewChild(TimerComponent) timer: TimerComponent;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio) {
     this.game = navParams.get('game');
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
@@ -52,6 +53,8 @@ export class GamePage {
     this.getEndOfGame().subscribe(data => {
       this.navCtrl.push('ResultPage',data);
     });
+
+    this.nativeAudio.preloadSimple('light', 'assets/audio/light.mp3');
   }
 
 
@@ -80,12 +83,14 @@ export class GamePage {
   }
 
   notify(message) {
+    this.nativeAudio.play('light');
     let toast = this.toastCtrl.create({
       message: message,
       position: 'top',
       duration: 3000
     });
     toast.present();
+
   }
 
   leave(){

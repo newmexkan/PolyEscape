@@ -15,27 +15,33 @@ $ npm install
 $ npm start
 ```
 
-## Requêtes utilisables
+## Protocole
 
 * Pour récupérer tous les scénarios du jeu
 ```
 /getAllScenarios
 ```
+Renvoit un JSON contenant tous les scénarios.
 
 * Pour créer une nouvelle partie
 ```
 /addGame/:name/:user
 ```
+Renvoit un JSON contenant la partie si elle est crée. Renvoit une erreur sinon.
 
 * Pour récupérer une partie
 ```
 /getGame/:name
 ```
+```
+Renvoit un JSON contenant la partie si elle existe. Renvoit une erreur sinon.
 
 * Pour récupérer l'inventaire d'une partie
 ```
 /getInventory/:game
 ```
+```
+Renvoit un JSON contenant l'inventaire d'une partie si elle existe. Renvoit une erreur sinon.
 
 * Pour ajouter un item à l'inventaire d'une partie
 ```

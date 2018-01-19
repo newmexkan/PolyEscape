@@ -19,7 +19,6 @@ import {InventairePage} from "../pages/inventaire/inventaire";
 import {ScenarioPage} from "../pages/scenario/scenario";
 import {EquipePage} from "../pages/equipe/equipe";
 import {MapPage} from "../pages/map/map";
-import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
@@ -36,6 +35,7 @@ import {ScenarioPageModule} from "../pages/scenario/scenario.module";
 import {GamePageModule} from "../pages/game/game.module";
 import { IndicationsProvider } from '../providers/indications/indications';
 import { Geolocation } from '@ionic-native/geolocation';
+import {NativeAudio} from "@ionic-native/native-audio";
 
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -84,7 +84,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     InventoryProvider,
     ScenarioServiceProvider,
     IndicationsProvider,
-    Geolocation
+    Geolocation,
+    NativeAudio
   ]
 })
 export class AppModule {}

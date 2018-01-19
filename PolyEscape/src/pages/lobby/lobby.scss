@@ -37,15 +37,22 @@
 .header2 ion-card{
   height:22vh;
   padding-top:12%;
+  background: #ffffff; /* Old browsers */
+  color:#333;
 }
 
-.header2 #wait-spinner{
+.header2 ion-icon {
   text-align: center;
-  color:#222222;
+  color:#333;
+  font-size:40px;
 }
 
 .header2 .indicator{
-  color:darkgrey;
+  color:#333;
+}
+
+.header2 #chooseScenar{
+  text-align: center;
 }
 
 ion-footer #not-chef{
