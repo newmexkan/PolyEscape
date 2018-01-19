@@ -116,5 +116,28 @@ export class EnigmePage {
     prompt.present();
   }
 
+  askHelp(){
+    let alert = this.alertCtrl.create({
+      title: 'Besoin d\'aide ?',
+      subTitle: 'Voulez-vous envoyer une demande d\'aide à vos coéquipiers ?',
+      buttons: [
+        {
+          text: 'Non',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Oui',
+          handler: () => {
+            this.socket.emit('help_request', {game: this.game.name, user: this.game});
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
 
 }
