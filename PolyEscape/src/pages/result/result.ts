@@ -16,12 +16,14 @@ import {HomePage} from "../home/home";
 })
 export class ResultPage {
   private result;
+  private message;
   private nav;
   mapPage = HomePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.nav = navCtrl;
     this.result = this.navParams.get('win')?"Bravo !":"Dommage !";
+    this.message = this.navParams.get('message');
   }
 
   returnHome(){

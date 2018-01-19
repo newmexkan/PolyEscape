@@ -220,18 +220,19 @@ io.on('connection', function(client) {
             io.to(currentGame.getName()).emit('item_added', {game: currentGame});
 
             if(currentGame.inventory.length === currentGame.missions.length)
-                io.to(currentGame.getName()).emit('end_of_game', {win: true});
+                io.to(currentGame.getName()).emit('end_of_game', {win: true, message: "Vous avez résolu toutes les missions dans le temps imparti !"});
         }
     });
 
     client.on('indicateClue', function(data) {
-        let currentGame = gameList.get(data.game.name.toLowerCase());
+        console.log(data);
+        let currentGame = gameList.get(data.game.toLowerCase());
         let gameRoom = currentGame.getName();
 
         io.to(gameRoom).emit('indication_added', {game: currentGame});
 
         client.broadcast.to(gameRoom).emit('notification', {message: "Votre équipe a ajouté une identification à la carte"});
-        client.emit('notification', {message: "L'indenfication a bien été partagée"});
+        client.emit('notification', {message: "L'indentification a bien été partagée"});
     });
 
 
@@ -239,9 +240,15 @@ io.on('connection', function(client) {
         let currentGame = gameList.get(data.game.toLowerCase());
         let gameRoom = currentGame.getName();
 
-        currentGame.removePlayer(data.user);
-        client.leave(gameRoom);
-        client.broadcast.to(gameRoom).emit('players_changed', {players:currentGame.players});
+        if (currentGame.isWaitingForPlayers()){
+            currentGame.removePlayer(data.user);
+            client.leave(gameRoom);
+            client.broadcast.to(gameRoom).emit('players_changed', {players: currentGame.players});
+        }
+        else if(currentGame.isRunning()){
+            io.to(currentGame.getName()).emit('end_of_game', {win: false, message:"Un joueur a quitté la partie !"});
+            destroyGame(currentGame.getName());
+        }
 
     });
 
@@ -259,7 +266,7 @@ io.on('connection', function(client) {
     });
 
     function timeOver(game){
-        io.to(game.getName()).emit('end_of_game', {win: false});
+        io.to(game.getName()).emit('end_of_game', {win: false, message:"Vous n'avez pas rempli toutes les missions dans le temps imparti !"});
         destroyGame(game.getName());
     }
 

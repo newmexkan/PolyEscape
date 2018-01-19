@@ -19,37 +19,38 @@ import {Observable} from "rxjs/Observable";
 
 export class MapPage {
 
-  listIndications;
+  listIndications = [];
   game;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController) {
 
     this.game = navParams.get('game');
 
-    this.getIndications();
+    //this.listIndications = this.game["indications"];
 
-
-    this.getNewIndications().subscribe(res => {
-      this.listIndications = [];
-
-      for (var i = 0; i < res['game']['indications'].length; i++) {
-        this.listIndications.push({message: res['game']['indications'][i].message});
-      }
-      this.game = res['game'];
-    });
-  }
-
-
-  getIndications(){
     this.indicationService.getIndications(this.game['name']).subscribe(res => {
       console.log(res.valueOf());
       this.listIndications = [];
-      for (var i = 0; i < res['indications'].length; i++) {
-        this.listIndications.push({message: res['indications'][i].message});
+      for (var i = 0; i < res["game"]['indications'].length; i++) {
+        this.listIndications.push({message: res["game"]['indications'][i].message});
       }
       this.game = res['game'];
     });
+
+
+
+    this.getNewIndications().subscribe(res => {
+      console.log("RES");
+      console.log(res);
+      this.listIndications = [];
+
+      for (var i = 0; i < res["game"]["indications"].length; i++) {
+        this.listIndications.push({message: res["game"]["indications"][i].message});
+      }
+      this.game = res["game"];
+    });
   }
+
 
   getNewIndications() {
     let observable = new Observable(observer => {
@@ -81,7 +82,7 @@ export class MapPage {
           text: 'Envoyer',
           handler: data => {
             this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
-              this.socket.emit('indicateClue', {game:res["game"]});
+              this.socket.emit('indicateClue', {game:res["game"]["name"]});
             });
           }
         }

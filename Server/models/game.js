@@ -42,7 +42,8 @@ module.exports = class Game {
     }
 
     removePlayer(play){
-        this.players.splice(play, 1);
+        let index = this.players.findIndex(i => i.toLowerCase() === play.toLowerCase());
+        this.players.splice(index, 1);
     }
 
     mapPlayersToMissions(){
@@ -97,6 +98,10 @@ module.exports = class Game {
 
     isRunning(){
         return (this.state === GameState.RUNNING);
+    }
+
+    isWaitingForPlayers(){
+        return (this.state === GameState.WAITING_PLAYERS);
     }
 
     finish(){
