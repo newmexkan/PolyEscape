@@ -47,7 +47,6 @@ export class GamePage {
 
     this.getNotifications().subscribe(data => {
       this.notify(data["message"]);
-      this.game = data["game"];
     });
 
     this.getEndOfGame().subscribe(data => {
