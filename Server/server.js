@@ -193,7 +193,8 @@ io.on('connection', function(client) {
             currentGame.run();
 
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
-            setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame);
+            setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
+            setTimeout(timeHalf, ((currentGame.getTimeInMinuts()*60+2)*1000)/2, currentGame.getName());
         }
 
     });
@@ -241,8 +242,8 @@ io.on('connection', function(client) {
 
         io.to(gameRoom).emit('indication_added', {game: currentGame});
 
-        client.broadcast.to(gameRoom).emit('notification', {message: "Votre équipe a ajouté une identification à la carte"});
-        client.emit('notification', {message: "L'indentification a bien été partagée"});
+        client.broadcast.to(gameRoom).emit('notification', "Votre équipe a ajouté une identification à la carte");
+        client.emit('notification', "L'indentification a bien été partagée");
     });
 
 
@@ -275,9 +276,13 @@ io.on('connection', function(client) {
         io.to(currentGame.getName()).emit('scenario_pick', {id: data.id , game: currentGame});
     });
 
-    function timeOver(game){
-        io.to(game.getName()).emit('end_of_game', {win: false, message:"Vous n'avez pas rempli toutes les missions dans le temps imparti !"});
-        destroyGame(game.getName());
+    function timeHalf(gameName){
+        io.to(gameName).emit('notification', "Vous êtes à la moitié du temps imparti !");
+    }
+
+    function timeOver(gameName){
+        io.to(gameName).emit('end_of_game', {win: false, message:"Vous n'avez pas rempli toutes les missions dans le temps imparti !"});
+        destroyGame(gameName);
     }
 
     function destroyGame(gameName){

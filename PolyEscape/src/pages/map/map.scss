@@ -1,13 +1,17 @@
-.ios, .md {
+.ios, .md, .wp	 {
 
   page-map {
+
+    .no-scroll .scroll-content{
+      overflow: hidden;
+    }
+
 
     .scroll {
       height: 100%
     }
 
     #map {
-      padding-top: 15px;
       width: 100%;
       height: 100%;
     }

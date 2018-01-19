@@ -8,7 +8,6 @@ import {TimerComponent} from "../../components/timer/timer";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
 import { HomePage} from "../home/home";
-import {TextToSpeech} from "@ionic-native/text-to-speech";
 
 /**
  * Generated class for the GamePage tabs.
@@ -49,7 +48,6 @@ export class GamePage {
 
     this.getNotifications().subscribe(data => {
       this.notify(data["message"]);
-      this.game = data["game"];
     });
 
     this.getEndOfGame().subscribe(data => {

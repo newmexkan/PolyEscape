@@ -35,6 +35,9 @@ export class InventairePage {
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
+    console.log("INV");
+    console.log(this.game);
+    console.log(this.user);
 
     // this.questions = this.game.scenario.missions.questions;
     this.inventoryService.getInventory(this.game.name).subscribe(res => {
