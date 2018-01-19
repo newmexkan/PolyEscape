@@ -27,7 +27,6 @@ export class EnigmePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private inventoryService: InventoryProvider, private socket: Socket) {
     this.questions = navParams.get('questions');
     this.item = navParams.get('item');
-    console.log(this.item.valueOf());
     this.game = navParams.get('game');
     this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
     this.enigme= this.questions[this.positionEnigme];
@@ -108,7 +107,6 @@ export class EnigmePage {
                 console.log(data.valueOf());
                 console.log(data["game"]);
                 this.socket.emit('addItemToInventory', {game:data["game"], inventory:data["inventory"]});
-                // this.navCtrl.push('LobbyPage', {currentGame: response.game, currentUser: data.pseudo});
               }
             });
           }

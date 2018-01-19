@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Platform,IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {IndicationsProvider} from "../../providers/indications/indications";
 import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 /**
  * Generated class for the MapPage page.
@@ -11,46 +14,76 @@ import {Observable} from "rxjs/Observable";
  * Ionic pages and navigation.
  */
 
+
+declare var google;
 @IonicPage()
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html',
 })
 
+
+
 export class MapPage {
 
-  listIndications = [];
+  @ViewChild('map') mapElement: ElementRef;
+
+  private map: any;
+  private google: any;
+
+
+  listIndications;
+
   game;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController) {
+
+  constructor(public platform: Platform, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
 
     this.game = navParams.get('game');
 
-    //this.listIndications = this.game["indications"];
-
-    this.indicationService.getIndications(this.game['name']).subscribe(res => {
-      console.log(res.valueOf());
-      this.listIndications = [];
-      for (var i = 0; i < res["game"]['indications'].length; i++) {
-        this.listIndications.push({message: res["game"]['indications'][i].message});
-      }
-      this.game = res['game'];
-    });
-
+    this.getIndications();
 
 
     this.getNewIndications().subscribe(res => {
-      console.log("RES");
-      console.log(res);
       this.listIndications = [];
 
-      for (var i = 0; i < res["game"]["indications"].length; i++) {
-        this.listIndications.push({message: res["game"]["indications"][i].message});
+      for (var i = 0; i < res['game']['indications'].length; i++) {
+        this.listIndications.push({message: res['game']['indications'][i].message});
       }
-      this.game = res["game"];
+      this.game = res['game'];
     });
   }
 
+
+  ionViewDidLoad(){
+    this.loadMap();
+  }
+
+  loadMap(){
+    let latLng = new google.maps.LatLng(43.616354, 7.055222);
+
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+  }
+
+
+
+  getIndications(){
+    this.indicationService.getIndications(this.game['name']).subscribe(res => {
+      console.log(res.valueOf());
+      this.listIndications = [];
+      for (var i = 0; i < res['indications'].length; i++) {
+        this.listIndications.push({message: res['indications'][i].message});
+      }
+      this.game = res['game'];
+    });
+  }
 
   getNewIndications() {
     let observable = new Observable(observer => {
@@ -82,7 +115,7 @@ export class MapPage {
           text: 'Envoyer',
           handler: data => {
             this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
-              this.socket.emit('indicateClue', {game:res["game"]["name"]});
+              this.socket.emit('indicateClue', {game:res["game"]});
             });
           }
         }
@@ -93,3 +126,4 @@ export class MapPage {
 
 
 }
+

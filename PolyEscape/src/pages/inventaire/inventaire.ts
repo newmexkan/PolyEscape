@@ -37,7 +37,6 @@ export class InventairePage {
     this.game = navParams.get('game');
 
     this.questions = this.game.scenario.questions;
-
     this.inventoryService.getInventory(this.game.name).subscribe(res => {
       this.listItems = [];
       for (var i = 0; i < res['inventory'].length; i++) {

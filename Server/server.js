@@ -204,11 +204,21 @@ io.on('connection', function(client) {
 
         let currentGame = gameList.get(data.game.toLowerCase());
 
-        if(currentGame.acceptsPlayerNamed(data.user)){
+        if(currentGame.hasPlayerNamed(data.user)){
+            client.emit('notification', 'Ce nom existe déjà. Veuillez en choisir un autre');
+        }
+
+        else if(currentGame.acceptsPlayerNamed(data.user)){
             currentGame.addPlayer(data.user);
 
             client.join(currentGame.getName());
+            client.emit('join_success', {game: currentGame, pseudo: data.user});
+
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
+        }
+        else{
+            client.emit('notification', 'La partie ne peut pas accueillir plus de joueurs');
+
         }
     });
 

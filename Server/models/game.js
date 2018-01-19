@@ -34,7 +34,7 @@ module.exports = class Game {
     }
 
     acceptsPlayerNamed(name){
-        return (this.state === GameState.WAITING_PLAYERS && (this.players.length <= this.scenario["nbPlayers"]) && !this.hasPlayerNamed(name));
+        return (this.state === GameState.WAITING_PLAYERS && (this.players.length < this.scenario["nbPlayers"]) && !this.hasPlayerNamed(name));
     }
 
     getScenario(){
