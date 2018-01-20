@@ -9,6 +9,7 @@ import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
 import { HomePage} from "../home/home";
 import { NativeAudio } from '@ionic-native/native-audio';
+import { Events } from 'ionic-angular';
 
 /**
  * Generated class for the GamePage tabs.
@@ -23,6 +24,9 @@ import { NativeAudio } from '@ionic-native/native-audio';
   templateUrl: 'game.html'
 })
 export class GamePage {
+
+  inventoryCount =0;
+
   mapPage = MapPage;
   scenarioPage = ScenarioPage;
   inventairePage = InventairePage;
@@ -37,9 +41,8 @@ export class GamePage {
   @ViewChild(TimerComponent) timer: TimerComponent;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio,public events: Events) {
     this.game = navParams.get('game');
-    console.log(this.game["scenario"]["mission"]);
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
     this.players.push(this.game["chief"]);
@@ -49,6 +52,10 @@ export class GamePage {
 
     this.getNotifications().subscribe(data => {
       this.notify(data["message"]);
+
+      if(data["subject"]==="inventory")
+        this.inventoryCount++;
+
     });
 
     this.getEndOfGame().subscribe(data => {

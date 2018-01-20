@@ -248,6 +248,7 @@ io.on('connection', function(client) {
 
         if(currentGame.isRunning()) {
             io.to(currentGame.getName()).emit('item_added', {game: currentGame});
+            client.broadcast.to(currentGame.getName()).emit('notification', {subject:"inventory", message: "Un nouvel item a été trouvé"});
 
             if(currentGame.inventory.length === currentGame.missions.length)
                 io.to(currentGame.getName()).emit('end_of_game', {win: true, message: "Vous avez résolu toutes les missions dans le temps imparti !"});
@@ -261,7 +262,7 @@ io.on('connection', function(client) {
 
         io.to(gameRoom).emit('indication_added', {game: currentGame});
 
-        client.broadcast.to(gameRoom).emit('notification', {message:"Votre équipe a ajouté une identification à la carte"});
+        client.broadcast.to(gameRoom).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
         client.emit('notification', {message:"L'indentification a bien été partagée"});
     });
 
@@ -296,7 +297,7 @@ io.on('connection', function(client) {
     });
 
     function timeHalf(gameName){
-        io.to(gameName).emit('notification', {message:"Vous êtes à la moitié du temps imparti !"});
+        io.to(gameName).emit('notification', {subject:"time", message:"Vous êtes à la moitié du temps imparti !"});
     }
 
     function timeOver(gameName){
