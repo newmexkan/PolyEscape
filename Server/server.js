@@ -19,6 +19,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
+app.use(express.static('media'));
 
 const http = require('http').Server(app);
 const server = app.listen(process.env.PORT || 8080);
@@ -108,7 +109,7 @@ app.get('/addItem/:game/:item', function(req, res){
         const currentGame = gameList.get(gameName);
 
         if(currentGame.isRunning()) {
-            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: "assets/imgs/"+ req.params.item.valueOf() +".jpg", quantity: 1});
+            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: "assets/imgs/items/"+ req.params.item.valueOf() +".jpg", quantity: 1});
             res.send({
                 passed: true,
                 game: currentGame,
