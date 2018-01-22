@@ -84,4 +84,5 @@
     <plugin name="phonegap-plugin-barcodescanner" spec="^7.0.2" />
     <engine name="android" spec="~7.0.0" />
     <plugin name="cordova-plugin-insomnia" spec="^4.3.0" />
+    <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
 </widget>

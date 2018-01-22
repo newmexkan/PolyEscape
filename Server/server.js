@@ -19,6 +19,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
+app.use(express.static('media'));
 
 const http = require('http').Server(app);
 const server = app.listen(process.env.PORT || 8080);
@@ -108,7 +109,7 @@ app.get('/addItem/:game/:item', function(req, res){
         const currentGame = gameList.get(gameName);
 
         if(currentGame.isRunning()) {
-            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: "assets/imgs/"+ req.params.item.valueOf() +".jpg", quantity: 1});
+            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: "assets/imgs/items/"+ req.params.item.valueOf() +".jpg", quantity: 1});
             res.send({
                 passed: true,
                 game: currentGame,
@@ -225,7 +226,7 @@ io.on('connection', function(client) {
         let currentGame = gameList.get(data.game.toLowerCase());
 
         if(currentGame.hasPlayerNamed(data.user)){
-            client.emit('notification', 'Ce nom existe déjà. Veuillez en choisir un autre');
+            client.emit('notification', {message:'Ce nom existe déjà. Veuillez en choisir un autre'});
         }
 
         else if(currentGame.acceptsPlayerNamed(data.user)){
@@ -237,8 +238,7 @@ io.on('connection', function(client) {
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
         }
         else{
-            client.emit('notification', 'La partie ne peut pas accueillir plus de joueurs');
-
+            client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
         }
     });
 
@@ -248,6 +248,7 @@ io.on('connection', function(client) {
 
         if(currentGame.isRunning()) {
             io.to(currentGame.getName()).emit('item_added', {game: currentGame});
+            client.broadcast.to(currentGame.getName()).emit('notification', {subject:"inventory", message: "Un nouvel item a été trouvé"});
 
             if(currentGame.inventory.length === currentGame.missions.length)
                 io.to(currentGame.getName()).emit('end_of_game', {win: true, message: "Vous avez résolu toutes les missions dans le temps imparti !"});
@@ -261,8 +262,8 @@ io.on('connection', function(client) {
 
         io.to(gameRoom).emit('indication_added', {game: currentGame});
 
-        client.broadcast.to(gameRoom).emit('notification', "Votre équipe a ajouté une identification à la carte");
-        client.emit('notification', "L'indentification a bien été partagée");
+        client.broadcast.to(gameRoom).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
+        client.emit('notification', {message:"L'indentification a bien été partagée"});
     });
 
 
@@ -296,7 +297,7 @@ io.on('connection', function(client) {
     });
 
     function timeHalf(gameName){
-        io.to(gameName).emit('notification', "Vous êtes à la moitié du temps imparti !");
+        io.to(gameName).emit('notification', {subject:"time", message:"Vous êtes à la moitié du temps imparti !"});
     }
 
     function timeOver(gameName){

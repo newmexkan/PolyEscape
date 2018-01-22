@@ -23,7 +23,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,private http: Http, private socket:Socket, private toastCtrl: ToastController) {
 
     this.getNotifications().subscribe(data => {
-      this.notify(data.valueOf());
+      this.notify(data["message"]);
     });
 
     this.getJoinSuccess().subscribe(data => {

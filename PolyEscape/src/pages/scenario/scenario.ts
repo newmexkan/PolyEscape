@@ -19,7 +19,6 @@ export class ScenarioPage {
   private platform: Platform;
   game;
   user;
-  pathPhoto;
 
 
 
@@ -27,16 +26,6 @@ export class ScenarioPage {
     this.platform = platform;
     this.game = navParams.get('game');
     this.user = navParams.get('user');
-    this.pathPhoto = "assets/imgs/";
-
-    /*
-    for (let i = 0; i < this.game.missions.length; i++) {
-      if (this.game.missions[i].player == this.user) {
-        this.pathPhoto = "assets/imgs/"+this.game.missions[i].mission.item+ ".jpg";
-      }
-    }
-*/
-
     }
 
 

@@ -42,7 +42,6 @@ export class SelectScenarioPage {
   create() {
     this.scenarioService.getAllScenarios().subscribe(res => {
 
-      console.log("In Create");
       var keys = Object.keys(res['scenarios']);
       for (var i = 0; i < keys.length; ++i) {
         var missions: any;
@@ -54,13 +53,14 @@ export class SelectScenarioPage {
             item: res['scenarios'][keys[i]].missions[j].item
           });
         }
-        // console.log(missions);
+
         var elmt = {
           id: res['scenarios'][i].id,
           name: res['scenarios'][i].name,
           nbPlayers: res['scenarios'][i].nbPlayers,
           timeInMinuts: res['scenarios'][i].timeInMinuts,
           summary: res['scenarios'][i].summary,
+          image: res['scenarios'][i].image,
           missions: missions
         };
         this.listeScenarios.push(elmt);

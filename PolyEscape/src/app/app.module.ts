@@ -37,6 +37,7 @@ import {GamePageModule} from "../pages/game/game.module";
 import { IndicationsProvider } from '../providers/indications/indications';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GameProvider } from '../providers/game/game';
+import {NativeAudio} from "@ionic-native/native-audio";
 
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -86,6 +87,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     ScenarioServiceProvider,
     IndicationsProvider,
     Geolocation,
+    NativeAudio,
     GameProvider
   ]
 })

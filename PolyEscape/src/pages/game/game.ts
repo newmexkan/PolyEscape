@@ -8,6 +8,8 @@ import {TimerComponent} from "../../components/timer/timer";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
 import { HomePage} from "../home/home";
+import { NativeAudio } from '@ionic-native/native-audio';
+import { Events } from 'ionic-angular';
 
 /**
  * Generated class for the GamePage tabs.
@@ -22,6 +24,9 @@ import { HomePage} from "../home/home";
   templateUrl: 'game.html'
 })
 export class GamePage {
+
+  inventoryCount =0;
+
   mapPage = MapPage;
   scenarioPage = ScenarioPage;
   inventairePage = InventairePage;
@@ -36,7 +41,7 @@ export class GamePage {
   @ViewChild(TimerComponent) timer: TimerComponent;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio,public events: Events) {
     this.game = navParams.get('game');
     console.log(this.game["scenario"]["mission"]);
     this.user = navParams.get('user');
@@ -48,11 +53,17 @@ export class GamePage {
 
     this.getNotifications().subscribe(data => {
       this.notify(data["message"]);
+
+      if(data["subject"]==="inventory")
+        this.inventoryCount++;
+
     });
 
     this.getEndOfGame().subscribe(data => {
       this.navCtrl.push('ResultPage',data);
     });
+
+    this.nativeAudio.preloadSimple('light', 'assets/audio/light.mp3');
 
     this.getHelpRequest().subscribe(data => {
       let alert = this.alertCtrl.create({
@@ -120,12 +131,14 @@ export class GamePage {
   }
 
   notify(message) {
+    this.nativeAudio.play('light');
     let toast = this.toastCtrl.create({
       message: message,
       position: 'top',
       duration: 3000
     });
     toast.present();
+
   }
 
   leave(){

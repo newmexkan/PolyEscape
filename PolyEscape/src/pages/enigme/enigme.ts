@@ -26,6 +26,8 @@ export class EnigmePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private inventoryService: InventoryProvider, private socket: Socket) {
     this.questions = navParams.get('questions');
+    console.log("questions");
+    console.log(this.questions);
     this.item = navParams.get('item');
     this.game = navParams.get('game');
     this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
@@ -33,9 +35,6 @@ export class EnigmePage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EnigmePage');
-  }
 
   winAlert() {
     let alertWin = this.alertCtrl.create({
