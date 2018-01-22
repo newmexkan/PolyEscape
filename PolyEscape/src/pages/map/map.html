@@ -37,8 +37,10 @@
 
 <ion-content class="no-scroll">
 
-  <ion-fab>
-    <button ion-fab color="primary" (click)="showPrompt()">+</button>
+  <ion-fab bottom left>
+    <button (click)="showPrompt()" ion-fab color="light">
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-fab>
 
   <div #map id="map"></div>

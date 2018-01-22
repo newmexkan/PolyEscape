@@ -28,6 +28,7 @@ export class MapPage {
 
   @ViewChild('map') mapElement: ElementRef;
 
+
   private map: any;
   private google: any;
 
@@ -38,10 +39,11 @@ export class MapPage {
 
   private userLat;
   private userLong;
-  private userMarker;
+  private userMarker = null;
 
 
   constructor(public platform: Platform, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private geolocation: Geolocation) {
+
 
     this.game = navParams.get('game');
 
@@ -63,7 +65,6 @@ export class MapPage {
       this.userLat = resp.coords.latitude;
       this.userLong = resp.coords.longitude;
       this.loadMap();
-      this.changeUserMarkerLocation()
       this.getExistingIndications();
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -75,17 +76,19 @@ export class MapPage {
 
     let mapOptions = {
       center: latLng,
-      zoom: 18,
-      zoomControl: false,
+      zoom: 17,
+      zoomControl: true,
       scaleControl: false,
       scrollwheel: false,
-      mapTypeId: 'terrain',
-      disableDoubleClickZoom: true
+      mapTypeId: 'satellite',
+      disableDoubleClickZoom: true,
+      tilt: 0,
+      disableDefaultUI: true
     };
 
-
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    this.map.setTilt(45);
+
+    //this.changeUserMarkerLocation();
 
   }
 
@@ -104,9 +107,11 @@ export class MapPage {
     if(this.userMarker == null){
       this.userMarker = new google.maps.Marker(
         {position: latlng,
-          title: "Vous",
-          animation: google.maps.Animation.DROP
+          title: "Vous"
         });
+
+      console.log("user added");
+      this.userMarker.setMap(this.map);
     }
     else this.userMarker.setPosition(latlng);
   }
@@ -130,7 +135,7 @@ export class MapPage {
 
   showPrompt() {
     let prompt = this.alertCtrl.create({
-      title: 'Indication',
+      title: 'Ajouter un repère',
       message: "Veuillez ajouter une indication pour votre équipe",
       inputs: [
         {

@@ -25,7 +25,8 @@ import { Events } from 'ionic-angular';
 })
 export class GamePage {
 
-  inventoryCount =0;
+  inventoryCount=0;
+  mapCount=0;
 
   mapPage = MapPage;
   scenarioPage = ScenarioPage;
@@ -43,7 +44,6 @@ export class GamePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio,public events: Events) {
     this.game = navParams.get('game');
-    console.log(this.game["scenario"]["mission"]);
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
     this.players.push(this.game["chief"]);
@@ -56,6 +56,9 @@ export class GamePage {
 
       if(data["subject"]==="inventory")
         this.inventoryCount++;
+
+      if(data["subject"]==="map")
+        this.mapCount++;
 
     });
 
@@ -162,6 +165,14 @@ export class GamePage {
     });
     alert.present();
 
+  }
+
+  resetNotifMap(){
+    this.mapCount = 0;
+  }
+
+  resetNotifInventory(){
+    this.inventoryCount = 0;
   }
 
 
