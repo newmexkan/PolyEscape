@@ -15,12 +15,12 @@
 <ion-content>
 
 
-  <div id="identificationItem" *ngIf="platformHelper.isLocalhost(); else scanBlock">
+  <div id="identificationItem" *ngIf="platformHelper.isLocalhost()">
     <ion-input type="text" placeholder="Numéro de l'item" [(ngModel)]="numero"></ion-input>
     <button ion-button full icon-left (click)="recupererItem()">Récupérer Item </button>
   </div>
 
-  <div id="scanner" #scanBlock >
+  <div id="scanner">
     <!--
     <ion-item>
       <ion-input type="text" placeholder="MY QR Code data" [(ngModel)]="qrData">
@@ -32,7 +32,7 @@
       Create Code
     </button>
     -->
-    <button ion-button full icon-left (click)="scanCode()" color="secondary">
+    <button ion-button full icon-left *ngIf="platformHelper.isRealServer()" (click)="scanCode()" color="secondary">
       <ion-icon name="qr-scanner"></ion-icon>
       Scan Code
     </button>

@@ -38,9 +38,13 @@ import { IndicationsProvider } from '../providers/indications/indications';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GameProvider } from '../providers/game/game';
 import {NativeAudio} from "@ionic-native/native-audio";
+import {PlatformHelper} from "../models/platform-model";
+import {importType} from "@angular/compiler/src/output/output_ast";
+import {Platform} from "ionic-angular";
 
 
-const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
+
+const config: SocketIoConfig = { url: "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com", options: {} };
 
 @NgModule({
   declarations: [
