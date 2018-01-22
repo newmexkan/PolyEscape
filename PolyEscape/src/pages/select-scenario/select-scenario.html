@@ -16,7 +16,7 @@
 
 <ion-content class="card-background-page">
   <ion-card *ngFor="let scenario of listeScenarios" (click)="select(scenario.id)">
-    <img src="assets/imgs/truc1.jpg"/>
+    <img [src]="scenario.image" />
     <div class="card-title">{{scenario.name}}</div>
     <div class="card-players">{{scenario.nbPlayers}}
       <ion-icon name="md-contacts"></ion-icon>

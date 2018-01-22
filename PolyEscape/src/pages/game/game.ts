@@ -8,6 +8,8 @@ import {TimerComponent} from "../../components/timer/timer";
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
 import { HomePage} from "../home/home";
+import { NativeAudio } from '@ionic-native/native-audio';
+import { Events } from 'ionic-angular';
 
 /**
  * Generated class for the GamePage tabs.
@@ -22,6 +24,9 @@ import { HomePage} from "../home/home";
   templateUrl: 'game.html'
 })
 export class GamePage {
+
+  inventoryCount =0;
+
   mapPage = MapPage;
   scenarioPage = ScenarioPage;
   inventairePage = InventairePage;
@@ -36,8 +41,9 @@ export class GamePage {
   @ViewChild(TimerComponent) timer: TimerComponent;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio,public events: Events) {
     this.game = navParams.get('game');
+    console.log(this.game["scenario"]["mission"]);
     this.user = navParams.get('user');
     this.time = this.game["scenario"]["timeInMinuts"]*60;
     this.players.push(this.game["chief"]);
@@ -47,10 +53,46 @@ export class GamePage {
 
     this.getNotifications().subscribe(data => {
       this.notify(data["message"]);
+
+      if(data["subject"]==="inventory")
+        this.inventoryCount++;
+
     });
 
     this.getEndOfGame().subscribe(data => {
       this.navCtrl.push('ResultPage',data);
+    });
+
+    this.nativeAudio.preloadSimple('light', 'assets/audio/light.mp3');
+
+    this.getHelpRequest().subscribe(data => {
+      let alert = this.alertCtrl.create({
+        title: 'Michel a besoin de ton aide !',
+        message: "Quel est votre solution pour l'énigme : 'koman sa va ??'",
+        inputs: [
+          {
+            name: 'answer',
+            placeholder: 'Réponse',
+          }
+        ],
+        buttons: [
+          {
+            text: 'Annuler',
+            role: 'cancel',
+            handler: data => {
+              this.socket.emit('help_request_empty', {game: this.game["name"], user: this.user});
+            }
+          },
+          {
+            text: 'Envoyer',
+            handler: data => {
+              this.socket.emit('help_request_response', {game: this.game["name"], answer: data.answer, user: this.user});
+            }
+          }
+        ]
+      });
+      alert.present();
+
     });
   }
 
@@ -70,6 +112,15 @@ export class GamePage {
     return observable;
   }
 
+  getHelpRequest(){
+    let observable = new Observable(observer => {
+      this.socket.on('help_request', (data) => {
+        observer.next(data);
+      });
+    });
+    return observable;
+  }
+
   getEndOfGame(){
     let observable = new Observable(observer => {
       this.socket.on('end_of_game', (data) => {
@@ -80,12 +131,14 @@ export class GamePage {
   }
 
   notify(message) {
+    this.nativeAudio.play('light');
     let toast = this.toastCtrl.create({
       message: message,
       position: 'top',
       duration: 3000
     });
     toast.present();
+
   }
 
   leave(){

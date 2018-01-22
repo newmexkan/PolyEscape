@@ -11,20 +11,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="card-background-page">
+<ion-content>
 
   <ion-card>
-    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png"/>
+    <img [src]="game['scenario']['image']"/>
     <ion-card-content>
       <ion-card-title>
         {{game["scenario"]["name"]}}
       </ion-card-title>
+      <p>
+        {{game["scenario"]["summary"]}}
+      </p>
     </ion-card-content>
   </ion-card>
-
-  <p>
-    {{game["scenario"]["summary"]}}
-  </p>
 
 
   <ion-list>
@@ -37,8 +36,8 @@
       </ion-thumbnail>
       <h2>{{mission["mission"]["message"]}}</h2>
       <p>{{mission["player"]}}</p>
-      <!--   <ion-buttons item-right name="ios-information-circle-outline"></ion-buttons>
-        <!--<button ion-button clear item-end>View</button>-->
+         <ion-buttons item-right name="ios-information-circle-outline"></ion-buttons>
+         <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>
 

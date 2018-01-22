@@ -26,18 +26,15 @@ export class EnigmePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private inventoryService: InventoryProvider, private socket: Socket) {
     this.questions = navParams.get('questions');
+    console.log("questions");
+    console.log(this.questions);
     this.item = navParams.get('item');
     this.game = navParams.get('game');
     this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
     this.enigme= this.questions[this.positionEnigme];
 
-    console.log(this.game.valueOf());
-
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EnigmePage');
-  }
 
   winAlert() {
     let alertWin = this.alertCtrl.create({
@@ -86,34 +83,28 @@ export class EnigmePage {
 
   }
 
-  sendItem(){
 
-    let prompt = this.alertCtrl.create({
-      title: 'Vous avez trouvé un item !!!',
-      message: this.item,
+  askHelp(){
+    let alert = this.alertCtrl.create({
+      title: 'Besoin d\'aide ?',
+      subTitle: 'Voulez-vous envoyer une demande d\'aide pour cette énigme à vos coéquipiers ?',
       buttons: [
         {
           text: 'Non',
-          handler: data => {
-            console.log('Cancel clicked');
+          role: 'cancel',
+          handler: () => {
           }
         },
         {
-          text: 'Ajouter',
-          handler: data => {
-            this.inventoryService.addItem(this.game.name, this.item).subscribe(data => {
-              if (data.hasOwnProperty('inventory')) {
-                // console.log(data.inventory[-1]);
-                console.log(data.valueOf());
-                console.log(data["game"]);
-                this.socket.emit('addItemToInventory', {game:data["game"], inventory:data["inventory"]});
-              }
-            });
+          text: 'Oui',
+          handler: () => {
+            this.socket.emit('help_request', {game: this.game.name, enigm: "enigm misterieuz tu le c"});
           }
         }
       ]
     });
-    prompt.present();
+
+    alert.present();
   }
 
 

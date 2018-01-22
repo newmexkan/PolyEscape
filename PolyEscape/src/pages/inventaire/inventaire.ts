@@ -42,11 +42,7 @@ export class InventairePage {
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
-    console.log("INV");
-    console.log(this.game);
-    console.log(this.user);
 
-    this.questions = this.game["scenario"]["questions"];
     this.inventoryService.getInventory(this.game.name).subscribe(res => {
       this.listItems = [];
       for (var i = 0; i < res['inventory'].length; i++) {
@@ -66,14 +62,17 @@ export class InventairePage {
 
     let bonItem = false;
 
-    for (let i = 0; i < this.game.missions.length; i++) {
+    console.log(this.game);
+    console.log(this.game.missions);
 
-      // le numéro scanné correspond bien à l'item que le user doit rechercher
+    for (var i = 0; i < this.game.missions.length; i++) {
 
+      // le numéro scanné correspond bien à l'item que le user doit rechercher : pas lisible
+      //TODO : Ecrire une méthode
       if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
         bonItem = true;
         this.bonItemToast();
-        this.navCtrl.push('EnigmePage', {'questions': this.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.numero}});
+        this.navCtrl.push('EnigmePage', {'questions': this.game.missions[i].mission.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.numero}});
         break;
       }
     }
@@ -81,18 +80,6 @@ export class InventairePage {
       this.mauvaisItemAlert();
     }
   }
-
-  /*endOfGame() {
-      this.navCtrl.push('ResultPage', {'win':true});
-  }*/
-
-
-
-  /*checkEndOfGame(){
-    if(this.listItems.length == this.game.missions.length){
-      this.endOfGame();
-    }
-  }*/
 
 
   bonItemToast() {
@@ -182,7 +169,6 @@ export class InventairePage {
   addItem() {
 
   }
-
 
 
 }

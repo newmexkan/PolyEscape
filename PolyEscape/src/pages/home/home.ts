@@ -27,7 +27,7 @@ export class HomePage {
     this.platformHelper = new PlatformHelper(this.plt);
 
     this.getNotifications().subscribe(data => {
-      this.notify(data.valueOf());
+      this.notify(data["message"]);
     });
 
     this.getJoinSuccess().subscribe(data => {

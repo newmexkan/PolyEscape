@@ -29,7 +29,6 @@ export class LobbyPage {
   isChief: boolean;
   scenarioPicked: boolean = false;
   hasEnoughPlayers: boolean = false;
-  selected_scenario = {};
 
   @ViewChild('navbar') navBar: Navbar;
 
@@ -40,17 +39,19 @@ export class LobbyPage {
     this.user = this.navParams.get('currentUser');
     this.isChief = (this.user === this.game["chief"]);
 
-
-    var existingUsers = this.game["players"];
+    let existingUsers = this.game["players"];
     this.nbUsers = existingUsers.length;
 
     for (let i = 0; i < existingUsers.length; i++)
       if (existingUsers[i] !== this.user && existingUsers[i] !== this.game["chief"])
         this.users.push(existingUsers[i]);
 
-    if(this.game.hasOwnProperty("scenario")){
-      this.scenarioPicked = true;
-      this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
+
+    if(this.isChief) {
+      this.getPickScenarioSignal().subscribe(data => {
+        this.scenarioPicked = true;
+        this.game = data["game"];
+      });
     }
 
 
@@ -64,32 +65,14 @@ export class LobbyPage {
         }
       }
 
-      if(this.game.hasOwnProperty("scenario")){
-        this.scenarioPicked = true;
-        this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
-      }
-
-
+      this.hasEnoughPlayers = (this.nbUsers === this.game["scenario"]["nbPlayers"]);
     });
 
     this.getStartSignal().subscribe(data => {
       this.navCtrl.push(this.gamePage, {'game': data["game"], 'user': this.user});
     });
 
-    this.getPickScenarioSignal().subscribe(data => {
-      this.scenarioPicked = true;
-      this.game = data["game"];
 
-
-      /*
-       let toast = this.toastCtrl.create({
-       message: "Le scenario " + data['scenario']['name'] + " a été choisi",
-       position: 'top',
-       duration: 3000
-       });
-       toast.present();
-       */
-    });
 
   }
 
