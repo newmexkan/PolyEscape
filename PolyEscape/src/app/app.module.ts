@@ -44,7 +44,8 @@ import {Platform} from "ionic-angular";
 
 
 
-const config: SocketIoConfig = { url: "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com", options: {} };
+const config: SocketIoConfig = { url: "http://localhost:8080", options: {} };
+//"http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com"
 
 @NgModule({
   declarations: [
