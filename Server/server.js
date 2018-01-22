@@ -318,4 +318,26 @@ io.on('connection', function(client) {
             });
         }
     }
+
+    client.on('help_request', function (data) {
+        let currentGame = gameList.get(data.game.toLowerCase());
+        let enigm = data.enigm;
+
+        client.broadcast.to(currentGame.getName()).emit('help_request', {enigm: enigm});
+        console.log("Help request transmitted")
+    });
+
+    client.on('help_request_empty', function (data) {
+        let currentGame = gameList.get(data.game.toLowerCase());
+        let user = data.user;
+        console.log(user+" n'a rien suggéré");
+    });
+
+    client.on('help_request_response', function (data) {
+        let currentGame = gameList.get(data.game.toLowerCase());
+        let user = data.user;
+        let answer = data.answer
+
+        console.log(user+" a suggéré "+answer);
+    });
 });

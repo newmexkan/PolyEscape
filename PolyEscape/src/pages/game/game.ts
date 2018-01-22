@@ -53,6 +53,36 @@ export class GamePage {
     this.getEndOfGame().subscribe(data => {
       this.navCtrl.push('ResultPage',data);
     });
+
+    this.getHelpRequest().subscribe(data => {
+      let alert = this.alertCtrl.create({
+        title: 'Michel a besoin de ton aide !',
+        message: "Quel est votre solution pour l'énigme : 'koman sa va ??'",
+        inputs: [
+          {
+            name: 'answer',
+            placeholder: 'Réponse',
+          }
+        ],
+        buttons: [
+          {
+            text: 'Annuler',
+            role: 'cancel',
+            handler: data => {
+              this.socket.emit('help_request_empty', {game: this.game["name"], user: this.user});
+            }
+          },
+          {
+            text: 'Envoyer',
+            handler: data => {
+              this.socket.emit('help_request_response', {game: this.game["name"], answer: data.answer, user: this.user});
+            }
+          }
+        ]
+      });
+      alert.present();
+
+    });
   }
 
 
@@ -65,6 +95,15 @@ export class GamePage {
   getNotifications(){
     let observable = new Observable(observer => {
       this.socket.on('notification', (data) => {
+        observer.next(data);
+      });
+    });
+    return observable;
+  }
+
+  getHelpRequest(){
+    let observable = new Observable(observer => {
+      this.socket.on('help_request', (data) => {
         observer.next(data);
       });
     });

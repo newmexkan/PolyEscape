@@ -88,7 +88,7 @@ export class EnigmePage {
   askHelp(){
     let alert = this.alertCtrl.create({
       title: 'Besoin d\'aide ?',
-      subTitle: 'Voulez-vous envoyer une demande d\'aide à vos coéquipiers ?',
+      subTitle: 'Voulez-vous envoyer une demande d\'aide pour cette énigme à vos coéquipiers ?',
       buttons: [
         {
           text: 'Non',
@@ -99,7 +99,7 @@ export class EnigmePage {
         {
           text: 'Oui',
           handler: () => {
-            this.socket.emit('help_request', {game: this.game.name, user: this.game});
+            this.socket.emit('help_request', {game: this.game.name, enigm: "enigm misterieuz tu le c"});
           }
         }
       ]
