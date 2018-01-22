@@ -37,6 +37,7 @@ import {GamePageModule} from "../pages/game/game.module";
 import { IndicationsProvider } from '../providers/indications/indications';
 import { Geolocation } from '@ionic-native/geolocation';
 
+
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({

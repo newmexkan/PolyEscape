@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {Observable} from "rxjs/Observable";
 import {Socket} from 'ng-socket-io';
 import {Http} from "@angular/http";
 import {InventoryProvider} from "../../providers/inventory/inventory";
 import {IndicationsProvider} from "../../providers/indications/indications";
+import {PlatformHelper} from "../../models/platform-model";
 
 /**
  * Generated class for the InventairePage page.
@@ -20,9 +21,13 @@ import {IndicationsProvider} from "../../providers/indications/indications";
   templateUrl: 'inventaire.html',
 })
 export class InventairePage {
+
+  platformHelper;
+
   qrData = null;
   createdCode = null;
   scannedCode = null;
+
   numero = null;
   user;
   game;
@@ -31,7 +36,9 @@ export class InventairePage {
 
   listItems: Array<{ name: string, pathImg: string, quantity: number }>;
 
-  constructor(private indicationService: IndicationsProvider,public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private barcodeScanner: BarcodeScanner) {
+  constructor(public plt: Platform,private indicationService: IndicationsProvider,public toastCtrl: ToastController, private inventoryService: InventoryProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private barcodeScanner: BarcodeScanner) {
+
+    this.platformHelper = new PlatformHelper(this.plt);
 
     this.user = navParams.get('user');
     this.game = navParams.get('game');
@@ -156,10 +163,11 @@ export class InventairePage {
 
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
-      this.scannedCode = barcodeData.text;
+      this.numero = barcodeData.text;
     }, (err) => {
       console.log('Error: ', err);
     });
+    this.recupererItem();
   }
 
   getNewItems() {
