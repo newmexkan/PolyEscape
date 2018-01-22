@@ -16,25 +16,26 @@ export class IndicationsProvider {
   url;
   platformHelper;
 
-  constructor(public http: HttpClient,public plt: Platform) {
+  constructor(public http: HttpClient, public plt: Platform) {
 
     this.platformHelper = new PlatformHelper(this.plt);
 
     this.url = this.platformHelper.getUrl();
 
 
-    console.log("platform : " +this.plt.platforms());
-    console.log("url : " +this.url);
+    console.log("platform : " + this.plt.platforms());
+    console.log("url : " + this.url);
   }
 
 
   addIndications(gameName, indication) {
-    return this.http.get(this.url+"/addIndication/"+gameName+"/"+indication);
+    return this.http.get(this.url + "/addIndication/" + gameName + "/" + indication);
   }
 
   getIndications(gameName) {
-    return this.http.get(this.url+"/getIndications/"+gameName);
+    return this.http.get(this.url + "/getIndications/" + gameName);
   }
+}
 
   /*
   addIndications(gameName, indication) {
@@ -44,5 +45,5 @@ export class IndicationsProvider {
   getIndications(gameName) {
     return this.http.get("http://" + "localhost" + ":8080/getIndications/"+gameName);
   }
-*/
+
 }
