@@ -200,6 +200,8 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         client.join(currentGame.getName());
+
+        console.log("Partie "+data.game+" créee");
     });
 
     client.on('startGame', function(data) {
@@ -215,6 +217,8 @@ io.on('connection', function(client) {
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
             setTimeout(timeHalf, ((currentGame.getTimeInMinuts()*60+2)*1000)/2, currentGame.getName());
+
+            console.log("Partie "+data.game+" demarrée");
         }
 
     });
