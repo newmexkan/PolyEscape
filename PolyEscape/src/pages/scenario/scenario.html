@@ -28,22 +28,29 @@
 
   <ion-list>
     <ion-list-header text-center>
-      Missions
+      Mes missions
     </ion-list-header>
-    <ion-item *ngFor="let mission of game['missions']">
-      <ion-thumbnail item-start>
-        <img [src]=mission.mission.img>
-      </ion-thumbnail>
-      <h2>{{mission["mission"]["message"]}}</h2>
-      <p>{{mission["player"]}}</p>
-         <ion-buttons item-right name="ios-information-circle-outline"></ion-buttons>
-         <button ion-button clear item-end>View</button>
+    <ion-item *ngFor="let mission of userMissions">
+        <ion-avatar item-start>
+          <img [src]=mission.mission.img>
+        </ion-avatar>
+        <h2>{{mission["mission"]["message"]}}</h2>
+        <p><button (click)="indice()" ion-button clear item-end>Obtenir un indice</button></p>
     </ion-item>
   </ion-list>
 
-  <button ion-button icon-only (click)="indice()">
-    <ion-icon name="md-help" color="dark"></ion-icon>
-  </button>
+  <ion-list>
+    <ion-list-header text-center>
+      Missions des autres joueurs
+    </ion-list-header>
+    <ion-item *ngFor="let mission of othersMissions">
+        <ion-avatar item-start>
+          <img [src]=mission.mission.img>
+        </ion-avatar>
+        <h2>{{mission["mission"]["message"]}}</h2>
+        <p>{{mission["player"]}}</p>
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>

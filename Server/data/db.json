@@ -23,7 +23,8 @@
               ],
               "reponse": "8 848"
             }
-          ]
+          ],
+          "skill": "Électricité"
         },
         {
           "message": "Trouver le programme C",
@@ -40,7 +41,8 @@
               ],
               "reponse": "Des finlandais"
             }
-          ]
+          ],
+          "skill": "Programmation"
         },
         {
           "message": "Trouver des capteurs",
@@ -57,8 +59,13 @@
               ],
               "reponse": "La Loire"
             }
-          ]
+          ],
+          "skill": "Électricité"
         }
+      ],
+      "skills": [
+        "Électricité",
+        "Programmation"
       ]
     },
     {
@@ -84,7 +91,8 @@
               ],
               "reponse": "8 848"
             }
-          ]
+          ],
+          "skill": "Électricité"
         },
         {
           "message": "Trouver le programme C",
@@ -101,7 +109,8 @@
               ],
               "reponse": "Des finlandais"
             }
-          ]
+          ],
+          "skill": "Programmation"
         },
         {
           "message": "Trouver des capteurs",
@@ -118,8 +127,13 @@
               ],
               "reponse": "La Loire"
             }
-          ]
+          ],
+          "skill": "Électricité"
         }
+      ],
+      "skills": [
+        "Électricité",
+        "Programmation"
       ]
     }
   ]

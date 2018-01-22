@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Platform} from "ionic-angular";
+import {PlatformHelper} from "../../models/platform-model";
 
 /*
   Generated class for the InventoryProvider provider.
@@ -10,15 +12,27 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class InventoryProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello InventoryProvider Provider');
+
+  url;
+  platformHelper;
+
+  constructor(public http: HttpClient, public plt: Platform) {
+
+    this.platformHelper = new PlatformHelper(this.plt);
+
+    this.url = this.platformHelper.getUrl();
+
+
+    console.log("platform : " + this.plt.platforms());
+    console.log("url : " + this.url);
   }
 
   addItem(game, code) {
-    return this.http.get("http://" + "localhost" + ":8080/addItem/"+game+"/"+code);
+    return this.http.get(this.url+"/addItem/" + game + "/" + code);
   }
 
-  getInventory(game){
-    return this.http.get("http://" + "localhost" + ":8080/getInventory/"+game);
+  getInventory(game) {
+    return this.http.get(this.url+"/getInventory/" + game);
   }
 }
+

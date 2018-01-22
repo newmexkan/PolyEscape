@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.polyescape806769" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.polyescape806769" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PolyEsc</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="http://*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -39,6 +40,9 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <custom-config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </custom-config-file>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -84,5 +88,8 @@
     <plugin name="phonegap-plugin-barcodescanner" spec="^7.0.2" />
     <engine name="android" spec="~7.0.0" />
     <plugin name="cordova-plugin-insomnia" spec="^4.3.0" />
+    <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
+    <plugin name="cordova-custom-config" spec="^5.0.2" />
+    <engine name="android" spec="^7.0.0" />
     <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
 </widget>

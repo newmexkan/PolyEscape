@@ -5,7 +5,7 @@
 
 module.exports = class Scenario {
 
-    constructor(id, name, summary, nbPl, time, missions,skills) {
+    constructor(id, name, summary, nbPl, time, missions) {
         this.id = id;
         this.name = name;
         this.summary = summary;

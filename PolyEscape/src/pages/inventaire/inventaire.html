@@ -13,46 +13,33 @@
 
 
 <ion-content>
-  <div id="scanner" >
+
+
+  <div id="identificationItem" *ngIf="platformHelper.isLocalhost()">
+    <ion-input type="text" placeholder="Numéro de l'item" [(ngModel)]="numero"></ion-input>
+    <button ion-button full icon-left (click)="recupererItem()">Récupérer Item </button>
+  </div>
+
+  <div id="scanner">
+    <!--
     <ion-item>
       <ion-input type="text" placeholder="MY QR Code data" [(ngModel)]="qrData">
       </ion-input>
     </ion-item>
+
     <button ion-button full icon-left (click)="createCode()">
       <ion-icon name="barcode"></ion-icon>
       Create Code
     </button>
-    <button ion-button full icon-left (click)="scanCode()" color="secondary">
+    -->
+    <button ion-button full icon-left *ngIf="platformHelper.isRealServer()" (click)="scanCode()" color="secondary">
       <ion-icon name="qr-scanner"></ion-icon>
       Scan Code
     </button>
 
-  <!--<ion-grid>-->
-  <!--  <ion-content class="card-background-page" >    DEPLACE VERS LE BAS
-    <ion-row>
-      <ion-col col-4 col-sm *ngFor="let item of listItems">
-        <ion-card>
-          <img  src={{item.pathImg}}/>
-          <div class="card-title">{{item.name}}</div>
-          <div class="card-subtitle">{{item.quantity}}</div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    </ion-content>
--->
-  <!--</ion-grid>-->
+  </div> <!-- div qui doit être effacé si commentaire en dessous enlevé -->
 
-
-  <!--<ion-content class="card-background-page">-->
-    <!--<ion-card *ngFor="let item of listItems">-->
-      <!--<img src={{item.pathImg}}/>-->
-      <!--<div class="card-title">{{item.name}}</div>-->
-      <!--<div class="card-subtitle">{{item.quantity}}</div>-->
-    <!--</ion-card>-->
-  <!--</ion-content>-->
-
-
-
+<!--
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
     <ion-card-content>
@@ -66,11 +53,9 @@
       </ion-card-content>
     </ion-card>
   </div>
+  -->
 
-  <div id="identificationItem">
-    <ion-input type="text" placeholder="Numéro de l'item" [(ngModel)]="numero"></ion-input>
-      <button ion-button full icon-left (click)="recupererItem()">Récupérer Item </button>
-  </div>
+
 
   <ion-content class="card-background-page" >
     <ion-row>

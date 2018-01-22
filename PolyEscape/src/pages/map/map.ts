@@ -28,60 +28,99 @@ export class MapPage {
 
   @ViewChild('map') mapElement: ElementRef;
 
+
   private map: any;
   private google: any;
 
 
-  listIndications;
+  listIndications = [];
 
   game;
 
+  private userLat;
+  private userLong;
+  private userMarker = null;
 
-  constructor(public platform: Platform, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+
+  constructor(public platform: Platform, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private geolocation: Geolocation) {
+
 
     this.game = navParams.get('game');
 
-    this.getIndications();
-
-
     this.getNewIndications().subscribe(res => {
-      this.listIndications = [];
+      this.addMarkersToMap(res["markers"]);
+    });
 
-      for (var i = 0; i < res['game']['indications'].length; i++) {
-        this.listIndications.push({message: res['game']['indications'][i].message});
-      }
-      this.game = res['game'];
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((data) => {
+      this.userLat = data.coords.latitude;
+      this.userLong = data.coords.longitude;
+      this.changeUserMarkerLocation()
     });
   }
 
 
   ionViewDidLoad(){
-    this.loadMap();
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.userLat = resp.coords.latitude;
+      this.userLong = resp.coords.longitude;
+      this.loadMap();
+      this.getExistingIndications();
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   loadMap(){
-    let latLng = new google.maps.LatLng(43.616354, 7.055222);
+    let latLng = new google.maps.LatLng(this.userLat, this.userLong);
 
     let mapOptions = {
       center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+      zoom: 17,
+      zoomControl: true,
+      scaleControl: false,
+      scrollwheel: false,
+      mapTypeId: 'satellite',
+      disableDoubleClickZoom: true,
+      tilt: 0,
+      disableDefaultUI: true
+    };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+    //this.changeUserMarkerLocation();
+
+  }
+
+  addMarkersToMap(markers) {
+    for(let marker of markers) {
+      const position = new google.maps.LatLng(this.userLat, this.userLong);
+      const markerObj = new google.maps.Marker({position: position, title: marker.title});
+      this.listIndications.push(markerObj);
+      markerObj.setMap(this.map);
+    }
+  }
+
+  private changeUserMarkerLocation(){
+    let latlng = new google.maps.LatLng(this.userLat, this.userLong);
+
+    if(this.userMarker == null){
+      this.userMarker = new google.maps.Marker(
+        {position: latlng,
+          title: "Vous"
+        });
+
+      console.log("user added");
+      this.userMarker.setMap(this.map);
+    }
+    else this.userMarker.setPosition(latlng);
   }
 
 
 
-  getIndications(){
+  getExistingIndications(){
     this.indicationService.getIndications(this.game['name']).subscribe(res => {
-      console.log(res.valueOf());
-      this.listIndications = [];
-      for (var i = 0; i < res['indications'].length; i++) {
-        this.listIndications.push({message: res['indications'][i].message});
-      }
-      this.game = res['game'];
+      this.addMarkersToMap(res["indications"]);
     });
   }
 
@@ -96,7 +135,7 @@ export class MapPage {
 
   showPrompt() {
     let prompt = this.alertCtrl.create({
-      title: 'Indication',
+      title: 'Ajouter un repère',
       message: "Veuillez ajouter une indication pour votre équipe",
       inputs: [
         {
@@ -114,9 +153,8 @@ export class MapPage {
         {
           text: 'Envoyer',
           handler: data => {
-            this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
-              this.socket.emit('indicateClue', {game:res["game"]});
-            });
+            let location = {latitude:43.616354,longitude:7.055222,title:data.message};
+            this.socket.emit('indicateClue', {gameName:this.game["name"],location:location});
           }
         }
       ]

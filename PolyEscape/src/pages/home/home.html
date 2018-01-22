@@ -1,14 +1,15 @@
 <ion-content padding class="getstart">
-
+{{this.platformHelper.getUrl()}}
   <div text-center>
     <ion-img class="logo" src="assets/imgs/labyrinth.png"></ion-img>
   </div>
-  <div class="ctc">
+
     <p>
-      <button ion-button color="primary" class="yo" full (click)="askNameNewGame()">Démarrer une partie</button>
+      <button ion-button block color="primary" class="yo" (click)="askNameNewGame()">Démarrer une partie</button>
     </p>
     <p>
-      <button ion-button color="primary" full class="yo" (click)="askNameExistingGame()">Rejoindre une partie</button>
+      <button ion-button block color="secondary" class="yo" (click)="askNameExistingGame()">Rejoindre une partie</button>
     </p>
-  </div>
+
+  <ion-img class="footer" src="assets/imgs/home_footer.png"></ion-img>
 </ion-content>

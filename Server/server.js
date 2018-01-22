@@ -178,7 +178,7 @@ app.get('/getSkills/:gameName', function(req, res){
 
         res.send({
             passed: true,
-            skills: currentGame["scenario"]["skills"]
+            skills: currentGame["skills"]['list']
         });
     }
     else {
@@ -191,6 +191,7 @@ app.get('/getSkills/:gameName', function(req, res){
 
 
 
+
 /**
  * Partie Sockets
  */
@@ -200,6 +201,8 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         client.join(currentGame.getName());
+
+        console.log("Partie "+data.game+" créee");
     });
 
     client.on('startGame', function(data) {
@@ -215,6 +218,8 @@ io.on('connection', function(client) {
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
             setTimeout(timeHalf, ((currentGame.getTimeInMinuts()*60+2)*1000)/2, currentGame.getName());
+
+            console.log("Partie "+data.game+" demarrée");
         }
 
     });
@@ -222,6 +227,8 @@ io.on('connection', function(client) {
 
 
     client.on('joinGame', function(data) {
+
+        console.log(data.user+" tente de rejoindre la partie "+data.game);
 
         let currentGame = gameList.get(data.game.toLowerCase());
 
@@ -236,11 +243,14 @@ io.on('connection', function(client) {
             client.emit('join_success', {game: currentGame, pseudo: data.user});
 
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
+
+            console.log(data.user+" a rejoint la partie "+data.game);
         }
         else{
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
         }
     });
+
 
 
     client.on('addItemToInventory', function(data) {
@@ -256,14 +266,20 @@ io.on('connection', function(client) {
     });
 
     client.on('indicateClue', function(data) {
-        console.log(data);
-        let currentGame = gameList.get(data.game.toLowerCase());
-        let gameRoom = currentGame.getName();
+        let gameName = data["gameName"].toLowerCase();
 
-        io.to(gameRoom).emit('indication_added', {game: currentGame});
+        if(gameList.hasGameNamed(gameName)){
+            const currentGame = gameList.get(gameName);
 
-        client.broadcast.to(gameRoom).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
-        client.emit('notification', {message:"L'indentification a bien été partagée"});
+            currentGame.indications.push(data["location"]);
+
+            io.to(currentGame.getName()).emit('indication_added', {markers: currentGame.indications});
+
+            client.broadcast.to(currentGame.getName()).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
+            client.emit('notification', {message:"L'indentification a bien été partagée"});
+        }
+
+
     });
 
 
@@ -283,6 +299,17 @@ io.on('connection', function(client) {
 
     });
 
+    client.on('pickSkill', function(data) {
+        let currentGame = gameList.get(data.game.toLowerCase());
+        currentGame.pickSkill(data.skillName, data.user);
+        io.emit('skill_chosen', {skills: currentGame.skills.list, message:"Un joueur a choisi sa spécialité"});
+    });
+
+    client.on('rejectSkill', function(data) {
+        let currentGame = gameList.get(data.game.toLowerCase());
+        currentGame.rejectSkill(data.skillName, data.user);
+        io.emit('skill_rejected', {skills: currentGame.skills.list, message:"Un joueur a rejeté sa spécialité"});
+    });
 
     client.on('pickScenario', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
@@ -293,6 +320,7 @@ io.on('connection', function(client) {
             .value();
 
         currentGame.setScenario(selectedScenario);
+        currentGame.setSkills(currentGame.scenario);
         io.to(currentGame.getName()).emit('scenario_pick', {id: data.id , game: currentGame});
     });
 

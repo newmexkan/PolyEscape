@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {NavController, AlertController, IonicPage, ToastController} from 'ionic-angular';
+import {NavController, AlertController, IonicPage, ToastController, Platform} from 'ionic-angular';
 import { OptionsPage } from '../options/options';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { LobbyPage } from '../lobby/lobby';
 import { Socket } from 'ng-socket-io';
 import {Observable} from "rxjs";
+import {PlatformHelper} from "../../models/platform-model";
 
 
 @IonicPage({
@@ -19,8 +20,11 @@ import {Observable} from "rxjs";
 export class HomePage {
   optionsPage = OptionsPage;
   lobbyPage = LobbyPage;
+  platformHelper;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private http: Http, private socket:Socket, private toastCtrl: ToastController) {
+  constructor(public plt: Platform,public navCtrl: NavController, public alertCtrl: AlertController,private http: Http, private socket:Socket, private toastCtrl: ToastController) {
+
+    this.platformHelper = new PlatformHelper(this.plt);
 
     this.getNotifications().subscribe(data => {
       this.notify(data["message"]);
@@ -55,7 +59,8 @@ export class HomePage {
         {
           text: 'Créer',
           handler: data => {
-            this.http.get('http://localhost:8080/addGame/'+ data.nom+'/'+data.pseudo).pipe(
+            console.log("PLATFORM HELP REQUEST : "+ this.platformHelper.getUrl()+'/addGame/'+ data.nom+'/'+data.pseudo );
+            this.http.get(this.platformHelper.getUrl()+'/addGame/'+ data.nom+'/'+data.pseudo).pipe(
               map(res => res.json())
             ).subscribe(response => {
               if (response.hasOwnProperty('game')) {
@@ -99,8 +104,8 @@ export class HomePage {
         {
           text: 'Rejoindre',
           handler: data => {
-
-            this.http.get('http://localhost:8080/getGame/'+ data.nom).pipe(
+            console.log("PLATFORM HELP REQUEST : "+ this.platformHelper.getUrl()+'/getGame/'+ data.nom);
+            this.http.get(this.platformHelper.getUrl()+'/getGame/'+ data.nom).pipe(
               map(res => res.json())
             ).subscribe(response => {
 
