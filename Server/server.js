@@ -178,7 +178,7 @@ app.get('/getSkills/:gameName', function(req, res){
 
         res.send({
             passed: true,
-            skills: currentGame["scenario"]["skills"]
+            skills: currentGame["skills"]['list']
         });
     }
     else {
@@ -188,6 +188,7 @@ app.get('/getSkills/:gameName', function(req, res){
     }
 
 });
+
 
 
 
@@ -293,6 +294,17 @@ io.on('connection', function(client) {
 
     });
 
+    client.on('pickSkill', function(data) {
+        let currentGame = gameList.get(data.game.toLowerCase());
+        currentGame.pickSkill(data.skillName, data.user);
+        io.emit('skill_chosen', {skills: currentGame.skills.list, message:"Un joueur a choisi sa spécialité"});
+    });
+
+    client.on('rejectSkill', function(data) {
+        let currentGame = gameList.get(data.game.toLowerCase());
+        currentGame.rejectSkill(data.skillName, data.user);
+        io.emit('skill_rejected', {skills: currentGame.skills.list, message:"Un joueur a rejeté sa spécialité"});
+    });
 
     client.on('pickScenario', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
@@ -303,6 +315,7 @@ io.on('connection', function(client) {
             .value();
 
         currentGame.setScenario(selectedScenario);
+        currentGame.setSkills(currentGame.scenario);
         io.to(currentGame.getName()).emit('scenario_pick', {id: data.id , game: currentGame});
     });
 
