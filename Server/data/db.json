@@ -71,8 +71,8 @@
     {
       "id": 2,
       "name": "Prise de la Bastille",
-      "nbPlayers": 4,
-      "timeInMinuts": 30,
+      "nbPlayers": 2,
+      "timeInMinuts": 4,
       "image": "assets/imgs/scenarios/zombies/0.jpg",
       "summary": "SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et trouver une issue, vous devez envoyer un petit robot d’exploration.",
       "missions": [
@@ -111,24 +111,6 @@
             }
           ],
           "skill": "Programmation"
-        },
-        {
-          "message": "Trouver des capteurs",
-          "item": 2,
-          "indice": "Les capteurs sont souvent utilisés dans l'Ubiquarium ou les salles E+10?.",
-          "img": "assets/imgs/scenarios/zombies/items/2.jpg",
-          "questions": [
-            {
-              "question": "Quel est le plus long fleuve français ?",
-              "reponses": [
-                "La Loire",
-                "La Seine",
-                "La Garonne"
-              ],
-              "reponse": "La Loire"
-            }
-          ],
-          "skill": "Électricité"
         }
       ],
       "skills": [
