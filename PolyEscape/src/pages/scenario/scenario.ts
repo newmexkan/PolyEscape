@@ -19,6 +19,8 @@ export class ScenarioPage {
   private platform: Platform;
   game;
   user;
+  private userMissions = [];
+  private othersMissions = [];
 
 
 
@@ -26,6 +28,15 @@ export class ScenarioPage {
     this.platform = platform;
     this.game = navParams.get('game');
     this.user = navParams.get('user');
+
+    for(let i=0; i<this.game['missions'].length;i++){
+      if(this.game['missions'][i]['player'] === this.user)
+        this.userMissions.push(this.game['missions'][i]);
+      else  this.othersMissions.push(this.game['missions'][i]);
+    }
+    console.log(this.userMissions);
+    console.log(this.othersMissions);
+
     }
 
 

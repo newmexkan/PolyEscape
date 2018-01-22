@@ -41,16 +41,8 @@ export class MapPage {
 
     this.game = navParams.get('game');
 
-    this.getIndications();
-
-
     this.getNewIndications().subscribe(res => {
-      this.listIndications = [];
-
-      for (var i = 0; i < res['game']['indications'].length; i++) {
-        this.listIndications.push({message: res['game']['indications'][i].message});
-      }
-      this.game = res['game'];
+      this.addMarkersToMap(res);
     });
   }
 
@@ -66,15 +58,24 @@ export class MapPage {
       center: latLng,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+    };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+    let marker = [{latitude:43.616354,longitude:7.055222,title:"Polytech"}];
+    this.addMarkersToMap(marker);
+  }
+
+  addMarkersToMap(markers) {
+    for(let marker of markers) {
+      var position = new google.maps.LatLng(marker.latitude, marker.longitude);
+      var dogwalkMarker = new google.maps.Marker({position: position, title: marker.title});
+      dogwalkMarker.setMap(this.map);
+    }
   }
 
 
-
-  getIndications(){
+  /*getIndications(){
     this.indicationService.getIndications(this.game['name']).subscribe(res => {
       console.log(res.valueOf());
       this.listIndications = [];
@@ -83,7 +84,7 @@ export class MapPage {
       }
       this.game = res['game'];
     });
-  }
+  }*/
 
   getNewIndications() {
     let observable = new Observable(observer => {
@@ -114,9 +115,8 @@ export class MapPage {
         {
           text: 'Envoyer',
           handler: data => {
-            this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
-              this.socket.emit('indicateClue', {game:res["game"]});
-            });
+            let location = {latitude:43.616354,longitude:7.055222,title:data.message};
+            this.socket.emit('indicateClue', {gameName:this.game["name"],location:location});
           }
         }
       ]

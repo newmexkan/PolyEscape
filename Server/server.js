@@ -243,6 +243,7 @@ io.on('connection', function(client) {
     });
 
 
+
     client.on('addItemToInventory', function(data) {
         let currentGame = gameList.get(data.game.name.toLowerCase());
 
@@ -256,13 +257,22 @@ io.on('connection', function(client) {
     });
 
     client.on('indicateClue', function(data) {
-        console.log(data);
-        let currentGame = gameList.get(data.game.toLowerCase());
-        let gameRoom = currentGame.getName();
+        let currentGame = gameList.get(data["gameName"].toLowerCase());
+        let gameName = currentGame.getName();
 
-        io.to(gameRoom).emit('indication_added', {game: currentGame});
+        if(gameList.hasGameNamed(gameName)){
+            const currentGame = gameList.get(gameName);
 
-        client.broadcast.to(gameRoom).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
+            currentGame.indications.push({message: req.params.indication});
+            res.send({
+                passed: true,
+                game: currentGame
+            });
+        }
+
+        io.to(gameName).emit('indication_added', {game: currentGame});
+
+        client.broadcast.to(gameName).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
         client.emit('notification', {message:"L'indentification a bien été partagée"});
     });
 
