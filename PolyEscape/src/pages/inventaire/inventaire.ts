@@ -133,9 +133,9 @@ export class InventairePage {
         {
           text: 'Envoyer',
           handler: data => {
-            this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
+            /*this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
                 this.socket.emit('indicateClue', {game:res["game"]});
-            });
+            });*/
           }
         }
       ]

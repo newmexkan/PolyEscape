@@ -201,6 +201,8 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         client.join(currentGame.getName());
+
+        console.log("Partie "+data.game+" créee");
     });
 
     client.on('startGame', function(data) {
@@ -216,6 +218,8 @@ io.on('connection', function(client) {
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
             setTimeout(timeHalf, ((currentGame.getTimeInMinuts()*60+2)*1000)/2, currentGame.getName());
+
+            console.log("Partie "+data.game+" demarrée");
         }
 
     });
@@ -223,6 +227,8 @@ io.on('connection', function(client) {
 
 
     client.on('joinGame', function(data) {
+
+        console.log(data.user+" tente de rejoindre la partie "+data.game);
 
         let currentGame = gameList.get(data.game.toLowerCase());
 
@@ -237,6 +243,8 @@ io.on('connection', function(client) {
             client.emit('join_success', {game: currentGame, pseudo: data.user});
 
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
+
+            console.log(data.user+" a rejoint la partie "+data.game);
         }
         else{
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
@@ -258,23 +266,20 @@ io.on('connection', function(client) {
     });
 
     client.on('indicateClue', function(data) {
-        let currentGame = gameList.get(data["gameName"].toLowerCase());
-        let gameName = currentGame.getName();
+        let gameName = data["gameName"].toLowerCase();
 
         if(gameList.hasGameNamed(gameName)){
             const currentGame = gameList.get(gameName);
 
-            currentGame.indications.push({message: req.params.indication});
-            res.send({
-                passed: true,
-                game: currentGame
-            });
+            currentGame.indications.push(data["location"]);
+
+            io.to(currentGame.getName()).emit('indication_added', {markers: currentGame.indications});
+
+            client.broadcast.to(currentGame.getName()).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
+            client.emit('notification', {message:"L'indentification a bien été partagée"});
         }
 
-        io.to(gameName).emit('indication_added', {game: currentGame});
 
-        client.broadcast.to(gameName).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
-        client.emit('notification', {message:"L'indentification a bien été partagée"});
     });
 
 
