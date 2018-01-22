@@ -32,59 +32,92 @@ export class MapPage {
   private google: any;
 
 
-  listIndications;
+  listIndications = [];
 
   game;
 
+  private userLat;
+  private userLong;
+  private userMarker;
 
-  constructor(public platform: Platform, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+
+  constructor(public platform: Platform, private socket: Socket, private indicationService: IndicationsProvider, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private geolocation: Geolocation) {
 
     this.game = navParams.get('game');
 
     this.getNewIndications().subscribe(res => {
-      this.addMarkersToMap(res);
+      this.addMarkersToMap(res["markers"]);
+    });
+
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((data) => {
+      this.userLat = data.coords.latitude;
+      this.userLong = data.coords.longitude;
+      this.changeUserMarkerLocation()
     });
   }
 
 
   ionViewDidLoad(){
-    this.loadMap();
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.userLat = resp.coords.latitude;
+      this.userLong = resp.coords.longitude;
+      this.loadMap();
+      this.changeUserMarkerLocation()
+      this.getExistingIndications();
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   loadMap(){
-    let latLng = new google.maps.LatLng(43.616354, 7.055222);
+    let latLng = new google.maps.LatLng(this.userLat, this.userLong);
 
     let mapOptions = {
       center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      zoom: 18,
+      zoomControl: false,
+      scaleControl: false,
+      scrollwheel: false,
+      mapTypeId: 'terrain',
+      disableDoubleClickZoom: true
     };
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-    let marker = [{latitude:43.616354,longitude:7.055222,title:"Polytech"}];
-    this.addMarkersToMap(marker);
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    this.map.setTilt(45);
+
   }
 
   addMarkersToMap(markers) {
     for(let marker of markers) {
-      var position = new google.maps.LatLng(marker.latitude, marker.longitude);
-      var dogwalkMarker = new google.maps.Marker({position: position, title: marker.title});
-      dogwalkMarker.setMap(this.map);
+      const position = new google.maps.LatLng(this.userLat, this.userLong);
+      const markerObj = new google.maps.Marker({position: position, title: marker.title});
+      this.listIndications.push(markerObj);
+      markerObj.setMap(this.map);
     }
   }
 
+  private changeUserMarkerLocation(){
+    let latlng = new google.maps.LatLng(this.userLat, this.userLong);
 
-  /*getIndications(){
+    if(this.userMarker == null){
+      this.userMarker = new google.maps.Marker(
+        {position: latlng,
+          title: "Vous",
+          animation: google.maps.Animation.DROP
+        });
+    }
+    else this.userMarker.setPosition(latlng);
+  }
+
+
+
+  getExistingIndications(){
     this.indicationService.getIndications(this.game['name']).subscribe(res => {
-      console.log(res.valueOf());
-      this.listIndications = [];
-      for (var i = 0; i < res['indications'].length; i++) {
-        this.listIndications.push({message: res['indications'][i].message});
-      }
-      this.game = res['game'];
+      this.addMarkersToMap(res["indications"]);
     });
-  }*/
+  }
 
   getNewIndications() {
     let observable = new Observable(observer => {
