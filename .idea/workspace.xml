@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="mise à jour map pour WP  PEM-85 PEM-79">
-      <change beforePath="" afterPath="$PROJECT_DIR$/PolyEscape/src/models/platform-model.ts" />
+    <list default="true" id="d8ef828c-6b54-4f67-be71-3e73280b17a6" name="Default" comment="modifiactions pour integrer appli sur device et ajout QR code  PEM-91">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/config.xml" afterPath="$PROJECT_DIR$/PolyEscape/config.xml" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/package.json" afterPath="$PROJECT_DIR$/PolyEscape/package.json" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/app/app.module.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/index.html" afterPath="$PROJECT_DIR$/PolyEscape/src/index.html" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/home/home.html" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/home/home.html" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/home/home.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/home/home.ts" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.html" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.html" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/pages/inventaire/inventaire.ts" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/providers/indications/indications.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/providers/indications/indications.ts" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/providers/inventory/inventory.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/providers/inventory/inventory.ts" />
-      <change beforePath="$PROJECT_DIR$/PolyEscape/src/providers/scenario-service/scenario-service.ts" afterPath="$PROJECT_DIR$/PolyEscape/src/providers/scenario-service/scenario-service.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -81,7 +69,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PolyEscape/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="-184">
               <caret line="18" column="215" lean-forward="false" selection-start-line="18" selection-start-column="215" selection-end-line="18" selection-end-column="215" />
               <folding />
             </state>
@@ -461,7 +449,7 @@
       <workItem from="1516305910757" duration="5787000" />
       <workItem from="1516350605012" duration="7973000" />
       <workItem from="1516368281319" duration="8400000" />
-      <workItem from="1516610085857" duration="5707000" />
+      <workItem from="1516610085857" duration="6068000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Committing initial app&quot;">
       <created>1515503579285</created>
@@ -575,11 +563,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516357551172</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="modifiactions pour integrer appli sur device et ajout QR code  PEM-91">
+      <created>1516616038536</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1516616038536</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134233000" />
+    <option name="totallyTimeSpent" value="134594000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -627,7 +622,8 @@
     <MESSAGE value="Intégration de la google maps dans l'onglet Map  PEM-85 PEM-79" />
     <MESSAGE value="mise à jour map pour WP  PEM-85 PEM-79" />
     <MESSAGE value="suppression du scroll et carte affichée entierement PEM-85 PEM-79" />
-    <option name="LAST_COMMIT_MESSAGE" value="suppression du scroll et carte affichée entierement PEM-85 PEM-79" />
+    <MESSAGE value="modifiactions pour integrer appli sur device et ajout QR code  PEM-91" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifiactions pour integrer appli sur device et ajout QR code  PEM-91" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -668,6 +664,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="37" column="2" lean-forward="false" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -734,6 +731,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -741,6 +739,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#63#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -805,6 +806,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="11" lean-forward="false" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1018,7 +1020,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PolyEscape/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="-184">
           <caret line="18" column="215" lean-forward="false" selection-start-line="18" selection-start-column="215" selection-end-line="18" selection-end-column="215" />
           <folding />
         </state>
