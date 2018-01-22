@@ -36,13 +36,3 @@ export class InventoryProvider {
   }
 }
 
-/*
-  addItem(game, code) {
-    return this.http.get("http://" + "localhost" + ":8080/addItem/"+game+"/"+code);
-  }
-
-  getInventory(game){
-    return this.http.get("http://" + "localhost" + ":8080/getInventory/"+game);
-  }
-}
-*/

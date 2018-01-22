@@ -21,9 +21,6 @@ export class ScenarioServiceProvider {
 
     this.url = this.platformHelper.getUrl();
 
-
-    console.log("platform : " + this.plt.platforms());
-    console.log("url : " + this.url);
   }
 
   getAllScenarios()
