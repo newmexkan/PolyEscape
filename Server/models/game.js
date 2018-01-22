@@ -3,6 +3,7 @@
  */
 "use strict";
 let Player = require("./player.js");
+let SkillList = require("./skillList.js");
 
 const GameState = {
     WAITING_SCENARIO: Symbol("En attente d'un scénario"),
@@ -23,6 +24,8 @@ module.exports = class Game {
         this.inventory = [];
         this.missions = [];
         this.indications = [];
+        this.skills = new SkillList();
+
     }
 
     getName() {
@@ -55,6 +58,24 @@ module.exports = class Game {
                 this.missions.push({mission:this.scenario["missions"][i], player:this.players[i]});
 
         }
+    }
+
+
+
+    setSkills(scenario){
+        console.log(scenario);
+        for(let i=0; i< scenario['skills'].length;i++){
+            this.skills.list.push({name: scenario['skills'][i], skillImg: "assets/imgs/"+scenario['skills'][i]+".png", users: [""]})
+        }
+    }
+
+    pickSkill(skillName, user){
+        this.skills.pickSkill(skillName, user);
+    }
+
+
+    rejectSkill(skillName, user){
+        this.skills.pop(skillName, user);
     }
 
 

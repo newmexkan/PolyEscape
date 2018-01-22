@@ -1,9 +1,10 @@
 import {GamePage} from "../game/game";
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Navbar, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Navbar, ToastController, ModalController} from 'ionic-angular';
 import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs";
 import {SelectScenarioPage} from "../select-scenario/select-scenario";
+import {SkillModalPage} from "../skill-modal/skill-modal";
 
 /**
  * Generated class for the LobbyPage page.
@@ -32,7 +33,7 @@ export class LobbyPage {
 
   @ViewChild('navbar') navBar: Navbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, public modalCtrl: ModalController) {
 
 
     this.game = this.navParams.get('currentGame');
@@ -127,6 +128,13 @@ export class LobbyPage {
     this.navCtrl.push(this.selectScenario, {
       gameName: this.game['name'],
     });
+  }
+
+  openModal() {
+    let myModal = this.modalCtrl.create(SkillModalPage, {gameName: this.game['name'], 'user': this.user});
+    myModal.onDidDismiss(data => {
+    });
+    myModal.present();
   }
 
 }

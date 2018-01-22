@@ -14,4 +14,10 @@ export class GameProvider {
     console.log('Hello GameProvider Provider');
   }
 
+  getSkills(gameName) {
+    return this.http.get("http://" + "localhost" + ":8080/getSkills/"+gameName);
+  }
+
+
+
 }
