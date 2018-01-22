@@ -322,23 +322,33 @@ io.on('connection', function(client) {
 
     client.on('help_request', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        let enigm = data.enigm;
+        let question = data.question;
+        let user = data.user;
+        let responses = data.responses;
 
-        client.broadcast.to(currentGame.getName()).emit('help_request', {enigm: enigm});
-        console.log("Help request transmitted")
+        currentGame.createHelpRequest(client, question);
+
+        client.broadcast.to(currentGame.getName()).emit('help_request', {question: question, responses: responses, user: user});
+        console.log("Help request transmitted from "+user+". Enigm is : "+question);
     });
 
     client.on('help_request_empty', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        let user = data.user;
-        console.log(user+" n'a rien suggéré");
+        currentGame.answerHelpRequest("Aucune idée")
+        console.log(currentGame.helpRequest.nbAnswers+"/" + currentGame.helpRequest.nbPlayers + " people answered to the help request")
+
+        if(currentGame.helpRequest.everyoneAnswered()){
+            currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
+        }
     });
 
     client.on('help_request_response', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        let user = data.user;
-        let answer = data.answer
+        currentGame.answerHelpRequest(data.answer)
+        console.log(currentGame.helpRequest.nbAnswers+"/" + currentGame.helpRequest.nbPlayers + " people answered to the help request")
 
-        console.log(user+" a suggéré "+answer);
+        if(currentGame.helpRequest.everyoneAnswered()){
+            currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
+        }
     });
 });

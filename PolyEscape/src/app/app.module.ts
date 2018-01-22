@@ -38,6 +38,8 @@ import { IndicationsProvider } from '../providers/indications/indications';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GameProvider } from '../providers/game/game';
 import {NativeAudio} from "@ionic-native/native-audio";
+import {HelpResultPage} from "../pages/help-result/help-result";
+import {HelpResultPageModule} from "../pages/help-result/help-result.module";
 
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -60,7 +62,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     ScenarioPageModule,
     InventairePageModule,
     MapPageModule,
-    EquipePageModule
+    EquipePageModule,
+    HelpResultPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -75,7 +78,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     ScenarioPage,
     EquipePage,
     MapPage,
-    TimerComponent
+    TimerComponent,
+    HelpResultPage
 
   ],
   providers: [

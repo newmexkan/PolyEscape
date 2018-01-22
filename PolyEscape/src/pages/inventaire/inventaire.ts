@@ -65,7 +65,7 @@ export class InventairePage {
       if (this.game.missions[i].mission.item == this.numero && this.game.missions[i].player == this.user) {
         bonItem = true;
         this.bonItemToast();
-        this.navCtrl.push('EnigmePage', {'questions': this.game.missions[i].mission.questions, 'numero': this.numero, 'game': this.game, 'item': {name: this.numero}});
+        this.navCtrl.push('EnigmePage', {'questions': this.game.missions[i].mission.questions, 'numero': this.numero, 'game': this.game, 'user': this.user, 'item': {name: this.numero}});
         break;
       }
     }

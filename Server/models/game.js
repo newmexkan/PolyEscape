@@ -3,6 +3,7 @@
  */
 "use strict";
 let Player = require("./player.js");
+let HelpRequest = require("./help-request");
 
 const GameState = {
     WAITING_SCENARIO: Symbol("En attente d'un scénario"),
@@ -17,6 +18,7 @@ module.exports = class Game {
         this.id = id;
         this.name = name.toLowerCase();
         this.chief;
+        this.helpRequest = {};
         this.state = GameState.WAITING_SCENARIO;
         this.players = [];
         this.scenario;
@@ -40,6 +42,8 @@ module.exports = class Game {
     getScenario(){
         return this.scenario;
     }
+
+
 
     removePlayer(play){
         let index = this.players.findIndex(i => i.toLowerCase() === play.toLowerCase());
@@ -107,4 +111,15 @@ module.exports = class Game {
     finish(){
         this.state = GameState.FINISHED;
     }
+
+    createHelpRequest(user,question){
+        this.helpRequest = new HelpRequest(user,question,this.players.length - 1);
+
+    }
+
+
+    answerHelpRequest(answer){
+        this.helpRequest.addAnswer(answer);
+    }
+
 };

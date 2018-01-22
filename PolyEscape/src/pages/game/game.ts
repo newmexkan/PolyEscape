@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import { ScenarioPage } from "../scenario/scenario";
 import { InventairePage} from "../inventaire/inventaire";
 import { EquipePage} from "../equipe/equipe";
@@ -10,6 +10,7 @@ import {Observable} from "rxjs";
 import { HomePage} from "../home/home";
 import { NativeAudio } from '@ionic-native/native-audio';
 import { Events } from 'ionic-angular';
+import {HelpResultPage} from "../help-result/help-result";
 
 /**
  * Generated class for the GamePage tabs.
@@ -26,7 +27,7 @@ import { Events } from 'ionic-angular';
 export class GamePage {
 
   inventoryCount =0;
-
+  helpResultPage =  HelpResultPage;
   mapPage = MapPage;
   scenarioPage = ScenarioPage;
   inventairePage = InventairePage;
@@ -41,7 +42,7 @@ export class GamePage {
   @ViewChild(TimerComponent) timer: TimerComponent;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio,public events: Events) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController,  public navParams: NavParams, public toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController,private nativeAudio: NativeAudio,public events: Events) {
     this.game = navParams.get('game');
     console.log(this.game["scenario"]["mission"]);
     this.user = navParams.get('user');
@@ -63,33 +64,38 @@ export class GamePage {
       this.navCtrl.push('ResultPage',data);
     });
 
+
+
     this.nativeAudio.preloadSimple('light', 'assets/audio/light.mp3');
 
     this.getHelpRequest().subscribe(data => {
-      let alert = this.alertCtrl.create({
-        title: 'Michel a besoin de ton aide !',
-        message: "Quel est votre solution pour l'énigme : 'koman sa va ??'",
-        inputs: [
-          {
-            name: 'answer',
-            placeholder: 'Réponse',
-          }
-        ],
-        buttons: [
-          {
-            text: 'Annuler',
-            role: 'cancel',
-            handler: data => {
-              this.socket.emit('help_request_empty', {game: this.game["name"], user: this.user});
-            }
-          },
-          {
-            text: 'Envoyer',
-            handler: data => {
-              this.socket.emit('help_request_response', {game: this.game["name"], answer: data.answer, user: this.user});
-            }
-          }
-        ]
+
+      let alert = this.alertCtrl.create();
+      alert.setTitle(data['user']+' a besoin d\'aide pour cette énigme :');
+      alert.setMessage(data['question'])
+
+      let responses = data['responses']
+      for (var i = 0; i <3; i++) {
+        alert.addInput({
+          type: 'radio',
+          label: responses[i],
+          value: ''+i,
+          checked: false
+        });
+      }
+
+      alert.addButton({
+        text: 'Ignorer',
+        handler: (data: any) => {
+          this.socket.emit('help_request_empty', {game: this.game["name"]});
+        }
+      });
+
+      alert.addButton({
+        text: 'Envoyer',
+        handler: (data: any) => {
+          this.socket.emit('help_request_response', {game: this.game["name"], answer: responses[parseInt(data)]});
+        }
       });
       alert.present();
 

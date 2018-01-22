@@ -1,0 +1,37 @@
+<!--
+  Generated template for the HelpResultPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Demande d'aide</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="isWaiting" text-center align-items-center>
+    <p>Vos coéquipiers sont en train de répondre. Veuillez patienter quelques secondes...</p>
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+
+  <div *ngIf="!isWaiting" text-center align-items-center>
+    <p>Vous avez envoyé une demande d'aide à vos coéquipiers. Voici leurs suggestions : </p>
+
+    <ion-list>
+      <ion-item class="itemSuggestion" *ngFor="let answer of answers">
+        <ion-icon margin-right name="ios-bulb-outline" color="primary"></ion-icon>
+        {{answer}}
+      </ion-item>
+    </ion-list>
+
+    <div id="closeButton" text-center align-items-center>
+      <button ion-button color="danger" round (click)="close()">Fermer</button>
+    </div>
+
+  </div>
+</ion-content>

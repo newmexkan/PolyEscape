@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {InventoryProvider} from "../../providers/inventory/inventory";
 import { Socket } from 'ng-socket-io';
+import {HelpResultPage} from "../help-result/help-result";
 
 /**
  * Generated class for the EnigmePage page.
@@ -17,18 +18,24 @@ import { Socket } from 'ng-socket-io';
 })
 export class EnigmePage {
 
+  helpResultPage =  HelpResultPage;
   public enigme;
   public reponse;
   public questions;
   private item;
   private game;
+  private user;
   positionEnigme;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private inventoryService: InventoryProvider, private socket: Socket) {
+
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams,public alertCtrl: AlertController, private inventoryService: InventoryProvider, private socket: Socket) {
     this.questions = navParams.get('questions');
     console.log("questions");
     console.log(this.questions);
+
+
     this.item = navParams.get('item');
+    this.user = navParams.get('user');
     this.game = navParams.get('game');
     this.positionEnigme = Math.floor((Math.random()*(this.questions.length-1)));
     this.enigme= this.questions[this.positionEnigme];
@@ -87,7 +94,7 @@ export class EnigmePage {
   askHelp(){
     let alert = this.alertCtrl.create({
       title: 'Besoin d\'aide ?',
-      subTitle: 'Voulez-vous envoyer une demande d\'aide pour cette énigme à vos coéquipiers ?',
+      subTitle: 'Envoyer une demande d\'aide pour cette énigme à vos coéquipiers ?',
       buttons: [
         {
           text: 'Non',
@@ -98,7 +105,9 @@ export class EnigmePage {
         {
           text: 'Oui',
           handler: () => {
-            this.socket.emit('help_request', {game: this.game.name, enigm: "enigm misterieuz tu le c"});
+            this.socket.emit('help_request', {game: this.game.name, user:this.user, question: this.enigme.question, responses: this.enigme.reponses});
+            let contactModal = this.modalCtrl.create(this.helpResultPage);
+            contactModal.present();
           }
         }
       ]
