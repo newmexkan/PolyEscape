@@ -201,8 +201,6 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         client.join(currentGame.getName());
-
-        console.log("Partie "+data.game+" créee");
     });
 
     client.on('startGame', function(data) {
@@ -218,8 +216,6 @@ io.on('connection', function(client) {
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
             setTimeout(timeHalf, ((currentGame.getTimeInMinuts()*60+2)*1000)/2, currentGame.getName());
-
-            console.log("Partie "+data.game+" demarrée");
         }
 
     });
@@ -227,8 +223,6 @@ io.on('connection', function(client) {
 
 
     client.on('joinGame', function(data) {
-
-        console.log(data.user+" tente de rejoindre la partie "+data.game);
 
         let currentGame = gameList.get(data.game.toLowerCase());
 
@@ -244,7 +238,6 @@ io.on('connection', function(client) {
 
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
 
-            console.log(data.user+" a rejoint la partie "+data.game);
         }
         else{
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
@@ -358,6 +351,7 @@ io.on('connection', function(client) {
 
         client.broadcast.to(currentGame.getName()).emit('help_request', {question: question, responses: responses, user: user});
         console.log("Help request transmitted from "+user+". Enigm is : "+question);
+
     });
 
     client.on('help_request_empty', function (data) {
@@ -368,6 +362,7 @@ io.on('connection', function(client) {
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
         }
+
     });
 
     client.on('help_request_response', function (data) {
@@ -378,5 +373,6 @@ io.on('connection', function(client) {
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
         }
+
     });
 });
