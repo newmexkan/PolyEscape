@@ -42,7 +42,6 @@ module.exports = class Game {
 
     getUser(name){
         let index = this.users.findIndex(i => i.name.toLowerCase() === name.toLowerCase());
-        // return index;
         return this.users[index];
     }
 
@@ -96,6 +95,11 @@ module.exports = class Game {
             tmpMissions.splice(0, 1);
             tmpPlayers.splice(i, 1);
         }
+
+        // if(nbMissions === nbPlayers){
+        //     for(let i=0; i< nbPlayers;i++)
+        //         this.missions.push({mission:this.scenario["missions"][i], player:this.players[i]});
+        // }
     }
 
 

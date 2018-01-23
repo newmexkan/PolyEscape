@@ -170,6 +170,13 @@ app.get('/getIndications/:gameName', function(req, res){
 
 });
 
+app.get('/resetGames', function(req, res){
+        gameList = new GameList;
+        res.send({
+            passed: true,
+        });
+});
+
 app.get('/getSkills/:gameName', function(req, res){
 
     const gameName = req.params.gameName.toLowerCase();
@@ -217,10 +224,7 @@ io.on('connection', function(client) {
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
             setTimeout(timeHalf, ((currentGame.getTimeInMinuts()*60+2)*1000)/2, currentGame.getName());
         }
-
     });
-
-
 
     client.on('joinGame', function(data) {
 
@@ -243,8 +247,6 @@ io.on('connection', function(client) {
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
         }
     });
-
-
 
     client.on('addItemToInventory', function(data) {
         let currentGame = gameList.get(data.game.name.toLowerCase());
@@ -274,7 +276,6 @@ io.on('connection', function(client) {
 
 
     });
-
 
     client.on('quitGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
