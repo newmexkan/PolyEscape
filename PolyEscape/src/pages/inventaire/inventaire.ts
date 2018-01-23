@@ -62,9 +62,6 @@ export class InventairePage {
 
     let bonItem = false;
 
-    console.log(this.game);
-    console.log(this.game.missions);
-
     for (var i = 0; i < this.game.missions.length; i++) {
 
       // le numéro scanné correspond bien à l'item que le user doit rechercher : pas lisible
@@ -151,10 +148,10 @@ export class InventairePage {
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.numero = barcodeData.text;
+      this.recupererItem();
     }, (err) => {
       console.log('Error: ', err);
     });
-    this.recupererItem();
   }
 
   getNewItems() {

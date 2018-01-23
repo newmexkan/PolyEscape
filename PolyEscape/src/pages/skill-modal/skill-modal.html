@@ -7,37 +7,42 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Choisir une spécialité</ion-title>
+    <ion-title>Spécialité</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <p id="intro-text" text-center>Vous pouvez choisir une ou plusieurs spécialités, pour obtenir des enigmes
+    sur-mesures.</p>
 
-  <ion-list>
-    <ion-item *ngFor="let skill of skillList">
-      <ion-avatar item-start>
-        <img src={{skill.skillImg}}>
-      </ion-avatar>
-      <ion-row>
-        <ion-col col-10>
-          <h2>{{skill.name}}</h2>
-          <p *ngFor="let user of skill.users">{{user}}</p>
-        </ion-col>
-        <ion-col col-2>
-          <!--<ion-checkbox color="dark" (click)="checkBox(skill.name)" checked="{{inSkillList(skill) && skillChosen}}"></ion-checkbox>-->
-          <button ion-button block (click)="rejectSkill(skill.name)" *ngIf="inSkillList(skill) && skillChosen">
-            <ion-icon name="checkmark-circle"></ion-icon>
-          </button>
-          <button ion-button block (click)="chooseSkill(skill.name)" *ngIf="(!inSkillList(skill) && !skillChosen)">
-            <ion-icon name="radio-button-off"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
+  <ion-card *ngFor="let skill of skillList">
+    <ion-row>
+      <ion-col col-3>
+        <ion-avatar item-start>
+          <img src={{skill.skillImg}}>
+        </ion-avatar>
+      </ion-col>
 
-    </ion-item>
-  </ion-list>
+      <ion-col col-7>
+        <h2>{{skill.name}}</h2>
+        <p *ngFor="let user of skill.users"> {{user}} </p>
+      </ion-col>
+
+      <ion-col col-2>
+        <button class="spec-btn" ion-button (click)="rejectSkill(skill.name)"
+                *ngIf="inSkillList(skill) && skillChosen">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </button>
+        <button class="spec-btn" ion-button (click)="chooseSkill(skill.name)"
+                *ngIf="(!inSkillList(skill) && !skillChosen)">
+          <ion-icon name="radio-button-off"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 
   <button ion-button block (click)="closeModal()">Fermer</button>
 
