@@ -233,7 +233,9 @@ io.on('connection', function(client) {
         if(currentGame.hasPlayerNamed(data.user)){
             client.emit('notification', {message:'Ce nom existe déjà. Veuillez en choisir un autre'});
         }
-
+        else if(currentGame.isWaitingForScenario()){
+            client.emit('notification', {message:"Le chef de partie n'a pas encore choisi le scénario"});
+        }
         else if(currentGame.acceptsPlayerNamed(data.user)){
             currentGame.addPlayer(data.user);
 
@@ -244,6 +246,7 @@ io.on('connection', function(client) {
 
         }
         else{
+
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
         }
     });

@@ -170,6 +170,11 @@ module.exports = class Game {
         return (this.state === GameState.WAITING_PLAYERS);
     }
 
+    isWaitingForScenario(){
+        return (this.state === GameState.WAITING_SCENARIO);
+    }
+
+
     finish(){
         this.state = GameState.FINISHED;
     }
