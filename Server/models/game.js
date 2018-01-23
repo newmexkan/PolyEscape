@@ -66,32 +66,36 @@ module.exports = class Game {
     mapPlayersToMissions(){
         let nbMissions = this.scenario["missions"].length;
         let nbPlayers = this.users.length;
-        let tmpMissions = this.scenario["missions"];
+        let tmpMissions =[];
         let tmpPlayers = [];
-        // for(let i=0; i<nbMissions; i++){
-        //     tmpMissions.push(this.scenario["missions"][i]);
-        // }
-        // for(let i=0; i<nbPlayers; i++){
-        //     tmpPlayers.push(this.players[i]);
-        // }
-        // console.log(tmpMissions);
-        // console.log(tmpPlayers);
+        for(let i=0; i<nbMissions; i++){
+            tmpMissions.push(this.scenario["missions"][i]);
+        }
+        for(let i=0; i<nbPlayers; i++){
+            tmpPlayers.push(this.users[i]);
+        }
+
         while(tmpMissions.length !== 0){
             if(tmpPlayers.length === 0)
                 tmpPlayers = this.users;
             let i =0;
-            while(tmpPlayers[i].skill !== tmpMissions[0]["skill"] && i<tmpPlayers.length-1){
+            while(tmpPlayers[i].skill !== tmpMissions[0]["skill"] && i<tmpPlayers.length-1) {
                 i++;
+                if (i === tmpPlayers.length)
+                    break;
             }
+
+            if(i === tmpPlayers.length){
+                i = 0;
+                while(tmpPlayers[i].skill !== "None" && i<tmpPlayers.length-1){
+                    i++;
+                }
+            }
+
             this.missions.push({mission: tmpMissions[0], player:tmpPlayers[i].name});
             tmpMissions.splice(0, 1);
             tmpPlayers.splice(i, 1);
         }
-
-        // if(nbMissions === nbPlayers){
-        //     for(let i=0; i< nbPlayers;i++)
-        //         this.missions.push({mission:this.scenario["missions"][i], player:this.players[i]});
-        // }
     }
 
 
@@ -112,7 +116,7 @@ module.exports = class Game {
 
     rejectSkill(skillName, user){
         this.skills.pop(skillName, user);
-        this.getUser(user).setSkill(skillName);
+        this.getUser(user).resetSkill();
     }
 
 
