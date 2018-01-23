@@ -18,7 +18,7 @@
 
   <div class="header card-background-page" *ngIf="(isChief && scenarioPicked) || !isChief">
     <ion-card>
-      <img [src]="this.game['scenario']['image']" />
+      <img [src]="this.game['scenario']['image']"/>
       <div class="card-title">{{this.game["scenario"]['name']}}</div>
       <div class="card-players"> {{this.game["scenario"]["nbPlayers"]}}
         <ion-icon name="md-contacts"></ion-icon>
@@ -46,29 +46,33 @@
       Joueurs connectés
     </ion-list-header>
 
-    <ion-item *ngIf="!isChief">
-      <ion-icon name="contact" color="danger"></ion-icon>
-      {{game["chief"]}} (chef)
+    <ion-item id="myself">
+      <ion-icon name="contact" color="primary"></ion-icon>
+      <p> {{user}} (vous) </p>
+      <button icon-end id="btn-salut" ion-button (click)="openModal()">
+        <ion-icon name="ios-construct-outline" id="construct"></ion-icon>
+      </button>
     </ion-item>
 
-    <ion-item>
-      <ion-icon name="contact" color="primary"></ion-icon>
-      {{user}} (vous)
+    <ion-item *ngIf="!isChief">
+      <ion-icon name="contact" color="danger"></ion-icon>
+      <p>{{game["chief"]}} (chef)</p>
     </ion-item>
+
+
 
     <ion-item *ngFor="let user of users">
       <ion-icon name="contact" color="primary"></ion-icon>
-      {{user}}
+      <p>{{user}}</p>
     </ion-item>
   </ion-list>
 
 </ion-content>
 
 <ion-footer>
-  <button col-12 ion-button block (click)="openModal()">Choisir une spécialité</button>
-
   <ion-toolbar id="chef">
     <button ion-button color="danger" (click)="quitCurrentGame()" *ngIf="isChief">Quitter</button>
+    <!--<button ion-button color="secondary" (click)="startGame()" *ngIf="isChief">Commencer</button>-->
     <button ion-button color="secondary" (click)="startGame()" *ngIf="isChief">Commencer</button>
     <!--<button ion-button color="secondary" (click)="startGame()" *ngIf="isChief" [disabled]="!hasEnoughPlayers">Commencer</button>-->
 
