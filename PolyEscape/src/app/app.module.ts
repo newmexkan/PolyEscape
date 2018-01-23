@@ -21,9 +21,7 @@ import {EquipePage} from "../pages/equipe/equipe";
 import {MapPage} from "../pages/map/map";
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
-
 import {HomePageModule} from "../pages/home/home.module";
 import {LobbyPageModule} from "../pages/lobby/lobby.module";
 import {SelectScenarioPage} from "../pages/select-scenario/select-scenario";
@@ -40,14 +38,11 @@ import { GameProvider } from '../providers/game/game';
 import {NativeAudio} from "@ionic-native/native-audio";
 import {HelpResultPage} from "../pages/help-result/help-result";
 import {HelpResultPageModule} from "../pages/help-result/help-result.module";
-import {PlatformHelper} from "../models/platform-model";
-import {importType} from "@angular/compiler/src/output/output_ast";
-import {Platform} from "ionic-angular";
 
 
 
-//const config: SocketIoConfig = { url: "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com", options: {} };
-const config: SocketIoConfig = { url: "http://localhost:8080", options: {} };
+const config: SocketIoConfig = { url: "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com", options: {} };
+//const config: SocketIoConfig = { url: "http://localhost:8080", options: {} };
 
 
 @NgModule({
