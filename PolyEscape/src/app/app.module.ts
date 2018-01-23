@@ -41,8 +41,8 @@ import {HelpResultPageModule} from "../pages/help-result/help-result.module";
 
 
 
-//const config: SocketIoConfig = { url: "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com", options: {} };
-const config: SocketIoConfig = { url: "http://localhost:8080", options: {} };
+const config: SocketIoConfig = { url: "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com", options: {} };
+//const config: SocketIoConfig = { url: "http://localhost:8080", options: {} };
 
 
 @NgModule({
