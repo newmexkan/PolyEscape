@@ -46,14 +46,8 @@ export class EnigmePage {
   winAlert() {
     let alertWin = this.alertCtrl.create({
       title: 'BONNE REPONSE !',
-      subTitle: "Vous avez trouvé la réponse de l'énigme.\n Voulez-vous l'ajouter à l'inventaire commun?",
+      subTitle: "Vous venez de trouvé un item. Il est ajouté dans l'inventaire commun",
       buttons: [
-        {
-          text: 'Non, je veux perdre...',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
         {
           text: 'Oui',
           handler: data => {

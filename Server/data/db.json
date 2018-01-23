@@ -70,16 +70,67 @@
     },
     {
       "id": 2,
-      "name": "Prise de la Bastille",
+      "name": "Mission sur Mars",
       "nbPlayers": 2,
-      "timeInMinuts": 4,
-      "image": "assets/imgs/scenarios/zombies/0.jpg",
-      "summary": "SophiaTech a été envahi par des hordes de zombies, pour vous en sortir vivant et trouver une issue, vous devez envoyer un petit robot d’exploration.",
+      "timeInMinuts": 2,
+      "image": "assets/imgs/scenarios/mars/0.jpg",
+      "summary": "La Terre est devenue inhabitable, totalement irradiée. La NASA vous a envoyé sur Mars pour la terraformer. Vous n'avez plus qu'une seule chance pour survivre: réussir votre mission",
       "missions": [
         {
-          "message": "Trouver un Arduino",
+          "message": "Diminuer la température",
           "item": 0,
-          "indice": "La dernière fois qu'une carte Arduino a été utilisé c'était dans la salle d'IHM ou dans l'Ubiquarium.",
+          "indice": "Diminuer le rayonnement solaire est bon moyen de le faire",
+          "img": "assets/imgs/scenarios/mars/items/0.jpg",
+          "questions": [
+            {
+              "question": "Si le Soleil possède une température de 5 778 K, et qu'à chaque million de kilomètre ses rayons perdent 273°C, en supposant que Mars se trouve à 228MKm du Soleil, quelle épaisseur de matériaux doit avoir votre infrastructure pour avoir une température de 16°C si un mètre de matériaux diminue la température de 2°C",
+              "reponses": [
+                "2 m",
+                "8 m",
+                "6 m",
+                "5 m"
+              ],
+              "reponse": "5"
+            }
+          ],
+          "skill": "Mathématiques"
+        },
+        {
+          "message": "Diminuer la pression atmosphérique",
+          "item": 1,
+          "indice": " La meilleure solution semble être de transformer le gaz en composés solides ou liquides",
+          "img": "assets/imgs/scenarios/mars/items/1.jpg",
+          "questions": [
+            {
+              "question": "Comment injecter de l'hydrogène qui conduirait à la production de graphite et d'eau?",
+              "reponses": [
+                "Par la réaction de Bosch",
+                "Kestuv?",
+                "Par condensation acyloïne"
+              ],
+              "reponse": "Par la réaction de Bosch"
+            }
+          ],
+          "skill": "Chimie"
+        }
+      ],
+      "skills": [
+        "Mathématiques",
+        "Chimie"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Epidémie",
+      "nbPlayers": 2,
+      "timeInMinuts": 4,
+      "image": "assets/imgs/scenarios/epidemie/0.jpg",
+      "summary": "SophiaTech est sur le point de se faire submerger par un tsunami géant. Pour empêcher ce désastre, votre équipe doit construire une digue géante",
+      "missions": [
+        {
+          "message": "Diffuser un message de secours",
+          "item": 0,
+          "indice": "",
           "img": "assets/imgs/scenarios/zombies/items/0.jpg",
           "questions": [
             {
@@ -92,12 +143,12 @@
               "reponse": "8 848"
             }
           ],
-          "skill": "Électricité"
+          "skill": "Eau"
         },
         {
-          "message": "Trouver le programme C",
+          "message": "Récupérer des médicaments",
           "item": 1,
-          "indice": "Les cours de C++ ont généralement lieux dans l'amphi E+131 et les TDs en E+10?.",
+          "indice": "",
           "img": "assets/imgs/scenarios/zombies/items/1.jpg",
           "questions": [
             {
@@ -110,7 +161,7 @@
               "reponse": "Des finlandais"
             }
           ],
-          "skill": "Programmation"
+          "skill": "Electricité"
         }
       ],
       "skills": [

@@ -21,6 +21,8 @@ app.use(methodOverride());
 app.use(cors());
 app.use(express.static('media'));
 
+console.log("PolyEscape Server - v0.02");
+
 const http = require('http').Server(app);
 const server = app.listen(process.env.PORT || 8080);
 let io = require('socket.io').listen(server);
@@ -246,7 +248,6 @@ io.on('connection', function(client) {
 
         }
         else{
-
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
         }
     });
@@ -359,7 +360,7 @@ io.on('connection', function(client) {
 
     client.on('help_request_empty', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        currentGame.answerHelpRequest("Aucune idée")
+        currentGame.answerHelpRequest("Aucune idée");
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
@@ -369,7 +370,7 @@ io.on('connection', function(client) {
 
     client.on('help_request_response', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        currentGame.answerHelpRequest(data.answer)
+        currentGame.answerHelpRequest(data.answer);
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
