@@ -58,6 +58,11 @@ Renvoit un JSON contenant l'inventaire d'une partie si elle existe. Renvoit une 
 /getIndications/:gameName
 ```
 
+* Pour supprimer toutes les parties
+```
+/resetGames
+```
+
 
 ## Tests
 Il est possible de tester les différentes requêtes du serveur avec la commande :

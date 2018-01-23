@@ -170,6 +170,13 @@ app.get('/getIndications/:gameName', function(req, res){
 
 });
 
+app.get('/resetGames', function(req, res){
+        gameList = new GameList;
+        res.send({
+            passed: true,
+        });
+});
+
 app.get('/getSkills/:gameName', function(req, res){
 
     const gameName = req.params.gameName.toLowerCase();
@@ -201,8 +208,6 @@ io.on('connection', function(client) {
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         client.join(currentGame.getName());
-
-        console.log("Partie "+data.game+" créee");
     });
 
     client.on('startGame', function(data) {
@@ -218,24 +223,19 @@ io.on('connection', function(client) {
             io.to(currentGame.getName()).emit('game_start', {game: currentGame});
             setTimeout(timeOver, (currentGame.getTimeInMinuts()*60+2)*1000, currentGame.getName());
             setTimeout(timeHalf, ((currentGame.getTimeInMinuts()*60+2)*1000)/2, currentGame.getName());
-
-            console.log("Partie "+data.game+" demarrée");
         }
-
     });
 
-
-
     client.on('joinGame', function(data) {
-
-        console.log(data.user+" tente de rejoindre la partie "+data.game);
 
         let currentGame = gameList.get(data.game.toLowerCase());
 
         if(currentGame.hasPlayerNamed(data.user)){
             client.emit('notification', {message:'Ce nom existe déjà. Veuillez en choisir un autre'});
         }
-
+        else if(currentGame.isWaitingForScenario()){
+            client.emit('notification', {message:"Le chef de partie n'a pas encore choisi le scénario"});
+        }
         else if(currentGame.acceptsPlayerNamed(data.user)){
             currentGame.addPlayer(data.user);
 
@@ -244,14 +244,12 @@ io.on('connection', function(client) {
 
             client.broadcast.to(currentGame.getName()).emit('players_changed', {players:currentGame.getPlayers()});
 
-            console.log(data.user+" a rejoint la partie "+data.game);
         }
         else{
+
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
         }
     });
-
-
 
     client.on('addItemToInventory', function(data) {
         let currentGame = gameList.get(data.game.name.toLowerCase());
@@ -281,7 +279,6 @@ io.on('connection', function(client) {
 
 
     });
-
 
     client.on('quitGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
@@ -357,26 +354,26 @@ io.on('connection', function(client) {
         currentGame.createHelpRequest(client, question);
 
         client.broadcast.to(currentGame.getName()).emit('help_request', {question: question, responses: responses, user: user});
-        console.log("Help request transmitted from "+user+". Enigm is : "+question);
+
     });
 
     client.on('help_request_empty', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         currentGame.answerHelpRequest("Aucune idée")
-        console.log(currentGame.helpRequest.nbAnswers+"/" + currentGame.helpRequest.nbPlayers + " people answered to the help request")
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
         }
+
     });
 
     client.on('help_request_response', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         currentGame.answerHelpRequest(data.answer)
-        console.log(currentGame.helpRequest.nbAnswers+"/" + currentGame.helpRequest.nbPlayers + " people answered to the help request")
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
         }
+
     });
 });

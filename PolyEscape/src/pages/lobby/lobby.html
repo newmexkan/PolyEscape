@@ -14,7 +14,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="no-scroll">
 
   <div class="header card-background-page" *ngIf="(isChief && scenarioPicked) || !isChief">
     <ion-card>
@@ -73,8 +73,8 @@
   <ion-toolbar id="chef">
     <button ion-button color="danger" (click)="quitCurrentGame()" *ngIf="isChief">Quitter</button>
     <!--<button ion-button color="secondary" (click)="startGame()" *ngIf="isChief">Commencer</button>-->
-    <button ion-button color="secondary" (click)="startGame()" *ngIf="isChief">Commencer</button>
-    <!--<button ion-button color="secondary" (click)="startGame()" *ngIf="isChief" [disabled]="!hasEnoughPlayers">Commencer</button>-->
+    <!--<button ion-button color="secondary" (click)="startGame()" *ngIf="isChief">Commencer</button>-->
+    <button ion-button color="secondary" (click)="startGame()" *ngIf="isChief" [disabled]="!hasEnoughPlayers">Commencer</button>
 
   </ion-toolbar>
 

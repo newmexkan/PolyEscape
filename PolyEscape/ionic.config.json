@@ -1,6 +1,6 @@
 {
   "name": "PolyEscape",
-  "app_id": "",
+  "app_id": "65bc6498",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

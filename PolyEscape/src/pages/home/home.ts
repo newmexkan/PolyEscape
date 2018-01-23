@@ -59,7 +59,6 @@ export class HomePage {
         {
           text: 'Créer',
           handler: data => {
-            console.log("PLATFORM HELP REQUEST : "+ this.platformHelper.getUrl()+'/addGame/'+ data.nom+'/'+data.pseudo );
             this.http.get(this.platformHelper.getUrl()+'/addGame/'+ data.nom+'/'+data.pseudo).pipe(
               map(res => res.json())
             ).subscribe(response => {
@@ -104,7 +103,6 @@ export class HomePage {
         {
           text: 'Rejoindre',
           handler: data => {
-            console.log("PLATFORM HELP REQUEST : "+ this.platformHelper.getUrl()+'/getGame/'+ data.nom);
             this.http.get(this.platformHelper.getUrl()+'/getGame/'+ data.nom).pipe(
               map(res => res.json())
             ).subscribe(response => {
