@@ -74,7 +74,7 @@
       "nbPlayers": 2,
       "timeInMinuts": 2,
       "image": "assets/imgs/scenarios/mars/0.jpg",
-      "summary": "La Terre est devenue inhabitable, totalement irradiée. La NASA vous a envoyé sur Mars pour la terraformer. Vous n'avez plus qu'une seule chance pour survivre: réussir votre mission",
+      "summary": "La Terre est devenue inhabitable, totalement irradiée. La NASA vous a envoyé sur Mars pour la terraformer. Vous n'avez plus qu'une seule chance pour survivre : réussir votre mission",
       "missions": [
         {
           "message": "Diminuer la température",
