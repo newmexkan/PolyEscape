@@ -248,7 +248,6 @@ io.on('connection', function(client) {
 
         }
         else{
-
             client.emit('notification', {message:'La partie ne peut pas accueillir de joueurs'});
         }
     });
@@ -361,7 +360,7 @@ io.on('connection', function(client) {
 
     client.on('help_request_empty', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        currentGame.answerHelpRequest("Aucune idée")
+        currentGame.answerHelpRequest("Aucune idée");
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
@@ -371,7 +370,7 @@ io.on('connection', function(client) {
 
     client.on('help_request_response', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        currentGame.answerHelpRequest(data.answer)
+        currentGame.answerHelpRequest(data.answer);
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
