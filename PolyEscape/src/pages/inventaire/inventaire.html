@@ -1,9 +1,3 @@
-<!--
-  Generated template for the InventairePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-toolbar>
 
@@ -11,59 +5,32 @@
 </ion-header>
 
 
+<ion-content padding>
 
-<ion-content>
 
-
-  <div id="identificationItem" *ngIf="platformHelper.isLocalhost()">
+  <ion-card padding id="identificationItem" *ngIf="platformHelper.isLocalhost()">
     <ion-input type="text" placeholder="Numéro de l'item" [(ngModel)]="numero"></ion-input>
-    <button ion-button full icon-left (click)="recupererItem()">Récupérer Item </button>
-  </div>
-
-  <div id="scanner">
-    <!--
-    <ion-item>
-      <ion-input type="text" placeholder="MY QR Code data" [(ngModel)]="qrData">
-      </ion-input>
-    </ion-item>
-
-    <button ion-button full icon-left (click)="createCode()">
-      <ion-icon name="barcode"></ion-icon>
-      Create Code
-    </button>
-    -->
-    <button ion-button full icon-left *ngIf="platformHelper.isRealServer()" (click)="scanCode()" color="secondary">
-      <ion-icon name="qr-scanner"></ion-icon>
-      Scan Code
-    </button>
-
-  </div> <!-- div qui doit être effacé si commentaire en dessous enlevé -->
-
-<!--
-  <ion-card *ngIf="createdCode">
-    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
-    <ion-card-content>
-      <p>Value: {{ createdCode }}</p>
-    </ion-card-content>
+    <div text-center align-items-center>
+      <button ion-button full (click)="recupererItem()">Récupérer l'item</button>
+    </div>
   </ion-card>
 
-    <ion-card *ngIf="scannedCode">
-      <ion-card-content>
-        Result from Scan: {{ scannedCode }}
-      </ion-card-content>
-    </ion-card>
-  </div>
-  -->
 
+  <ion-card padding id="scanner" *ngIf="platformHelper.isRealServer()">
+    <p>Si vous avez trouvé un QR code, vous pouvez le scanner pour avancer dans votre quête ...</p>
+    <div text-center align-items-center>
+      <button ion-button full (click)="scanCode()" color="secondary">
+        <ion-icon name="qr-scanner"></ion-icon>
+        Scanner le code
+      </button>
+    </div>
+  </ion-card>
 
-
-  <ion-content class="card-background-page" >
+  <ion-content class="card-background-page">
     <ion-row>
-      <ion-col col-6 col-sm *ngFor="let item of listItems">
-        <ion-card>
-          <img  src={{item.pathImg}}/>
-          <!--<div class="card-title">{{item.name}}</div>-->
-          <!--<div class="card-subtitle">{{item.quantity}}</div>-->
+      <ion-col col-6 *ngFor="let item of listItems">
+        <ion-card id="card-item">
+          <img src={{item.pathImg}}/>
         </ion-card>
       </ion-col>
     </ion-row>
