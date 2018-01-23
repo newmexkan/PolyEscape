@@ -46,7 +46,7 @@ export class EnigmePage {
   winAlert() {
     let alertWin = this.alertCtrl.create({
       title: 'BONNE REPONSE !',
-      subTitle: "Vous venez de trouvé un item. Il est ajouté dans l'inventaire commun",
+      subTitle: "Vous venez de trouver un item. Il est ajouté dans l'inventaire commun",
       buttons: [
         {
           text: 'Oui',
@@ -61,8 +61,6 @@ export class EnigmePage {
       ]    });
     alertWin.present();
     this.navCtrl.pop();
-
-
   }
 
   loseAlert(){
