@@ -320,7 +320,7 @@ io.on('connection', function(client) {
             .value();
 
         currentGame.setScenario(selectedScenario);
-        currentGame.setSkills(currentGame.scenario);
+        currentGame.setGameSkills(currentGame.scenario);
         io.to(currentGame.getName()).emit('scenario_pick', {id: data.id , game: currentGame});
     });
 

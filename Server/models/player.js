@@ -5,9 +5,10 @@
 
 module.exports = class Player {
 
-    constructor(name, mission) {
+    constructor(name) {
         this.name = name;
-        this.missionId = mission;
+        this.missionId;
+        this.skill = "None"
     }
     getName() {
         return this.name;
@@ -15,5 +16,13 @@ module.exports = class Player {
 
     getMissionId(){
         return this.missionId;
+    }
+
+    setSkill(skill){
+        this.skill = skill;
+    }
+
+    resetSkill(){
+        this.skill = "None";
     }
 }
