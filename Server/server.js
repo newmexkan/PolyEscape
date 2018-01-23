@@ -351,14 +351,12 @@ io.on('connection', function(client) {
         currentGame.createHelpRequest(client, question);
 
         client.broadcast.to(currentGame.getName()).emit('help_request', {question: question, responses: responses, user: user});
-        console.log("Help request transmitted from "+user+". Enigm is : "+question);
 
     });
 
     client.on('help_request_empty', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         currentGame.answerHelpRequest("Aucune idée")
-        console.log(currentGame.helpRequest.nbAnswers+"/" + currentGame.helpRequest.nbPlayers + " people answered to the help request")
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
@@ -369,7 +367,6 @@ io.on('connection', function(client) {
     client.on('help_request_response', function (data) {
         let currentGame = gameList.get(data.game.toLowerCase());
         currentGame.answerHelpRequest(data.answer)
-        console.log(currentGame.helpRequest.nbAnswers+"/" + currentGame.helpRequest.nbPlayers + " people answered to the help request")
 
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
