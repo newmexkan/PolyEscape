@@ -110,8 +110,9 @@ app.get('/addItem/:game/:item', function(req, res){
     if(gameList.hasGameNamed(gameName)){
         const currentGame = gameList.get(gameName);
 
+
         if(currentGame.isRunning()) {
-            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: "assets/imgs/items/"+ req.params.item.valueOf() +".jpg", quantity: 1});
+            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: currentGame.findPathItem(req.params.item.valueOf()) , quantity: 1});
             res.send({
                 passed: true,
                 game: currentGame,

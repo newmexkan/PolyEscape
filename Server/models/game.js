@@ -189,4 +189,15 @@ module.exports = class Game {
         this.helpRequest.addAnswer(answer);
     }
 
+    findPathItem(item){
+
+        for(let i=0; i<this.scenario['missions'].length; i++){
+            console.log(this.scenario['missions'][i]['item'] === parseInt(item.valueOf()));
+            console.log(this.scenario['missions'][i]['item'] );
+
+            if(this.scenario['missions'][i]['item'] === parseInt(item.valueOf())){
+                return this.scenario['missions'][i].img;
+            }
+        }
+    }
 };

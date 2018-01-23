@@ -5,13 +5,7 @@
   Ionic pages and navigation.
 -->
 <!--
-<ion-header>
 
-  <ion-navbar>
-    <ion-title>Enigme</ion-title>
-  </ion-navbar>
-
-</ion-header>
 -->
 <!--
 <ion-content id="seekItem">
@@ -21,11 +15,20 @@
   <button  ion-button (click)="envoyerReponse()">Envoyer réponse </button>
 </ion-content>
 -->
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Enigme</ion-title>
+  </ion-navbar>
+
+</ion-header>
 <ion-content>
-<ion-list-header text-center id="seekItem">
-  Enigme <br> <br>
+  <h2>Enigme</h2>
+<p text-center id="seekItem">
+  <br> <br>
   {{enigme.question}}
-</ion-list-header>
+</p>
 
 <ion-list>
   <button ion-item *ngFor="let reponseItem of enigme.reponses" (click)="checkResponse(reponseItem)">
