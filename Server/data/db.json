@@ -118,56 +118,6 @@
         "Mathématiques",
         "Chimie"
       ]
-    },
-    {
-      "id": 3,
-      "name": "Epidémie",
-      "nbPlayers": 2,
-      "timeInMinuts": 4,
-      "image": "assets/imgs/scenarios/epidemie/0.jpg",
-      "summary": "SophiaTech est sur le point de se faire submerger par un tsunami géant. Pour empêcher ce désastre, votre équipe doit construire une digue géante",
-      "missions": [
-        {
-          "message": "Diffuser un message de secours",
-          "item": 0,
-          "indice": "",
-          "img": "assets/imgs/scenarios/zombies/items/0.jpg",
-          "questions": [
-            {
-              "question": "Quelle est l'altitude en mètre du mont Everest ?",
-              "reponses": [
-                "6 848",
-                "8 848",
-                "10 848"
-              ],
-              "reponse": "8 848"
-            }
-          ],
-          "skill": "Eau"
-        },
-        {
-          "message": "Récupérer des médicaments",
-          "item": 1,
-          "indice": "",
-          "img": "assets/imgs/scenarios/zombies/items/1.jpg",
-          "questions": [
-            {
-              "question": "De quelle origine nous vient le sauna ?",
-              "reponses": [
-                "Des indiens",
-                "Des australiens",
-                "Des finlandais"
-              ],
-              "reponse": "Des finlandais"
-            }
-          ],
-          "skill": "Electricité"
-        }
-      ],
-      "skills": [
-        "Électricité",
-        "Programmation"
-      ]
     }
   ]
 }
