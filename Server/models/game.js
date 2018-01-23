@@ -107,7 +107,7 @@ module.exports = class Game {
     setGameSkills(scenario){
         console.log(scenario);
         for(let i=0; i< scenario['skills'].length;i++){
-            this.skills.list.push({name: scenario['skills'][i], skillImg: "assets/imgs/"+scenario['skills'][i]+".png", users: [""]})
+            this.skills.list.push({name: scenario['skills'][i].name, skillImg: scenario['skills'][i].img, users: [""]})
         }
     }
 

@@ -41,7 +41,6 @@ export class ScenarioPage {
 
 
 
-
   indiceIDphoto() {
     for (let i = 0; i < this.game.missions.length; i++) {
       // le numéro scanné correspond bien à l'item que le user doit rechercher
