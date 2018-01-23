@@ -21,6 +21,8 @@ app.use(methodOverride());
 app.use(cors());
 app.use(express.static('media'));
 
+console.log("PolyEscape Server - v0.02");
+
 const http = require('http').Server(app);
 const server = app.listen(process.env.PORT || 8080);
 let io = require('socket.io').listen(server);
