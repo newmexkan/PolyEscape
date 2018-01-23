@@ -64,16 +64,22 @@
         }
       ],
       "skills": [
-        "Électricité",
-        "Programmation"
+        {
+          "name": "Électricité",
+          "img": "assets/imgs/scenarios/zombies/elec.jpg"
+        },
+        {
+          "name": "Programmation",
+          "img": "assets/imgs/scenarios/zombies/prog.jpg"
+        }
       ]
     },
     {
       "id": 2,
       "name": "Mission sur Mars",
       "nbPlayers": 2,
-      "timeInMinuts": 2,
-      "image": "assets/imgs/scenarios/mars/0.jpg",
+      "timeInMinuts": 4,
+      "image": "assets/imgs/scenarios/mars/mars.jpg",
       "summary": "La Terre est devenue inhabitable, totalement irradiée. La NASA vous a envoyé sur Mars pour la terraformer. Vous n'avez plus qu'une seule chance pour survivre: réussir votre mission",
       "missions": [
         {
@@ -115,8 +121,14 @@
         }
       ],
       "skills": [
-        "Mathématiques",
-        "Chimie"
+        {
+          "name": "Mathématiques",
+          "img": "assets/imgs/scenarios/mars/maths.jpg"
+        },
+        {
+          "name": "Chimie",
+          "img": "assets/imgs/scenarios/mars/chimie.jpg"
+        }
       ]
     },
     {
@@ -131,7 +143,7 @@
           "message": "Diffuser un message de secours",
           "item": 0,
           "indice": "",
-          "img": "assets/imgs/scenarios/zombies/items/0.jpg",
+          "img": "assets/imgs/scenarios/epidemie/items/0.jpg",
           "questions": [
             {
               "question": "Quelle est l'altitude en mètre du mont Everest ?",
@@ -149,7 +161,7 @@
           "message": "Récupérer des médicaments",
           "item": 1,
           "indice": "",
-          "img": "assets/imgs/scenarios/zombies/items/1.jpg",
+          "img": "assets/imgs/scenarios/epidemie/items/1.jpg",
           "questions": [
             {
               "question": "De quelle origine nous vient le sauna ?",
@@ -161,12 +173,18 @@
               "reponse": "Des finlandais"
             }
           ],
-          "skill": "Electricité"
+          "skill": "Électricité"
         }
       ],
       "skills": [
-        "Électricité",
-        "Programmation"
+        {
+          "name": "Électricité",
+          "img": "assets/imgs/scenarios/epidemie/elec.jpg"
+        },
+        {
+          "name": "Programmation",
+          "img": "assets/imgs/scenarios/epidemie/prog.jpg"
+        }
       ]
     }
   ]
