@@ -90,54 +90,17 @@ export class InventairePage {
 
   mauvaisItemAlert() {
     let alert = this.alertCtrl.create({
-      title: "L'item trouvé n'est pas celui recherché.",
-      subTitle: "Veuillez revoir l'indication de localisation de l'item."+"\n\nVoulez-vous partager une indication à un coéquipier ?",
+      title: "Cherchez encore, ce n'est pas le bon item !",
+      subTitle: "Vous pouvez partager cette localisation avec vos coéquipiers dans l'onglet 'Carte'",
       buttons: [
         {
-          text: 'Non',
+          text: 'Ok',
           handler: data => {
             console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Oui',
-          handler: data => {
-            alert.present();
-            this.showPrompt();
           }
         }]
     });
     alert.present();
-  }
-
-  showPrompt() {
-    let prompt = this.alertCtrl.create({
-      title: 'Indication',
-      message: "Veuillez ajouter une indication pour votre équipe",
-      inputs: [
-        {
-          name: 'message',
-          placeholder: 'Indication'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Annuler',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Envoyer',
-          handler: data => {
-            /*this.indicationService.addIndications(this.game.name, data.message.valueOf()).subscribe(res => {
-                this.socket.emit('indicateClue', {game:res["game"]});
-            });*/
-          }
-        }
-      ]
-    });
-    prompt.present();
   }
 
 

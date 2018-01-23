@@ -153,7 +153,7 @@ export class MapPage {
         {
           text: 'Envoyer',
           handler: data => {
-            let location = {latitude:43.616354,longitude:7.055222,title:data.message};
+            let location = {latitude:this.userLat,longitude:this.userLong,title:data.message};
             this.socket.emit('indicateClue', {gameName:this.game["name"],location:location});
           }
         }

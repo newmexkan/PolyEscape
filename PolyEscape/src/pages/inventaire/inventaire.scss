@@ -1,9 +1,6 @@
 page-inventaire {
-  #scanner{
-    margin-top: 60px;
-    padding-top: 60px;
-  }
   #identificationItem{
+
   }
   .card-background-page {
 
@@ -30,4 +27,17 @@ page-inventaire {
     }
 
   }
+}
+
+#card-item{
+  height:70px;
+}
+
+#scanner ion-icon{
+  margin-right: 8px;
+}
+
+#scanner p{
+  padding-top:15px;
+  padding-bottom:15px;
 }
