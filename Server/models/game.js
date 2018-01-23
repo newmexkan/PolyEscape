@@ -22,6 +22,7 @@ module.exports = class Game {
         this.helpRequest = {};
         this.state = GameState.WAITING_SCENARIO;
         this.players = [];
+        this.users = [];
         this.scenario;
         this.inventory = [];
         this.missions = [];
@@ -36,6 +37,13 @@ module.exports = class Game {
 
     addPlayer(play){
         this.players.push(play);
+        this.users.push(new Player(play));
+    }
+
+    getUser(name){
+        let index = this.users.findIndex(i => i.name.toLowerCase() === name.toLowerCase());
+        // return index;
+        return this.users[index];
     }
 
     acceptsPlayerNamed(name){
@@ -51,22 +59,44 @@ module.exports = class Game {
     removePlayer(play){
         let index = this.players.findIndex(i => i.toLowerCase() === play.toLowerCase());
         this.players.splice(index, 1);
+        index = this.users.findIndex(i => i.name.toLowerCase() === play.toLowerCase());
+        this.users.splice(index, 1);
     }
 
     mapPlayersToMissions(){
         let nbMissions = this.scenario["missions"].length;
-        let nbPlayers = this.players.length;
-
-        if(nbMissions === nbPlayers){
-            for(let i=0; i< nbPlayers;i++)
-                this.missions.push({mission:this.scenario["missions"][i], player:this.players[i]});
-
+        let nbPlayers = this.users.length;
+        let tmpMissions = this.scenario["missions"];
+        let tmpPlayers = [];
+        // for(let i=0; i<nbMissions; i++){
+        //     tmpMissions.push(this.scenario["missions"][i]);
+        // }
+        // for(let i=0; i<nbPlayers; i++){
+        //     tmpPlayers.push(this.players[i]);
+        // }
+        // console.log(tmpMissions);
+        // console.log(tmpPlayers);
+        while(tmpMissions.length !== 0){
+            if(tmpPlayers.length === 0)
+                tmpPlayers = this.users;
+            let i =0;
+            while(tmpPlayers[i].skill !== tmpMissions[0]["skill"] && i<tmpPlayers.length-1){
+                i++;
+            }
+            this.missions.push({mission: tmpMissions[0], player:tmpPlayers[i].name});
+            tmpMissions.splice(0, 1);
+            tmpPlayers.splice(i, 1);
         }
+
+        // if(nbMissions === nbPlayers){
+        //     for(let i=0; i< nbPlayers;i++)
+        //         this.missions.push({mission:this.scenario["missions"][i], player:this.players[i]});
+        // }
     }
 
 
 
-    setSkills(scenario){
+    setGameSkills(scenario){
         console.log(scenario);
         for(let i=0; i< scenario['skills'].length;i++){
             this.skills.list.push({name: scenario['skills'][i], skillImg: "assets/imgs/"+scenario['skills'][i]+".png", users: [""]})
@@ -75,11 +105,14 @@ module.exports = class Game {
 
     pickSkill(skillName, user){
         this.skills.pickSkill(skillName, user);
+        // console.log(this.getUser(user));
+        this.getUser(user).setSkill(skillName);
     }
 
 
     rejectSkill(skillName, user){
         this.skills.pop(skillName, user);
+        this.getUser(user).setSkill(skillName);
     }
 
 

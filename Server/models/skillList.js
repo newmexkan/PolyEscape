@@ -17,8 +17,9 @@ module.exports = class SkillList {
         let skillId = this.list.findIndex(i => i.name === skillName);
         if(skillId !== -1){
             let userId = this.list[skillId].users.findIndex(i => i === user);
-            if(userId === -1)
+            if(userId === -1) {
                 this.list[skillId].users.push(user);
+            }
         }
         else{
         }
