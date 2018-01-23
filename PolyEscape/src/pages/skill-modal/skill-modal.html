@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>SkillModal</ion-title>
+    <ion-title>Choisir une spécialité</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,13 +22,17 @@
       </ion-avatar>
       <ion-row>
         <ion-col col-10>
-          <h2 >{{skill.name}}</h2>
+          <h2>{{skill.name}}</h2>
           <p *ngFor="let user of skill.users">{{user}}</p>
         </ion-col>
         <ion-col col-2>
           <!--<ion-checkbox color="dark" (click)="checkBox(skill.name)" checked="{{inSkillList(skill) && skillChosen}}"></ion-checkbox>-->
-          <button ion-button block (click)="rejectSkill(skill.name)" *ngIf="inSkillList(skill) && skillChosen">    <ion-icon name="checkmark-circle"></ion-icon></button>
-          <button ion-button block (click)="chooseSkill(skill.name)" *ngIf="(!inSkillList(skill) && !skillChosen)"><ion-icon name="radio-button-off"></ion-icon></button>
+          <button ion-button block (click)="rejectSkill(skill.name)" *ngIf="inSkillList(skill) && skillChosen">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </button>
+          <button ion-button block (click)="chooseSkill(skill.name)" *ngIf="(!inSkillList(skill) && !skillChosen)">
+            <ion-icon name="radio-button-off"></ion-icon>
+          </button>
         </ion-col>
       </ion-row>
 

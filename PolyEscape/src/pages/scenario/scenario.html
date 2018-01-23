@@ -27,29 +27,53 @@
 
 
   <ion-list>
-    <ion-list-header text-center>
-      Mes missions
-    </ion-list-header>
-    <ion-item *ngFor="let mission of userMissions">
-        <ion-avatar item-start>
-          <img [src]=mission.mission.img>
-        </ion-avatar>
-        <h2>{{mission["mission"]["message"]}}</h2>
-        <p><button (click)="indice()" ion-button clear item-end>Obtenir un indice</button></p>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-list-header text-center>
+    <ion-list-header color="secondary" text-center>
       Missions des autres joueurs
     </ion-list-header>
-    <ion-item *ngFor="let mission of othersMissions">
-        <ion-avatar item-start>
-          <img [src]=mission.mission.img>
-        </ion-avatar>
-        <h2>{{mission["mission"]["message"]}}</h2>
-        <p>{{mission["player"]}}</p>
-    </ion-item>
+
+    <ion-card *ngFor="let mission of userMissions">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-avatar item-start>
+              <img [src]=mission.mission.img>
+            </ion-avatar>
+          </ion-col>
+          <ion-col col-7>
+            <h2>{{mission["mission"]["message"]}}</h2>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button text-center align-items-center (click)="indice()" id="indice">
+              <ion-icon icon-start icon-only name="ios-help-circle-outline"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-list>
+
+
+  <ion-list>
+    <ion-list-header color="secondary" id="missionsHeader" text-center>
+      Missions des autres joueurs
+    </ion-list-header>
+
+    <ion-card *ngFor="let mission of othersMissions">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-avatar item-start>
+              <img [src]=mission.mission.img>
+            </ion-avatar>
+          </ion-col>
+
+          <ion-col col-9>
+            <h2>{{mission["mission"]["message"]}}</h2>
+            <p>assignée à {{mission["player"]}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
   </ion-list>
 
 
