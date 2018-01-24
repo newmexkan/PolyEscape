@@ -182,7 +182,7 @@ export class GamePage {
     this.inventoryCount = 0;
   }
 
-
-
-
+  ionViewWillLeave() {
+    this.socket.disconnect();
+  }
 }

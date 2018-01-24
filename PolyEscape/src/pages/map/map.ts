@@ -52,12 +52,7 @@ export class MapPage {
       this.addMarkersToMap(res["markers"]);
     });
 
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data) => {
-      this.userLat = data.coords.latitude;
-      this.userLong = data.coords.longitude;
-      this.changeUserMarkerLocation()
-    });
+
   }
 
 
@@ -71,9 +66,14 @@ export class MapPage {
      this.userLong = 7.071719199999961;
       this.loadMap();
       this.getExistingIndications();
- //   }).catch((error) => {
- //     console.log('Error getting location', error);
- //   });
+
+
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((data) => {
+      this.userLat = data.coords.latitude;
+      this.userLong = data.coords.longitude;
+      this.changeUserMarkerLocation()
+    });
   }
 
   loadMap(){

@@ -21,7 +21,7 @@ app.use(methodOverride());
 app.use(cors());
 app.use(express.static('media'));
 
-console.log("PolyEscape Server - v0.02");
+console.log("PolyEscape Server - v0.03");
 
 const http = require('http').Server(app);
 const server = app.listen(process.env.PORT || 8080);
@@ -195,7 +195,6 @@ app.get('/getSkills/:gameName', function(req, res){
             message: "Partie introuvable"
         })
     }
-
 });
 
 
@@ -205,7 +204,10 @@ app.get('/getSkills/:gameName', function(req, res){
  * Partie Sockets
  */
 
+
 io.on('connection', function(client) {
+
+    client.removeAllListeners();
 
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
@@ -277,24 +279,24 @@ io.on('connection', function(client) {
             client.broadcast.to(currentGame.getName()).emit('notification', {subject:"map", message:"Votre équipe a ajouté une identification à la carte"});
             client.emit('notification', {message:"L'indentification a bien été partagée"});
         }
-
-
     });
 
     client.on('quitGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());
-        let gameRoom = currentGame.getName();
 
-        if (currentGame.isWaitingForPlayers()){
-            currentGame.removePlayer(data.user);
-            client.leave(gameRoom);
-            client.broadcast.to(gameRoom).emit('players_changed', {players: currentGame.players});
-        }
-        else if(currentGame.isRunning()){
-            io.to(currentGame.getName()).emit('end_of_game', {win: false, message:"Un joueur a quitté la partie !"});
-            destroyGame(currentGame.getName());
-        }
+        if(currentGame !== null){
+            let gameRoom = currentGame.getName();
 
+            if (currentGame.isWaitingForPlayers()){
+                currentGame.removePlayer(data.user);
+                client.leave(gameRoom);
+                client.broadcast.to(gameRoom).emit('players_changed', {players: currentGame.players});
+            }
+            else if(currentGame.isRunning()){
+                io.to(currentGame.getName()).emit('end_of_game', {win: false, message:"Un joueur a quitté la partie !"});
+                destroyGame(currentGame.getName());
+            }
+        }
     });
 
     client.on('pickSkill', function(data) {
@@ -355,7 +357,6 @@ io.on('connection', function(client) {
         currentGame.createHelpRequest(client, question);
 
         client.broadcast.to(currentGame.getName()).emit('help_request', {question: question, responses: responses, user: user});
-
     });
 
     client.on('help_request_empty', function (data) {
@@ -365,7 +366,6 @@ io.on('connection', function(client) {
         if(currentGame.helpRequest.everyoneAnswered()){
             currentGame.helpRequest.client.emit('help_request_results', {answers: currentGame.helpRequest.answers})    ;
         }
-
     });
 
     client.on('help_request_response', function (data) {

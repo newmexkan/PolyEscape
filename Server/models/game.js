@@ -105,7 +105,6 @@ module.exports = class Game {
 
 
     setGameSkills(scenario){
-        console.log(scenario);
         for(let i=0; i< scenario['skills'].length;i++){
             this.skills.list.push({name: scenario['skills'][i].name, skillImg: scenario['skills'][i].img, users: [""]})
         }
@@ -113,7 +112,6 @@ module.exports = class Game {
 
     pickSkill(skillName, user){
         this.skills.pickSkill(skillName, user);
-        // console.log(this.getUser(user));
         this.getUser(user).setSkill(skillName);
     }
 
@@ -190,11 +188,7 @@ module.exports = class Game {
     }
 
     findPathItem(item){
-
         for(let i=0; i<this.scenario['missions'].length; i++){
-            console.log(this.scenario['missions'][i]['item'] === parseInt(item.valueOf()));
-            console.log(this.scenario['missions'][i]['item'] );
-
             if(this.scenario['missions'][i]['item'] === parseInt(item.valueOf())){
                 return this.scenario['missions'][i].img;
             }
