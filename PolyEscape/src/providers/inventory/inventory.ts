@@ -22,9 +22,6 @@ export class InventoryProvider {
 
     this.url = this.platformHelper.getUrl();
 
-
-    console.log("platform : " + this.plt.platforms());
-    console.log("url : " + this.url);
   }
 
   addItem(game, code) {
