@@ -84,7 +84,6 @@ app.get('/getGame/:name', function(req, res){
             message: "Partie introuvable"
         })
     }
-    
 });
 
 app.get('/getInventory/:game', function(req, res){

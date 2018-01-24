@@ -43,6 +43,4 @@ module.exports = class SkillList {
         }
         else return -1;
     }
-
-
 }

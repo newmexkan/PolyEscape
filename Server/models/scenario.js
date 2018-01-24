@@ -14,6 +14,7 @@ module.exports = class Scenario {
         this.missions = missions;
         this.skills = [];
     }
+
     getName() {
         return this.name;
     }

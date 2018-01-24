@@ -6,7 +6,6 @@
 
 module.exports = class GameList {
 
-
     constructor() {
         this.list = [];
     }

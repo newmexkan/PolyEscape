@@ -20,5 +20,4 @@ module.exports = class HelpRequest{
         this.answers[this.nbAnswers] = answer;
         this.nbAnswers++;
     }
-
 }
