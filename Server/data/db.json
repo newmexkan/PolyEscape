@@ -89,7 +89,7 @@
           "img": "assets/imgs/scenarios/mars/items/0.jpg",
           "questions": [
             {
-              "question": "Si le Soleil possède une température de 5 778 K, et qu'à chaque million de kilomètre ses rayons perdent 273°C, en supposant que Mars se trouve à 228MKm du Soleil, quelle épaisseur de matériaux doit avoir votre infrastructure pour avoir une température de 16°C si un mètre de matériaux diminue la température de 2°C",
+              "question": "Si le Soleil possède une température de 5 778 K, et qu'à chaque million de kilomètres ses rayons perdent 273°C, en supposant que Mars se trouve à 228MKm du Soleil, quelle épaisseur de matériaux doit avoir votre infrastructure pour avoir une température de 16°C si un mètre de matériaux diminue la température de 2°C",
               "reponses": [
                 "2 m",
                 "8 m",
