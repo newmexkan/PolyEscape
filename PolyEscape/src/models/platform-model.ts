@@ -12,7 +12,7 @@ export class PlatformHelper{
         this.url ="http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com"
       }
 
-      //this.url = "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com"
+      this.url = "http://polyescape-server-polyescape-server.193b.starter-ca-central-1.openshiftapps.com"
   }
 
   getUrl(){
