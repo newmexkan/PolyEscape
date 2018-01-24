@@ -16,6 +16,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 
 declare var google;
+
 @IonicPage()
 @Component({
   selector: 'page-map',
@@ -30,7 +31,7 @@ export class MapPage {
 
 
   private map: any;
-  private google: any;
+  //private google: any;
 
 
   listIndications = [];
@@ -60,15 +61,19 @@ export class MapPage {
   }
 
 
-  ionViewDidLoad(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.userLat = resp.coords.latitude;
-      this.userLong = resp.coords.longitude;
+   ionViewDidLoad(){
+
+    //this.platform.ready();
+   // this.geolocation.getCurrentPosition().then((resp) => {
+  //    this.userLat = resp.coords.latitude;
+   //   this.userLong = resp.coords.longitude;
+     this.userLat = 43.6155724;
+     this.userLong = 7.071719199999961;
       this.loadMap();
       this.getExistingIndications();
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+ //   }).catch((error) => {
+ //     console.log('Error getting location', error);
+ //   });
   }
 
   loadMap(){
