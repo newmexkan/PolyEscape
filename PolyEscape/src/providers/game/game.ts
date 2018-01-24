@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {PlatformHelper} from "../../models/platform-model";
+import {Platform} from "ionic-angular";
 
 /*
   Generated class for the GameProvider provider.
@@ -10,12 +12,19 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GameProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello GameProvider Provider');
+  url;
+  platformHelper;
+
+  constructor(public http: HttpClient,public plt: Platform) {
+
+    this.platformHelper = new PlatformHelper(this.plt);
+
+    this.url = this.platformHelper.getUrl();
+
   }
 
   getSkills(gameName) {
-    return this.http.get("http://" + "localhost" + ":8080/getSkills/"+gameName);
+    return this.http.get(this.url +"/getSkills/"+gameName);
   }
 
 
