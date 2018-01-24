@@ -21,7 +21,7 @@ app.use(methodOverride());
 app.use(cors());
 app.use(express.static('media'));
 
-console.log("PolyEscape Server - v0.03");
+console.log("PolyEscape Server - v0.04");
 
 const http = require('http').Server(app);
 const server = app.listen(process.env.PORT || 8080);
@@ -109,13 +109,12 @@ app.get('/addItem/:game/:item', function(req, res){
     if(gameList.hasGameNamed(gameName)){
         const currentGame = gameList.get(gameName);
 
-
         if(currentGame.isRunning()) {
-            currentGame.getInventory().push({name: req.params.item.valueOf(), pathImg: currentGame.findPathItem(req.params.item.valueOf()) , quantity: 1});
+            currentGame["inventory"].push({name: req.params.item.valueOf(), pathImg: currentGame.findPathItem(req.params.item.valueOf()) , quantity: 1});
             res.send({
                 passed: true,
                 game: currentGame,
-                inventory: currentGame.inventory
+                inventory: currentGame["inventory"]
             });
         }
         else {
@@ -207,7 +206,7 @@ app.get('/getSkills/:gameName', function(req, res){
 
 io.on('connection', function(client) {
 
-    client.removeAllListeners();
+    //client.removeAllListeners();
 
     client.on('createGame', function(data) {
         let currentGame = gameList.get(data.game.toLowerCase());

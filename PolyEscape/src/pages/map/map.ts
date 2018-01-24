@@ -58,7 +58,7 @@ export class MapPage {
 
    ionViewDidLoad(){
 
-    //this.platform.ready();
+    this.platform.ready();
    // this.geolocation.getCurrentPosition().then((resp) => {
   //    this.userLat = resp.coords.latitude;
    //   this.userLong = resp.coords.longitude;
@@ -72,7 +72,7 @@ export class MapPage {
     watch.subscribe((data) => {
       this.userLat = data.coords.latitude;
       this.userLong = data.coords.longitude;
-      this.changeUserMarkerLocation()
+      //this.changeUserMarkerLocation()
     });
   }
 
@@ -115,7 +115,6 @@ export class MapPage {
           title: "Vous"
         });
 
-      console.log("user added");
       this.userMarker.setMap(this.map);
     }
     else this.userMarker.setPosition(latlng);

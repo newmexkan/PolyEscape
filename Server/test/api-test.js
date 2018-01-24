@@ -32,7 +32,7 @@ describe('getAllScenarios', function () {
                 expect(obj).to.have.property('scenarios');
 
                 for(let i=0;i<obj["scenarios"].length;i++)
-                    expect(obj["scenarios"][i]).to.have.all.keys('id', 'name', 'nbPlayers', 'timeInMinuts', 'summary', 'missions', 'questions');
+                    expect(obj["scenarios"][i]).to.have.all.keys('id', 'name', 'nbPlayers', 'timeInMinuts', 'summary', 'missions', 'skills', 'image');
 
                 done();
             });
@@ -81,7 +81,7 @@ describe('addGame', function () {
                 assert.equal(200, res.statusCode);
 
                 expect(obj).to.have.property('game');
-                expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief');
+                expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief', 'helpRequest', 'skills', 'users');
 
                 done();
             });
@@ -134,7 +134,7 @@ describe('getGame', function () {
                 obj = JSON.parse(data);
 
                 expect(obj).to.have.property('game');
-                expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief');
+                expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief', 'helpRequest', 'skills', 'users');
 
                 done();
             });
@@ -371,7 +371,7 @@ describe('addIndication', function () {
                 assert.equal(200, res.statusCode);
 
                 expect(obj).to.have.property('game');
-                expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief');
+                expect(obj["game"]).to.have.all.keys('id', 'name', 'players', 'inventory', 'missions', 'indications', 'chief', 'helpRequest', 'skills', 'users');
 
                 done();
             });
